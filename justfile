@@ -1,24 +1,23 @@
 shell: 
-	python manage.py shell
+	python3 manage.py shell
 
 makemigrations blog:
-	python manage.py makemigrations {{ blog }}
-
+	python3 manage.py makemigrations {{ blog }}
 
 migrate:
-	python manage.py migrate
+	python3 manage.py migrate
 
 runserver:
-	python manage.py runserver
+	python3 manage.py runserver
 
 startapp app:
-    python manage.py startapp {{ app }}
+    python3 manage.py startapp {{ app }}
 
 create site:
-	python -m venv .venv --promt {{ site }}
+	python3 -m venv .venv --promt {{ site }}
 
 superuser:
-	python manage.py createsuperuser
+	python3 manage.py createsuperuser
 
 createproject project:
 	django-admin startproject {{ project }} .
