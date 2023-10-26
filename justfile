@@ -21,3 +21,6 @@ superuser:
 
 createproject project:
 	django-admin startproject {{ project }} .
+	
+check:
+	python manage.py check
