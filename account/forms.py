@@ -1,6 +1,5 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.core.validator import FileExtensionValidator
 
 from .models import Profile
 
@@ -13,15 +12,10 @@ class LoginForm(forms.Form):
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
-    avatar = forms.ImageField(validators=[FileExtensionValidator(allowed_extension=['jpg', 'png'])])
 
     class Meta:
-        model = User
-        fields = [
-            'username',
-            'first_name',
-            'email',
-        ]
+        models = (User, Profile)
+        fields = ['username', 'first_name', 'email', 'avatar']
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -39,7 +33,7 @@ class UserRegistrationForm(forms.ModelForm):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'avatar']
+        fields = ['first_name', 'last_name', 'email']
 
     def clean_email(self):
         data = self.cleaned_data['email']

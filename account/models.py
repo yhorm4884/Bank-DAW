@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.validators import RegexValidator
+from django.core.validators import FileExtensionValidator, RegexValidator
 from django.db import models
 
 
@@ -18,7 +18,9 @@ class Profile(models.Model):
 
     # Avatar que puede mostrar el usuario en la web
     # TODO Si es posible en un futuro implementar upload to user/code estaría bien
-    avatar = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
+    avatar = models.ImageField(
+        upload_to='users/%Y/%m/%d/', blank=True, validators=[FileExtensionValidator(['jpg', 'png'])]
+    )
 
     # Codigo autoincrementar que va a permitir indentificar la cuenta
     code = models.CharField(
