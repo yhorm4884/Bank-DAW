@@ -22,4 +22,6 @@ urlpatterns = [
     path('',acc_view.dashboard, name='HOME'),
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
+    path('cards/', include('cards.urls')),
+
 ]
