@@ -1,17 +1,21 @@
 from django import forms
 from django.contrib.auth.models import User
-
+from django.core.validators import FileExtensionValidator
 from .models import Profile
 
 
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
-
+# Para que no exista problemas entre los modelos he creado un formulario que va vinculado con el del usuario
+# Este permite si queremos restringir
 class ProfileForm(forms.ModelForm):
+    avatar = forms.ImageField(validators=[FileExtensionValidator(['jpg', 'png'])])
+
     class Meta:
         model = Profile
         fields = ['avatar']
+
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
