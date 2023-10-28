@@ -42,12 +42,24 @@ def register(request):
             new_user.set_password(user_form.cleaned_data['password'])
             # Save the User object
             new_user.save()
+            
+            # Obtener el último código
+            last_profile = Profile.objects.order_by('-code').first()
+            if last_profile:
+                last_code = last_profile.code
+                last_num = int(last_code.split('-')[1])
+                new_num = last_num + 1
+                new_code = f"A2-{new_num:04d}"
+            else:
+                new_code = "A2-0001"
+            
             # Create the user profile
-            Profile.objects.create(user=new_user)
+            Profile.objects.create(user=new_user, code=new_code)
             return render(request, 'account/register_done.html', {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
     return render(request, 'account/register.html', {'user_form': user_form})
+
 
 
 @login_required
