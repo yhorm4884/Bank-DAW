@@ -6,6 +6,7 @@ from django.shortcuts import render
 
 from .forms import LoginForm, ProfileEditForm, ProfileForm, UserEditForm, UserRegistrationForm
 from .models import Profile
+from cards.models import CreditCard
 
 
 def user_login(request):
@@ -29,8 +30,9 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-    credit_cards = request.user.credit_cards.all()
-    return render(request, 'account/dashboard.html', {'credit_cards': credit_cards})
+    credit_cards = CreditCard.objects.filter(user=request.user)
+    print(credit_cards)
+    return render(request, 'account/dashboard.html', {'credit_cards': credit_cards,})
 
 
 def register(request):

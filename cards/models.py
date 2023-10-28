@@ -38,3 +38,19 @@ class CreditCard(models.Model):
     # Este campo es provisional ya que hay que establezcer una relación de clave foránea con el modelo User
     # para asi las tarjetas estén asociadas a una cuenta 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='credit_cards')
+    def save(self, *args, **kwargs):
+        # Si no se ha asignado un card_code, generar uno
+        if not self.card_code:
+            # Obtener el último código
+            last_credit_card = CreditCard.objects.order_by('-card_code').first()
+            if last_credit_card:
+                last_code = last_credit_card.card_code
+                last_num = int(last_code.split('-')[1])
+                new_num = last_num + 1
+                new_code = f"C2-{new_num:04d}"
+            else:
+                new_code = "C2-0001"
+
+            self.card_code = new_code
+        # Llamar al método save() del padre
+        super().save(*args, **kwargs)

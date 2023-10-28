@@ -1,7 +1,7 @@
 <div class="sidebar">
     <h2>Credit Card Actions</h2>
     {% if request.user.is_authenticated %}
-      <a href="#">Add a new credit card</a>
+      <a href="{% url 'cards:add_credit_card' %}">Add a new credit card</a>
     {% endif %}
 </div>
   

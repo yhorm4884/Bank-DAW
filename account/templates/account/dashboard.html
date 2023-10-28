@@ -2,7 +2,9 @@
 {% block title %}Dashboard{% endblock %}
 {% block content %}
   <h1>Welcome, {{ user.username }}!</h1>
-  {% include "cards/credit_cards_list.html" %}
+    {% with credit_cards=credit_cards %}
+        {% include "cards/credit_card_list.html" %}
+    {% endwith %}
   <div class="sidebar">
     <h2>Account settings</h2>
     {% if request.user.is_authenticated %}

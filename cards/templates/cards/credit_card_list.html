@@ -1,8 +1,9 @@
 <h2>Your credit cards:</h2>
 <ul>
-  {% for credit_card in credit_cards %}
+  {% for credit_card in cards %}
     <li>
       Card Code: {{ credit_card.card_code }}<br>
+      Pin: {{ credit_card.pin}}<br>
       Alias: {{ credit_card.alias }}<br>
       Status: {{ credit_card.status }}<br>
     </li>
