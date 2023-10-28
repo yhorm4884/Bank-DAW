@@ -29,7 +29,8 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+    credit_cards = request.user.credit_cards.all()
+    return render(request, 'account/dashboard.html', {'credit_cards': credit_cards})
 
 
 def register(request):

@@ -1,8 +1,18 @@
 from django.conf import settings
 from django.core.validators import FileExtensionValidator, RegexValidator
 from django.db import models
+# ┌───────────────────────┐
+# │   Account             │
+# │                       │
+# ├───────────────────────┤
+# │  code                 │
+# │  alias                │
+# │  balance              │
+# │  status               │
+# │  avatar               │
+# └───────────────────────┘
 
-
+# TODO Falta añadir balance que no sé sabe por ahora lo que es
 class Profile(models.Model):
     # Creación de la clase de elección entre activo, bloqueado o de baja
     class Status(models.TextChoices):

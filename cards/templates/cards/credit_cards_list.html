@@ -1,0 +1,10 @@
+<h2>Your credit cards:</h2>
+<ul>
+  {% for credit_card in credit_cards %}
+    <li>
+      Card Code: {{ credit_card.card_code }}<br>
+      Alias: {{ credit_card.alias }}<br>
+      Status: {{ credit_card.status }}<br>
+    </li>
+  {% endfor %}
+</ul>

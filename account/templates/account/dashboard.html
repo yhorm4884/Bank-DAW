@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-    <h1>Dashboard</h1>
-    
-    <p>You can also <a href="{% url "edit" %}">edit your profile</a> or <a
-href="{% url "password_change" %}">change your password</a>.</p>
+  <h1>Welcome, {{ user.username }}!</h1>
+  {% include "cards/credit_cards_list.html" %}
+  <div class="sidebar">
+    <h2>Account settings</h2>
+    {% if request.user.is_authenticated %}
+      <a href="#">Edit Profile</a>
+      <a href="#">Change Password</a>
+    {% endif %}
+  </div>
+  {% include "cards/cards_sidebar.html" %}
 {% endblock %}

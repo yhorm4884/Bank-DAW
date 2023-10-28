@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Add Credit Card{% endblock %}
+{% block content %}
+  <h1>Add a new credit card</h1>
+  <form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Add Credit Card"></p>
+  </form>
+{% endblock %}
