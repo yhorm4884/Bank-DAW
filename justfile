@@ -24,8 +24,6 @@ createproject project:
 	
 check:
 	python manage.py check
-	clean:
-    find . -name '*.pyc' -exec rm {} \;
 
-makemigrations app="": _database
-    python manage.py makemigrations {{ app }}
+clean:
+    find . -name '*.pyc' -exec rm {} \;
