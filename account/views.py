@@ -32,8 +32,7 @@ def user_login(request):
 def dashboard(request):
     credit_cards = CreditCard.objects.filter(user=request.user)
     print(credit_cards)
-    return render(request, 'account/dashboard.html', {'credit_cards': credit_cards,})
-
+    return render(request, 'account/dashboard.html', {'credit_cards': credit_cards})
 
 def register(request):
     if request.method == 'POST':

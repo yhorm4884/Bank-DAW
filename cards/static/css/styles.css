@@ -1,0 +1,26 @@
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.card-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-content {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.card-content span {
+    color: #333;
+}
+

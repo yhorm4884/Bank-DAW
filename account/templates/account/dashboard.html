@@ -2,15 +2,16 @@
 {% block title %}Dashboard{% endblock %}
 {% block content %}
   <h1>Welcome, {{ user.username }}!</h1>
-    {% with credit_cards=credit_cards %}
-        {% include "cards/credit_card_list.html" %}
-    {% endwith %}
+  
   <div class="sidebar">
     <h2>Account settings</h2>
     {% if request.user.is_authenticated %}
-      <a href="#">Edit Profile</a>
-      <a href="#">Change Password</a>
+      <a href="{% url 'edit' %}">Edit Profile</a>
+      <a href="{% url "password_reset" %}">Change Password</a>
     {% endif %}
   </div>
   {% include "cards/cards_sidebar.html" %}
+
+  {% include "cards/credit_card_list.html" with credit_cards=credit_cards %}
+  
 {% endblock %}

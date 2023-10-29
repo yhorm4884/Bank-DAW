@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import CreditCard
 from .forms import CreditCardForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def credit_card_list(request):
-    cards = CreditCard.objects.all()
-    return render(request, 'cards/credit_card_list.html', {'cards': cards})
+    credit_cards = CreditCard.objects.all()
+    print(credit_cards)
+    return render(request, 'cards/credit_card_list.html', {'credit_cards': credit_cards})
 
-from django.shortcuts import render, redirect
-from .forms import CreditCardForm
-from .models import CreditCard
-
+@login_required
 def add_credit_card(request):
     if request.method == 'POST':
         form = CreditCardForm(request.POST)
