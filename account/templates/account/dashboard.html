@@ -8,6 +8,7 @@
     {% if request.user.is_authenticated %}
       <a href="{% url 'edit' %}">Edit Profile</a>
       <a href="{% url "password_reset" %}">Change Password</a>
+      <a href="{% url 'deactivate' %}">Deactivate Account</a>
     {% endif %}
   </div>
   {% include "cards/cards_sidebar.html" %}

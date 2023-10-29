@@ -12,4 +12,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     # Urls para la edición del perfil del usuario
     path('edit/', views.edit, name='edit'),
+    path('deactivate/', views.deactivate_account, name='deactivate'),
+    path('reactivate/<str:token>/', views.reactivate_account, name='reactivate'),
 ]

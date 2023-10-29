@@ -2,11 +2,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
 from .forms import LoginForm, ProfileEditForm, ProfileForm, UserEditForm, UserRegistrationForm
 from .models import Profile
 from cards.models import CreditCard
+from django.contrib.auth import logout
+
+from django.core.mail import send_mail
+from django.utils.crypto import get_random_string
 
 
 def user_login(request):
@@ -16,16 +19,22 @@ def user_login(request):
             cd = form.cleaned_data
             user = authenticate(request, username=cd['username'], password=cd['password'])
             if user is not None:
-                if user.is_active:
+                print("entro")
+                print(user.profile.status)
+                if user.profile.status == 'AC':
+                    print("ns porque entro")
                     login(request, user)
                     return HttpResponse('Authenticated successfully')
+                elif user.profile.status == 'DO':
+                    return HttpResponse('Your account is inactive, please check your email to reactivate it')
                 else:
-                    return HttpResponse('Disabled account')
-        else:
-            return HttpResponse('Invalid login')
+                    return HttpResponse('Account is blocked')
+            else:
+                return HttpResponse('Invalid login')
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form})
+
 
 
 @login_required
@@ -86,3 +95,50 @@ def edit(request):
     return render(
         request, 'account/edit.html', {'user_form': user_form, 'profile_form': profile_form}
     )
+
+@login_required
+def deactivate_account(request):
+    # Obtener el usuario actual
+    user = request.user
+
+    # Cambiar el estado del usuario a 'Inactivo'
+    user.profile.status = 'DO'  # Asegúrate de reemplazar 'User' por tu modelo de usuario si es diferente
+
+    # Generar un token de reactivación
+    reactivation_token = get_random_string(length=32)
+    user.profile.reactivation_token = reactivation_token
+
+    # Guardar los cambios en la base de datos
+    user.profile.save()
+
+    # Enviar el correo de reactivación
+    subject = 'Reactivate Your Account'
+    message = f'Click the link to reactivate your account: http://localhost:8000/account/reactivate/{reactivation_token}'
+    from_email = 'your_email@example.com'
+    to_list = [user.email]
+
+    send_mail(subject, message, from_email, to_list, fail_silently=True)
+
+    # Cerrar la sesión del usuario
+    logout(request)
+
+    # Redirigir al usuario a la página de inicio
+    return redirect('dashboard')
+
+def reactivate_account(request, token):
+    try:
+        user_profile = Profile.objects.get(reactivation_token=token)
+        user = user_profile.user
+
+        # Cambiar el estado de la cuenta a ACTIVA
+        user.status = Profile.Status.ACTIVE
+        user.save()
+
+        # Limpiar el token de reactivación
+        user_profile.reactivation_token = None
+        user_profile.save()
+
+        return render(request, 'account/reactivate_account.html')
+    except Profile.DoesNotExist:
+        return render(request, 'account/reactivate_account_failed.html')
+

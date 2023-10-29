@@ -26,6 +26,9 @@ class Profile(models.Model):
     # Datos del usuario como nombre, apellidos, correo...
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    # Campo extra que servirá para cuando la cuenta esté desactivada
+    reactivation_token = models.CharField(max_length=64, null=True, blank=True)
+
     # Avatar que puede mostrar el usuario en la web
     # TODO Si es posible en un futuro implementar upload to user/code estaría bien
     avatar = models.ImageField(
