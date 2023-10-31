@@ -1,13 +1,12 @@
-from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
 from .forms import LoginForm, ProfileEditForm, ProfileForm, UserEditForm, UserRegistrationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
 from cards.models import CreditCard
-from django.contrib.auth import logout
-
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
 
@@ -19,12 +18,9 @@ def user_login(request):
             cd = form.cleaned_data
             user = authenticate(request, username=cd['username'], password=cd['password'])
             if user is not None:
-                print("entro")
-                print(user.profile.status)
                 if user.profile.status == 'AC':
-                    print("ns porque entro")
                     login(request, user)
-                    return HttpResponse('Authenticated successfully')
+                    return redirect('dashboard')
                 elif user.profile.status == 'DO':
                     return HttpResponse('Your account is inactive, please check your email to reactivate it')
                 else:
@@ -126,19 +122,20 @@ def deactivate_account(request):
     return redirect('dashboard')
 
 def reactivate_account(request, token):
-    try:
-        user_profile = Profile.objects.get(reactivation_token=token)
-        user = user_profile.user
+    # Buscar un usuario con el token de reactivación proporcionado
+    user = get_object_or_404(User, profile__reactivation_token=token)
 
-        # Cambiar el estado de la cuenta a ACTIVA
-        user.status = Profile.Status.ACTIVE
-        user.save()
+    # Cambiar el estado del usuario a 'Activo'
+    user.profile.status = 'AC'  # Asegúrate de reemplazar 'User' por tu modelo de usuario si es diferente
 
-        # Limpiar el token de reactivación
-        user_profile.reactivation_token = None
-        user_profile.save()
+    # Eliminar el token de reactivación
+    user.profile.reactivation_token = None
 
-        return render(request, 'account/reactivate_account.html')
-    except Profile.DoesNotExist:
-        return render(request, 'account/reactivate_account_failed.html')
+    # Guardar los cambios en la base de datos
+    user.profile.save()
 
+    # Iniciar sesión del usuario
+    login(request, user)
+
+    # Redirigir al usuario a la página de inicio
+    return redirect('dashboard')
