@@ -14,7 +14,7 @@ startapp app:
     python3 manage.py startapp {{ app }}
 
 create site:
-	python3 -m venv .venv --promt {{ site }}
+	python3 -m venv .venv --prompt {{ site }}
 
 superuser:
 	python3 manage.py createsuperuser
