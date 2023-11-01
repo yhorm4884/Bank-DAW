@@ -3,7 +3,7 @@
 <html>
 
 <head>
-  <title>{% block title %}{% endblock %}</title>
+  <title>{% block title %}Bank ODPCS{% endblock %}</title>
   <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
 
@@ -14,21 +14,22 @@
       <ul>
         <li><a href="/">Inicio</a></li>
         <li><a href="#">Servicios</a></li>
-        <li><a href="{% url 'cards:credit_card_list' %}">Tarjetas</a></li>
+        <li><a href="{% url 'cards:credit_cards' %}">Tarjetas</a></li>
         <li><a href="#">Cuentas bancarias</a></li>
         <li><a href="#">Contacto</a></li>
       </ul>
     </nav>
     <span class="user">
       {% if request.user.is_authenticated %}
-      Hello {{ request.user.first_name|default:request.user.username }},
+      Hello <a href="{% url 'profile' %}">{{ request.user.first_name|default:request.user.username }}</a>,
       <a href="{% url 'logout' %}">Logout</a>
       {% else %}
       <a href="{% url 'login' %}">Log-in</a>
       {% endif %}
     </span>
   </header>
-  {% if messages %}
+  <main>
+    {% if messages %}
   <ul class="messages">
     {% for message in messages %}
     <li class="{{ message.tags }}">
@@ -38,12 +39,8 @@
     {% endfor %}
   </ul>
   {% endif %}
-  <div id="content">
-    <div class="main-content">
-      {% block content %}
-      {% endblock %}
-    </div>
-
+    {% block content %}{% endblock %}
+  </main>
   </div>
 </body>
 

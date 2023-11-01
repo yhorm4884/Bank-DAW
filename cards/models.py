@@ -54,3 +54,5 @@ class CreditCard(models.Model):
             self.card_code = new_code
         # Llamar al método save() del padre
         super().save(*args, **kwargs)
+    def __str__(self):
+        return self.card_code

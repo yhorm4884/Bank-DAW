@@ -80,3 +80,22 @@ nav a:hover {
 .sidebar a:hover {
     text-decoration: underline;
 }
+ul.messagelist li {
+    display: block;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    padding: 10px 10px 10px 65px;
+    margin: 0 0 10px 0;
+    background: var(--message-success-bg) url(../img/icon-yes.svg) 40px 12px no-repeat;
+    background-size: 16px auto;
+    color: var(--body-fg);
+    word-break: break-word;
+  }
+  ul > li {
+    list-style-type: square;
+    padding: 1px 0;
+  }
+  li, dt, dd {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+  }

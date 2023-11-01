@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}My Credit Cards{% endblock %}
+
+{% block content %}
+    <form method="get">
+        <select name="status">
+        <option value="AC">Activo</option>
+        <option value="BL">Bloqueado</option>
+        <option value="DO">Inactivo</option>
+        </select>
+        <button type="submit">Filtrar</button>
+    </form>
+  {% include "cards/credit_card_list.html" with credit_cards=credit_cards %}
+{% endblock %}

@@ -15,5 +15,9 @@
     <div class="card-content">
       <span>Status:</span> {{ cards.status }}
     </div>
+    <a href="{% url 'cards:block_credit_card' cards.card_code %}">Bloquear</a>
+    <a href="{% url 'cards:delete_credit_card' cards.card_code %}">Eliminar</a>
   </div>
+  {% empty %}
+  <p>No se han encontrado tarjetas</p>
 {% endfor %}

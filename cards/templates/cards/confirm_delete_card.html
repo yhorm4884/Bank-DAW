@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Estás seguro de que quieres eliminar la tarjeta {{ card.card_code }}?</h2>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Sí, estoy seguro">
+    <a href="{% url 'cards:credit_card_list' %}">Cancelar</a>
+  </form>
+{% endblock %}

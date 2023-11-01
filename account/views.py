@@ -10,6 +10,33 @@ from cards.models import CreditCard
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
 
+# Modificada la funcion de registro de usuario añadiendo codigo autoincremental
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        profile_form = ProfileForm(request.POST, request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            
+            # Obtener el último código
+            last_profile = Profile.objects.order_by('-code').first()
+            if last_profile:
+                last_code = last_profile.code
+                last_num = int(last_code.split('-')[1])
+                new_num = last_num + 1
+                new_code = f"A2-{new_num:04d}"
+            else:
+                new_code = "A2-0001"
+            
+            Profile.objects.create(user=new_user, code=new_code)
+            return render(request, 'account/register_done.html', {'new_user': new_user})
+    else:
+        user_form = UserRegistrationForm()
+        profile_form = ProfileForm()
+
+    return render(request, 'account/register.html', {'user_form': user_form,'profile_form': profile_form})
 
 def user_login(request):
     if request.method == 'POST':
@@ -32,46 +59,20 @@ def user_login(request):
     return render(request, 'account/login.html', {'form': form})
 
 
-
+# Dashboard que contendrá las tarjetas y ultimos 10 movimientos en la cuenta
 @login_required
 def dashboard(request):
     credit_cards = CreditCard.objects.filter(user=request.user)
     print(credit_cards)
     return render(request, 'account/dashboard.html', {'credit_cards': credit_cards})
 
-def register(request):
-    if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        profile_form = ProfileForm(request.POST, request.FILES)
-        if user_form.is_valid() and profile_form.is_valid():
-            # Create a new user object but avoid saving it yet
-            new_user = user_form.save(commit=False)
-            # Set the chosen password
-            new_user.set_password(user_form.cleaned_data['password'])
-            # Save the User object
-            new_user.save()
-            
-            # Obtener el último código
-            last_profile = Profile.objects.order_by('-code').first()
-            if last_profile:
-                last_code = last_profile.code
-                last_num = int(last_code.split('-')[1])
-                new_num = last_num + 1
-                new_code = f"A2-{new_num:04d}"
-            else:
-                new_code = "A2-0001"
-            
-            # Create the user profile
-            Profile.objects.create(user=new_user, code=new_code)
-            return render(request, 'account/register_done.html', {'new_user': new_user})
-    else:
-        user_form = UserRegistrationForm()
-        profile_form = ProfileForm()
+#Muestra del perfil del usuario
+@login_required
+def profile(request):
+    profile = request.user.profile
+    return render(request, 'account/profile.html', {'profile': profile})
 
-    return render(request, 'account/register.html', {'user_form': user_form,'profile_form': profile_form})
-
-
-
+# Formulario para editar los datos del usuario
 @login_required
 def edit(request):
     if request.method == 'POST':

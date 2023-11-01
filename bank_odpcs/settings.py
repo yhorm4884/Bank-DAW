@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'cards.apps.CardsConfig',
+    'easy_thumbnails',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -130,6 +131,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Configuración de la biblioteca django-easy-thumbnails
+THUMBNAIL_ALIASES = {
+    '': {
+        'default': {'size': (180, 180), 'crop': 'smart'},
+    },
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -144,8 +151,8 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=config.boolean)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('SMTP_LOGIN_PASSWORD', default='password')
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
