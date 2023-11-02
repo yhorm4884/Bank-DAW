@@ -1,13 +1,13 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #fff;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #004488;
-    color: #fff;
+    background-color: #f0a93e;
+    color: #f0a93e;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -99,3 +99,13 @@ ul.messagelist li {
     font-size: 0.8125rem;
     line-height: 1.25rem;
   }
+  /* Estilo personalizado para el elemento row */
+.custom-row {
+    background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
+    padding: 20px; /* Añade espacio interior al row */
+    border-radius: 10px; /* Agrega bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega sombra */
+    margin-top: 20px; /* Añade margen superior */
+    /* Otros estilos personalizados según tus preferencias */
+  }
+  
