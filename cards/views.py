@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.hashers import make_password
+
 
 # Lista para mostrar en el dashboard
 @login_required
@@ -41,8 +43,22 @@ def add_credit_card(request):
             
             # Asignar el usuario actual
             credit_card.user = request.user
+            # Guardar el PIN en una variable antes de hashearla
+            pin = credit_card.pin
+
+            # Hashear el PIN
+            credit_card.pin = make_password(pin)
             
             credit_card.save()
+
+             # Enviar correo de éxito al usuario
+            send_mail(
+                'Tu tarjeta ha sido creada con éxito',
+                f'Este es tu PIN: {pin}',
+                'your_email@example.com',
+                [credit_card.user.email],
+                fail_silently=False,
+            )
             return redirect('dashboard')
     else:
         form = CreditCardForm()
