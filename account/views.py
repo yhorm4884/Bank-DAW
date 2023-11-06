@@ -1,23 +1,21 @@
-from .forms import LoginForm, ProfileEditForm, ProfileForm, UserEditForm, UserRegistrationForm
+from .forms import AccountForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Profile
+from .models import Account
 from cards.models import CreditCard
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
 
 # Modificada la funcion de registro de usuario añadiendo codigo autoincremental
-def register(request):
+def register_account(request):
     if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        profile_form = ProfileForm(request.POST, request.FILES)
-        if user_form.is_valid() and profile_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.set_password(user_form.cleaned_data['password'])
+        profile_form = AccountForm(request.POST, request.FILES)
+        if profile_form.is_valid():
+            new_account = profile_form.save(commit=False)
+            new_account.client = request.user
             new_user.save()
             
             # Obtener el último código
