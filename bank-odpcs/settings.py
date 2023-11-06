@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'cards.apps.CardsConfig',
+    'payments.apps.PaymentsConfig',
     'easy_thumbnails',
     'django.contrib.admin',
     'django.contrib.auth',
