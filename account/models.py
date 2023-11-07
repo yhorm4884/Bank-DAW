@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.validators import FileExtensionValidator, RegexValidator
 from django.db import models
+from clients.models import Client
 
 # ┌───────────────────────┐
 # │   Account             │
@@ -27,7 +28,7 @@ class Account(models.Model):
     )
     alias = models.CharField(max_length=255)
     # Datos del cliente ya que un cliente puede tener muchas cuentas
-    client = models.ForeignKey('client', on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
 
     # Campo extra que servirá para cuando la cuenta esté desactivada
     reactivation_token = models.CharField(max_length=64, null=True, blank=True)
@@ -37,7 +38,7 @@ class Account(models.Model):
 
     # Avatar que puede mostrar el usuario en la web
     # TODO Si es posible en un futuro implementar upload to accounts/code estaría bien
-    avatar = models.ImageField(
+    photo = models.ImageField(
         upload_to='accounts/%Y/%m/%d/', blank=True, validators=[FileExtensionValidator(['jpg', 'png'])]
     )
 
@@ -45,4 +46,4 @@ class Account(models.Model):
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.ACTIVE)
 
     def __str__(self):
-        return f'Bienvenido a la cuenta {self.alias}, código: {self.code}'
+        return f'{self.alias}/{self.code}'

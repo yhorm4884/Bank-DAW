@@ -1,5 +1,7 @@
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect
+
+from account.models import Account
 from .models import CreditCard
 from .forms import CreditCardForm
 from django.contrib.auth.decorators import login_required
@@ -18,17 +20,22 @@ def credit_card_list(request):
 # Para solo el apartado de tarjetas
 @login_required
 def credit_cards(request):
+    account_id = request.GET.get('account_id')
     status = request.GET.get('status')
-    if status:
-        credit_cards = CreditCard.objects.filter(user=request.user, status=status)
+
+    accounts = Account.objects.filter(client=request.user.client)
+
+    if account_id:
+        credit_cards = CreditCard.objects.filter(account_id=account_id, status=status)
     else:
-        credit_cards = CreditCard.objects.filter(user=request.user)
-    return render(request, 'cards/credit_cards.html', {'credit_cards': credit_cards})
+        credit_cards = CreditCard.objects.none()
+
+    return render(request, 'cards/credit_cards.html', {'credit_cards': credit_cards, 'accounts': accounts})
 
 @login_required
 def add_credit_card(request):
     # Obtener la cantidad de tarjetas de crédito que el usuario ya tiene
-    card_count = CreditCard.objects.filter(user=request.user).count()
+    card_count = CreditCard.objects.filter(account__client=request.user.client).count()
     
     # Verificar si el usuario ya ha alcanzado el límite de tarjetas
     if card_count >= 4:
@@ -36,13 +43,14 @@ def add_credit_card(request):
         return redirect('dashboard')
     
     if request.method == 'POST':
-        form = CreditCardForm(request.POST)
+        form = CreditCardForm(request.user.client, request.POST)
         if form.is_valid():
             # Crear el nuevo objeto CreditCard
             credit_card = form.save(commit=False)
             
-            # Asignar el usuario actual
-            credit_card.user = request.user
+            # Asignar la cuenta del cliente a la tarjeta de crédito
+            credit_card.account = form.cleaned_data['account']
+            
             # Guardar el PIN en una variable antes de hashearla
             pin = credit_card.pin
 
@@ -51,20 +59,19 @@ def add_credit_card(request):
             
             credit_card.save()
 
-             # Enviar correo de éxito al usuario
+            # Enviar correo de éxito al usuario
             send_mail(
                 'Tu tarjeta ha sido creada con éxito',
                 f'Este es tu PIN: {pin}',
                 'your_email@example.com',
-                [credit_card.user.email],
+                [request.user.email],
                 fail_silently=False,
             )
-            return redirect('dashboard')
+            return redirect('cards:credit_cards')
     else:
-        form = CreditCardForm()
+        form = CreditCardForm(request.user.client)
 
     return render(request, 'cards/add_credit_card.html', {'form': form})
-
 
 def block_credit_card(request, card_code):
     # Obtener la tarjeta de crédito

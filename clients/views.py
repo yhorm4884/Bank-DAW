@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from account.models import Account
 from cards.models import CreditCard
 
-from clients.forms import ClientEditForm, ClientProfileForm, ClientRegistrationForm, LoginForm, UserRegistrationForm
+from clients.forms import ClientEditForm, ClientRegistrationForm, LoginForm, UserEditForm, UserRegistrationForm
 from .models import Client
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
@@ -30,26 +30,29 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
         client_form = ClientRegistrationForm()
-    return render(request, 'register.html', {'user_form': user_form, 'client_form': client_form})
+    return render(request, 'client/register.html', {'user_form': user_form, 'client_form': client_form})
+
 def client_login(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
+        form = LoginForm(request.POST, request=request)
         if form.is_valid():
             cd = form.cleaned_data
-            client = authenticate(request, username=cd['username'], password=cd['password'])
-            if client is not None:
-                if client.client.status == 'AC':
-                    login(request, client)
-                    return redirect('dashboard')
-                elif client.client.status == 'DO':
-                    return HttpResponse('Your account is inactive, please check your email to reactivate it')
+            user = authenticate(request, username=cd['username'], password=cd['password'])
+            if user is not None:
+                if user.client.status == 'AC':
+                    login(request, user)
+                    return redirect('home')
+                elif user.client.status == 'DO':
+                    messages.error(request, 'Your account is inactive, please check your email to reactivate it')
                 else:
-                    return HttpResponse('Account is blocked')
+                    messages.error(request, 'Account is blocked')
             else:
-                return HttpResponse('Invalid login')
+                messages.error(request, 'Invalid login')
     else:
-        form = LoginForm()
+        form = LoginForm(request=request)
     return render(request, 'client/login.html', {'form': form})
+
+
 
 @login_required
 def dashboard(request):
@@ -57,13 +60,14 @@ def dashboard(request):
     accounts = Account.objects.filter(client=request.user.client)
     
     # Obtener las tarjetas de crédito asociadas a esas cuentas
-    credit_cards = CreditCard.objects.filter(user__in=accounts)
+    credit_cards = CreditCard.objects.filter(account__in=accounts)
 
     return render(
         request,
-        'clients/dashboard.html',
+        'client/dashboard.html',
         {'accounts': accounts, 'credit_cards': credit_cards}
     )
+
 @login_required
 def profile(request):
     profile = request.user.client
@@ -73,14 +77,19 @@ def profile(request):
 def edit(request):
     if request.method == 'POST':
         client_form = ClientEditForm(instance=request.user.client, data=request.POST)
-        if client_form.is_valid():
+        user_form = UserEditForm(instance=request.user, data=request.POST)
+
+        if client_form.is_valid() and user_form.is_valid():
             client_form.save()
+            user_form.save()
             messages.success(request, 'Profile updated successfully')
         else:
             messages.error(request, 'Error updating your profile')
     else:
         client_form = ClientEditForm(instance=request.user.client)
-    return render(request, 'client/edit.html', {'client_form': client_form})
+        user_form = UserEditForm(instance=request.user)
+
+    return render(request, 'client/edit.html', {'client_form': client_form, 'user_form': user_form})
 
 @login_required
 def deactivate_account(request):
@@ -109,7 +118,7 @@ def deactivate_account(request):
     logout(request)
 
     # Redirigir al cliente a la página de inicio
-    return redirect('dashboard')
+    return redirect('clients:dashboard')
 
 def reactivate_account(request, token):
     # Buscar un usuario con el token de reactivación proporcionado

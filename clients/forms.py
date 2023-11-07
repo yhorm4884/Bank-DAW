@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-
+from django.contrib.auth import authenticate
 from .models import Client
 
 class LoginForm(forms.Form):
@@ -12,6 +12,18 @@ class LoginForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        cd = super().clean()
+        user = authenticate(self.request, username=cd['username'], password=cd['password'])
+        if user is None:
+            raise forms.ValidationError('Invalid login')
+        return cd
+
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
@@ -38,13 +50,24 @@ class UserRegistrationForm(forms.ModelForm):
         if User.objects.filter(email=data).exists():
             raise forms.ValidationError('Email already in use.')
         return data
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
 
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        qs = User.objects.exclude(id=self.instance.id).filter(email=data)
+        if qs.exists():
+            raise forms.ValidationError(' Email already in use.')
+        return data
+    
 class ClientRegistrationForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ['avatar']
+        fields = ['photo']
 
 class ClientEditForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ['avatar']
+        fields = ['photo']

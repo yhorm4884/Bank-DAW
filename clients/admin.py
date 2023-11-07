@@ -9,5 +9,5 @@ class ClientAdmin(admin.ModelAdmin):
         return obj.user.username
     username.short_description = 'Username'
 
-    list_display = ('username', 'status', 'avatar')
+    list_display = ('username', 'status', 'photo')
     list_filter = ('status',)

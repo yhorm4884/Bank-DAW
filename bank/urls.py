@@ -23,9 +23,10 @@ from clients import views as acc_view
 urlpatterns = [
     path('', acc_view.dashboard, name='HOME'),
     path('admin/', admin.site.urls),
-    path('account/', include('account.urls')),
+    path('client/', include('clients.urls')),
+    path('', include('account.urls')),
     path('cards/', include('cards.urls')),
-    path('bank2/',include('payments.urls'))
+    # path('bank2/',include('payments.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

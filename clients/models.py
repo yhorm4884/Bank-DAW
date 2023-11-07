@@ -29,7 +29,7 @@ class Client(models.Model):
 
     # Estado en el que se encuentra la cuenta actualmente
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.ACTIVE)
-    avatar = models.ImageField(
+    photo = models.ImageField(
         upload_to='client/%Y/%m/%d/', blank=True, validators=[FileExtensionValidator(['jpg', 'png'])]
     )
     def __str__(self):

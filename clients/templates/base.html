@@ -7,7 +7,6 @@
   <link href="{% static "css/base.css" %}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-T65P6v76rg4c2CBX6ufF9Zn5Nqf2F/Ebb4DViQPP9tl2Rd4JTvm4Rw6A/2O5H6PW"></script>
-
 </head>
 
 <body>
@@ -20,7 +19,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/">Inicio</a>
+            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'cards:credit_cards' %}">Tarjetas</a>
@@ -39,10 +38,10 @@
     </nav>
     <span class="user">
       {% if request.user.is_authenticated %}
-      Hello <a href="{% url 'profile' %}">{{ request.user.first_name|default:request.user.username }}</a>,
-      <a href="{% url 'logout' %}">Logout</a>
+      Hola <a href="{% url 'profile' %}">{{ request.user.client.first_name|default:request.user.username }}</a>,
+      <a href="{% url 'logout' %}">Cerrar sesión</a>
       {% else %}
-      <a href="{% url 'login' %}">Log-in</a>
+      <a href="{% url 'login' %}">Iniciar sesión</a>
       {% endif %}
     </span>
   </header>

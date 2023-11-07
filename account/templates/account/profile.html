@@ -4,7 +4,7 @@
 
 {% block content %}
   <h1>Perfil de {{ profile.user.username }}</h1>
-  <img src="{% thumbnail user.profile.avatar 180x180 %}" class="user-detail">
+  <img src="{% thumbnail user.profile.photo 180x180 %}" class="user-detail">
   <p>Nombre de usuario: {{ profile.user.username }}</p>
   <p>Nombre: {{ profile.user.first_name }}</p>
   <p>Apellido: {{ profile.user.last_name }}</p>

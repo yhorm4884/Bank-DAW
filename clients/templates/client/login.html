@@ -16,7 +16,7 @@
         {% else %}
           <p class="mt-4">
             Please, use the following form to log-in.
-            If you don't have an account <a href="{% url "register" %}" class="link">register here</a>.
+            If you don't have an account <a href="{% url "client_register" %}" class="link">register here</a>.
           </p>
         {% endif %}
           <form action="{% url 'login' %}" method="post">
