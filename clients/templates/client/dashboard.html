@@ -10,10 +10,14 @@
       <a href="{% url 'cards:credit_cards' %}">Ver Tarjetas</a>
     </details>
     <details>
-      <summary>Acciones de Cuenta</summary>
+      <summary>Acciones del Cliente</summary>
       <a href="{% url 'edit' %}">Editar Perfil</a>
       <a href="{% url "password_reset" %}">Cambiar Contraseña</a>
       <a href="{% url 'deactivate' %}">Desactivar Cuenta</a>
+    </details>
+    <details>
+      <summary>Acciones Cuentas</summary>
+      <a href="{% url 'account:register' %}">Registrar Cuenta</a>
     </details>
   </div>
 
@@ -23,7 +27,7 @@
   </div>
 </div>
 {% include "cards/cards_sidebar.html" %}
-{% include "cards/credit_card_list.html" with credit_cards=credit_cards %}
+{% include "account/accounts.html" %}
 <script>
   function openNav() {
     document.getElementById("mySidebar").style.width = "250px";

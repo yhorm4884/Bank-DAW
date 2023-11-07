@@ -1,2 +1,10 @@
-<h1>Account Reactivated</h1>
-<p>Your account has been reactivated. You can now log in again.</p>
+{% extends "base.html" %}
+{% block title %}Reactivate Account{% endblock %}
+{% block content %}
+  {% if success %}
+    <h1>Your account has been successfully reactivated</h1>
+  {% else %}
+    <h1>Failed to reactivate account</h1>
+    <p>Invalid or expired token. Please try again.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% load static %}
+<head>
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+</head>
+{% block content %}
+  <h1>My Accounts</h1>
+  <div class="account-list">
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% for account in accounts %}
+      <div class="account-card">
+        <div class="account-header">
+          <h2>{{ account.alias }}</h2>
+        </div>
+        <div class="account-body">
+          <p>Code: {{ account.code }}</p>
+          <p>Balance: {{ account.balance }}</p>
+        </div>
+        <div class="account-footer">
+          <a href="{% url 'account:edit_alias' account.id %}">Edit Alias</a>
+          <a href="{% url 'account:deactivate' account.id %}">Deactivate Account</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

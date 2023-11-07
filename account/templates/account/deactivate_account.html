@@ -1,2 +1,10 @@
-<h1>Account Deactivated</h1>
-<p>Your account has been deactivated. Check your email for a link to reactivate your account.</p>
+{% extends "base.html" %}
+{% block title %}Deactivate Account{% endblock %}
+{% block content %}
+  <h1>Are you sure you want to deactivate your account?</h1>
+  <p>This action cannot be undone. All of your data will be permanently deleted.</p>
+  <form method="post">
+    {% csrf_token %}
+    <p><input type="submit" value="Deactivate Account"></p>
+  </form>
+{% endblock %}

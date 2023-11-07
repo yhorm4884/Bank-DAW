@@ -26,9 +26,6 @@ urlpatterns = [
     path('client/', include('clients.urls')),
     path('', include('account.urls')),
     path('cards/', include('cards.urls')),
-<<<<<<< HEAD:bank/urls.py
-=======
->>>>>>> main:bank-odpcs/urls.py
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
