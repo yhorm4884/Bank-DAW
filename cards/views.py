@@ -73,15 +73,16 @@ def add_credit_card(request):
 
     return render(request, 'cards/add_credit_card.html', {'form': form})
 
+@login_required
 def block_credit_card(request, card_code):
     # Obtener la tarjeta de crédito
     card = get_object_or_404(CreditCard, card_code=card_code)
     
     # Verificar si el usuario actual es el propietario de la tarjeta
-    if card.user == request.user:
+    if card.account.client.user == request.user:
         if card.status == CreditCard.Status.BLOCK:
             messages.error(request, 'Esta tarjeta ya está bloqueada.')
-            return redirect('cards:credit_cards')
+            return redirect('home')
         # Bloquear la tarjeta
         card.status = CreditCard.Status.BLOCK
         card.save()
@@ -91,15 +92,16 @@ def block_credit_card(request, card_code):
             'Your credit card has been blocked',
             'Your credit card with code {} has been successfully blocked.'.format(card.card_code),
             'your_email@example.com',
-            [card.user.email],
+            [card.account.client.user.email],
             fail_silently=True,
         )
         
         messages.success(request, 'Credit card blocked successfully')
-        return redirect('cards:credit_cards')
+        return redirect('home')
     else:
         messages.error(request, 'You are not authorized to block this credit card')
-        return redirect('cards:credit_cards')
+        return redirect('home')
+
 
 @login_required
 def delete_credit_card(request, card_code):
@@ -110,10 +112,11 @@ def delete_credit_card(request, card_code):
             'Your credit card has been deleted',
             'Your credit card with code {} has been successfully deleted.'.format(card.card_code),
             'your_email@example.com',
-            [card.user.email],
+            [card.account.client.user.email],
             fail_silently=True,
         )
         messages.success(request, 'La tarjeta ha sido eliminada correctamente.')
-        return redirect('cards:credit_cards')
+        return redirect('home')
     else:
         return render(request, 'cards/confirm_delete_card.html', {'card': card})
+
