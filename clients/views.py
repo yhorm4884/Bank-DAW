@@ -118,7 +118,7 @@ def deactivate_account(request):
     logout(request)
 
     # Redirigir al cliente a la página de inicio
-    return redirect('clients:dashboard')
+    return redirect('home')
 
 def reactivate_account(request, token):
     # Buscar un usuario con el token de reactivación proporcionado
@@ -137,4 +137,4 @@ def reactivate_account(request, token):
     login(request, client.user)
 
     # Redirigir al cliente a la página de inicio
-    return redirect('dashboard')
+    return redirect('home')
