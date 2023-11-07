@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Profile
+from .models import Account
 
 
-@admin.register(Profile)
+@admin.register(Account)
 class ProfileAdmin(admin.ModelAdmin):
     # Lista de datos a mostrar al administrador al ver los perfiles de usuarios
     list_display = ['code', 'status']

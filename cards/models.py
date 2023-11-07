@@ -1,8 +1,11 @@
-from django.db import models
-from django.conf import settings
 import random
 import string
+
+from django.conf import settings
 from django.core.validators import RegexValidator
+from django.db import models
+
+from account.models import Account
 
 # ┌───────────────────────┐
 # │   card                │
@@ -37,7 +40,7 @@ class CreditCard(models.Model):
 
     # Este campo es provisional ya que hay que establezcer una relación de clave foránea con el modelo User
     # para asi las tarjetas estén asociadas a una cuenta 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='credit_cards')
+    account  = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='credit_cards')
     def save(self, *args, **kwargs):
         # Si no se ha asignado un card_code, generar uno
         if not self.card_code:
@@ -55,4 +58,5 @@ class CreditCard(models.Model):
         # Llamar al método save() del padre
         super().save(*args, **kwargs)
     def __str__(self):
-        return self.card_code
+        return f'{self.card_code}'
+    

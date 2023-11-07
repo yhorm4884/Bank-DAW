@@ -1,5 +1,5 @@
 """
-URL configuration for bank-odpcs project.
+URL configuration for bank project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -18,14 +18,17 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from account import views as acc_view
+from clients import views as acc_view
 
 urlpatterns = [
     path('', acc_view.dashboard, name='HOME'),
     path('admin/', admin.site.urls),
-    path('account/', include('account.urls')),
+    path('client/', include('clients.urls')),
+    path('', include('account.urls')),
     path('cards/', include('cards.urls')),
-    path('bank2/',include('payments.urls'))
+<<<<<<< HEAD:bank/urls.py
+=======
+>>>>>>> main:bank-odpcs/urls.py
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
