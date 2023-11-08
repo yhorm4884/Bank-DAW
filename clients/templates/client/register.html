@@ -4,12 +4,12 @@
 <div class="container">
     <div class="row ">
         <div class="col-md-6 offset-md-3">
-            <div class="row custom-row">
-
+            <div class="row custom-row formulario-defecto">
                 <h1>Create an account</h1>
-                <p>Please, sign up using the following form:</p>
+                <hr>
+                <p><strong><b>Please, sign up using the following form:</b></strong></p>
                 <form method="post" enctype="multipart/form-data">
-                    {{ user_form.as_p }}
+                    <strong><b>{{ user_form.as_p }}</b></strong>
                     {{ profile_form.as_p }}
                     {% csrf_token %}
                     <p><input type="submit" class="btn btn-primary" value="Create my account"></p>
