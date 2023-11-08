@@ -1,8 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #fff;
+    background-color: #219ebc;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 header {
@@ -45,8 +46,9 @@ nav a:hover {
 }
 
 .user a {
-    color: #fff;
+    color: #023047;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .user a:hover {
@@ -96,6 +98,10 @@ nav a:hover {
     font-size: 36px;
     margin-left: 50px;
 }
+
+#navbarNav ul li a{
+    color: #023047;
+}
 .openbtn {
     font-size: 20px;
     cursor: pointer;
@@ -142,4 +148,57 @@ ul.messagelist li {
     margin-top: 20px; /* Añade margen superior */
     /* Otros estilos personalizados según tus preferencias */
   }
+
+  main {
+    background-color: #219EBC;
+    height: 90vh;
+  }
+
+  /* Center the login form */
+  .login-form-login {
+    font-family: Arial, sans-serif;
+    margin-top: 40px;
+    background-color: #f0a93e;
+  }
+
+  .login-form-login h1 {
+    text-align: center;
+    font-weight: bold;
+    color: #023047;
+  }
   
+  .login-form-login .alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .login-form-login .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .login-form-login input[type="text"],
+  .login-form-login input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-form-login button {
+    padding: 10px 20px;
+    background-color: #023047;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .login-form-login button:hover{
+    background-color: #126782;
+  }
+  
+  .login-form-login .link {
+    text-decoration: none;
+  }

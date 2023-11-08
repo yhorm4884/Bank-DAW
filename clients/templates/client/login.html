@@ -1,41 +1,46 @@
 {% extends "base.html" %}
-
-{% block title %}Log-in{% endblock %}
+{% load static %}
+<head>
+  <link type="text/css" href="{% static "css/style.css" %}" rel="stylesheet">
+  
+</head>
+{% block title %} Log-in{% endblock %}
 
 {% block content %}
   <div class="container">
     <div class="row ">
       <div class="col-md-6 offset-md-3">
         
-        <div class="login-form custom-row">
-          <h1 class="mt-4">Log-in</h1>
+        <div class="login-form-login custom-row">
+          <h1 class="mt-4"> <strong> Log-in </strong> </h1>
+          <hr>
         {% if form.errors %}
           <div class="alert alert-danger">
             Your username and password didn't match. Please try again.
           </div>
         {% else %}
           <p class="mt-4">
-            Please, use the following form to log-in.
-            If you don't have an account <a href="{% url "client_register" %}" class="link">register here</a>.
+            <strong><b>Please, use the following form to log-in.
+            If you don't have an account <a href="{% url "client_register" %}" class="link">register here</a></b></strong>.
           </p>
         {% endif %}
           <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
-              {{ form.username.label_tag }}
+              <strong><b>{{ form.username.label_tag }}</strong></b>
               {{ form.username }}
             </div>
             <div class="form-group">
-              {{ form.password.label_tag }}
+              <strong><b>{{ form.password.label_tag }}</strong></b>
               {{ form.password }}
             </div>
             <input type="hidden" name="next" value="{{ next }}" />
           </br>
-            <button type="submit" class="btn btn-primary">Log-in</button>
+            <button type="submit" class="btn btn-primary"><strong><b>Log-in</strong></b></button>
           </form>
           <p class="mt-4">
             <a href="{% url "password_reset" %}" class="link">
-              Forgotten your password?
+              <strong><b>Forgotten your password?</strong></b>
             </a>
           </p>
         </div>
