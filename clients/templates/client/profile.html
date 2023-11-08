@@ -3,10 +3,14 @@
 {% block title %}Client profile{% endblock %}
 
 {% block content %}
-  <h1>Perfil de {{ client.user.username }}</h1>
-  <img src="{% thumbnail user.profile.photo 180x180 %}" class="user-detail">
-  <p>Nombre de usuario: {{ profile.user.username }}</p>
-  <p>Nombre: {{ profile.user.first_name }}</p>
-  <p>Apellido: {{ profile.user.last_name }}</p>
-  <p>Correo electrónico: {{ profile.user.email }}</p>
+  <div class="container container-profile">
+    <div class="profile">
+      <h1>Perfil de {{ profile.user.username }}</h1>
+      <img src="{% thumbnail user.profile.photo 180x180 %}" class="user-detail">
+      <p>Nombre de usuario: {{ profile.user.username }}</p>
+      <p>Nombre: {{ profile.user.first_name }}</p>
+      <p>Apellido: {{ profile.user.last_name }}</p>
+      <p>Correo electrónico: {{ profile.user.email }}</p>
+    </div>
+  </div>
 {% endblock %}

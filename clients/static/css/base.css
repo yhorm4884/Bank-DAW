@@ -212,3 +212,34 @@ ul.messagelist li {
   .formulario-defecto .link {
     text-decoration: none;
   }
+
+  .container-profile {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .container-profile h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .container-profile img.user-detail {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .container-profile p {
+    margin-bottom: 5px;
+  }
+  
+  /* Estilos específicos para el perfil */
+  .container-profile .profile {
+    background-color: #f0a93e;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
