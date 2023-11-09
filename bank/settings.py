@@ -28,10 +28,7 @@ LOGOUT_URL = 'logout'
 SECRET_KEY = 'django-insecure-9$7qc2--8kk^^ufu#jw3z41@iamrp!vl%nr5z-&!@6ghuym8jz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['*']
-
+DEBUG = True
 
 # Application definition
 

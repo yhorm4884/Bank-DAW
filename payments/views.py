@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from .forms import PaymentForm
 from django.http import JsonResponse
 from cards.models import CreditCard
@@ -16,6 +16,7 @@ def payment_form(request):
         form = PaymentForm()
     return render(request, 'payments/payment_form.html', {'form': form})
 
+#Pago mediante el curl
 @csrf_exempt
 def payment(request):
     if request.method == 'POST':
@@ -25,38 +26,21 @@ def payment(request):
         ccc = data.get('ccc')
         pin = data.get('pin')
         amount = data.get('amount')
-        print(business,ccc,pin,amount)
+
+        # print(business,ccc,pin,amount)
         try:
             credit_card = CreditCard.objects.get(card_code=ccc)
         except CreditCard.DoesNotExist:
-            return JsonResponse({'error': 'Tarjeta de crédito no encontrada'}, status=400)
-        # if not check_password(pin, credit_card.pin):
-        #     return JsonResponse({'error': 'PIN incorrecto'}, status=403)
+            #Envio 404 porque no existe la tarjeta
+            return HttpResponseForbidden(f"Card '{ccc} doesn't exists doesn't match with any card'")
+        if not check_password(pin, credit_card.pin):
+            return HttpResponseForbidden('{400} The code pin does not match')
 
         # Realizar el pago y actualizar el balance de la tarjeta
         print(credit_card.account.balance)
         credit_card.account.balance += float(amount)
 
         credit_card.account.save()
-    #     # Validar que los campos no estén vacíos
-    #     if not all([business, ccc, pin, amount]):
-    #         return JsonResponse({'error': 'Todos los campos son obligatorios'}, status=400)
-
-    #     # Buscar la tarjeta de crédito en la base de datos
-    #     try:
-    #         credit_card = CreditCard.objects.get(card_code=ccc)
-    #     except CreditCard.DoesNotExist:
-    #         return JsonResponse({'error': 'Tarjeta de crédito no encontrada'}, status=400)
-
-    #     # Verificar el PIN de la tarjeta de crédito
-    #     if not check_password(pin, credit_card.pin):
-    #         return JsonResponse({'error': 'PIN incorrecto'}, status=403)
-
-    #     # Realizar el pago y actualizar el balance de la tarjeta
-    #     credit_card.balance -= float(amount)
-    #     credit_card.save()
-
-    #     # Devolver la respuesta de éxito
-    #     return JsonResponse({'message': 'Pago exitoso'}, status=200)
-    # else:
-    #     return JsonResponse({'error': 'Método no permitido'}, status=405)
+        return HttpResponse("{200} Ok!")
+    else:
+        return HttpResponseNotFound("El pago ha fallado")
