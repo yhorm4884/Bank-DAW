@@ -214,14 +214,16 @@ ul.messagelist li {
   }
 
   .container-profile {
-    max-width: 800px;
+    width: 750px;
     margin: 0 auto;
     padding: 20px;
   }
   
-  .container-profile h1 {
+  .container-profile .profile h1 {
     font-size: 24px;
     margin-bottom: 10px;
+    color: #023047;
+    text-align: center;
   }
   
   .container-profile img.user-detail {
@@ -232,14 +234,34 @@ ul.messagelist li {
     margin-bottom: 10px;
   }
   
-  .container-profile p {
-    margin-bottom: 5px;
+.container-profile .info{
+  margin-left: 10%;
+}
+
+  .profile p {
+    margin-bottom: 0 !important;
+    margin-bottom: 5px;;
+  }
+
+  .container-profile .user{
+    font-weight: bold;
+    color: #FFFFFF;
   }
   
-  /* Estilos específicos para el perfil */
   .container-profile .profile {
     background-color: #f0a93e;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
+    padding-left: 5%;
+  }
+
+  .container-profile .button{
+    padding: 10px 20px;
+    background-color: #023047;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }

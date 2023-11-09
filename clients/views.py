@@ -1,15 +1,23 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.crypto import get_random_string
+
 from account.models import Account
 from cards.models import CreditCard
+from clients.forms import (
+    ClientEditForm,
+    ClientRegistrationForm,
+    LoginForm,
+    UserEditForm,
+    UserRegistrationForm,
+)
 
-from clients.forms import ClientEditForm, ClientRegistrationForm, LoginForm, UserEditForm, UserRegistrationForm
 from .models import Client
-from django.core.mail import send_mail
-from django.utils.crypto import get_random_string
+
 
 def register(request):
     if request.method == 'POST':
@@ -30,7 +38,10 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
         client_form = ClientRegistrationForm()
-    return render(request, 'client/register.html', {'user_form': user_form, 'client_form': client_form})
+    return render(
+        request, 'client/register.html', {'user_form': user_form, 'client_form': client_form}
+    )
+
 
 def client_login(request):
     if request.method == 'POST':
@@ -43,7 +54,10 @@ def client_login(request):
                     login(request, user)
                     return redirect('home')
                 elif user.client.status == 'DO':
-                    messages.error(request, 'Your account is inactive, please check your email to reactivate it')
+                    messages.error(
+                        request,
+                        'Your account is inactive, please check your email to reactivate it',
+                    )
                 else:
                     messages.error(request, 'Account is blocked')
             else:
@@ -53,36 +67,38 @@ def client_login(request):
     return render(request, 'client/login.html', {'form': form})
 
 
-
 @login_required
 def dashboard(request):
     # Obtener las cuentas del cliente
     accounts = Account.objects.filter(client=request.user.client)
-    
+
     # Obtener las tarjetas de crédito asociadas a esas cuentas
     credit_cards = CreditCard.objects.filter(account__in=accounts)
 
     return render(
-        request,
-        'client/dashboard.html',
-        {'accounts': accounts, 'credit_cards': credit_cards}
+        request, 'client/dashboard.html', {'accounts': accounts, 'credit_cards': credit_cards}
     )
+
 
 @login_required
 def profile(request):
     profile = request.user.client
     return render(request, 'client/profile.html', {'profile': profile})
 
+
 @login_required
 def edit(request):
     if request.method == 'POST':
-        client_form = ClientEditForm(instance=request.user.client, data=request.POST)
+        client_form = ClientEditForm(
+            instance=request.user.client, files=request.FILES, data=request.POST
+        )
         user_form = UserEditForm(instance=request.user, data=request.POST)
 
         if client_form.is_valid() and user_form.is_valid():
             client_form.save()
             user_form.save()
             messages.success(request, 'Profile updated successfully')
+            return render(request, 'client/profile.html', {'profile': profile})
         else:
             messages.error(request, 'Error updating your profile')
     else:
@@ -90,6 +106,7 @@ def edit(request):
         user_form = UserEditForm(instance=request.user)
 
     return render(request, 'client/edit.html', {'client_form': client_form, 'user_form': user_form})
+
 
 @login_required
 def deactivate_account(request):
@@ -119,6 +136,7 @@ def deactivate_account(request):
 
     # Redirigir al cliente a la página de inicio
     return redirect('home')
+
 
 def reactivate_account(request, token):
     # Buscar un usuario con el token de reactivación proporcionado

@@ -1,17 +1,15 @@
 from django import forms
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import authenticate
+
 from .models import Client
 
+
 class LoginForm(forms.Form):
-    username = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
-    )
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -26,8 +24,12 @@ class LoginForm(forms.Form):
 
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(
+        label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+    password2 = forms.CharField(
+        label='Repeat password', widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
 
     class Meta:
         model = User
@@ -36,7 +38,7 @@ class UserRegistrationForm(forms.ModelForm):
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'})
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
 
     def clean_password2(self):
@@ -50,6 +52,8 @@ class UserRegistrationForm(forms.ModelForm):
         if User.objects.filter(email=data).exists():
             raise forms.ValidationError('Email already in use.')
         return data
+
+
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
@@ -61,11 +65,13 @@ class UserEditForm(forms.ModelForm):
         if qs.exists():
             raise forms.ValidationError(' Email already in use.')
         return data
-    
+
+
 class ClientRegistrationForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ['photo']
+
 
 class ClientEditForm(forms.ModelForm):
     class Meta:

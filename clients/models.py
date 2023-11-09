@@ -14,6 +14,7 @@ from django.db import models
 # │  avatar               │
 # └───────────────────────┘
 
+
 # TODO Falta añadir balance que no sé sabe por ahora lo que es
 class Client(models.Model):
     # Creación de la clase de elección entre activo, bloqueado o de baja
@@ -21,7 +22,8 @@ class Client(models.Model):
         ACTIVE = 'AC', 'Activo'
         BLOCK = 'BL', 'Bloqueado'
         DOWN = 'DO', 'Inactivo'
-    # Campo OnetoOne que sirve para hacer referencia al 
+
+    # Campo OnetoOne que sirve para hacer referencia al
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     # Campo extra que servirá para cuando la cuenta esté desactivada
@@ -30,7 +32,10 @@ class Client(models.Model):
     # Estado en el que se encuentra la cuenta actualmente
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.ACTIVE)
     photo = models.ImageField(
-        upload_to='client/%Y/%m/%d/', blank=True, validators=[FileExtensionValidator(['jpg', 'png'])]
+        upload_to='client/%Y/%m/%d/',
+        blank=True,
+        validators=[FileExtensionValidator(['jpg', 'png'])],
     )
+
     def __str__(self):
         return f'{self.user.username}'
