@@ -104,8 +104,13 @@ def edit(request):
     else:
         client_form = ClientEditForm(instance=request.user.client)
         user_form = UserEditForm(instance=request.user)
+        photo = request.user.client
 
-    return render(request, 'client/edit.html', {'client_form': client_form, 'user_form': user_form})
+    return render(
+        request,
+        'client/edit.html',
+        {'client_form': client_form, 'user_form': user_form, 'photo': photo},
+    )
 
 
 @login_required
