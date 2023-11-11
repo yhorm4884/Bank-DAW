@@ -6,7 +6,7 @@ class AccountRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ['alias', 'balance', 'password']
+        fields = ['alias', 'password']
 
 
     def clean_alias(self):
@@ -26,3 +26,9 @@ class AccountEditForm(forms.ModelForm):
             raise forms.ValidationError('Este alias ya está en uso.')
         return alias
         
+class AddMoneyForm(forms.Form):
+    amount = forms.DecimalField(
+        label='Amount',
+        min_value=0.01,
+        widget=forms.NumberInput(attrs={'step': '0.01'}),
+    )

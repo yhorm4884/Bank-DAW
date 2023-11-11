@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import AccountRegistrationForm, AccountEditForm
+from .forms import AccountRegistrationForm, AccountEditForm, AddMoneyForm
 from .models import Account
 from django.utils.crypto import get_random_string
 from django.core.mail import send_mail
@@ -27,14 +27,44 @@ def register(request):
     else:
         form = AccountRegistrationForm()
     return render(request, 'account/register.html', {'form': form})
+
 @login_required
 def accounts(request):
     # Obtener todas las cuentas del cliente
-    accounts = Account.objects.filter(client=request.user.client)
+    accounts = Account.objects.filter(client=request.user.client, status=Account.Status.ACTIVE)
     print(accounts)
     # Pasar las cuentas al contexto de la plantilla
     return render(request, 'account/accounts.html', {'accounts': accounts})
 
+@login_required
+def account_details(request, account_id):
+    account = get_object_or_404(Account, id=account_id)
+    credit_cards = account.credit_cards.all()  
+    return render(request, 'account/account_details.html', {'account': account, 'credit_cards': credit_cards})
+
+@login_required
+def add_money(request, account_id):
+    account = get_object_or_404(Account, id=account_id)
+
+    if request.method == 'POST':
+        form = AddMoneyForm(request.POST)
+        if form.is_valid():
+            # Obtener el monto a añadir
+            amount = form.cleaned_data['amount']
+
+            # Realizar la operación de agregar dinero
+            account.balance += amount
+            account.save()
+
+            # Mensaje de éxito
+            messages.success(request, f'Se han añadido {amount} euros a la cuenta {account.alias}. Balance actual: {account.balance} euros.')
+
+            # Redirigir al usuario a la página de detalles de la cuenta
+            return redirect('account:account_details', account_id=account.id)
+    else:
+        form = AddMoneyForm()
+
+    return render(request, 'account/add_money.html', {'form': form, 'account': account})    
 @login_required
 def edit_alias(request, account_id):
     # Obtener la cuenta actual
@@ -62,11 +92,11 @@ def deactivate_account(request,account_id):
         # Obtener la cuenta específica que deseas desactivar
         account = get_object_or_404(Account, id=account_id, client=request.user.client)
         # Comprobar si la cuenta ya está desactivada
-        if account.status == Account.Status.DOWN:
+        if account.status == Account.Status.BLOCK:
             messages.warning(request, 'La cuenta ya está desactivada.')
             return redirect('home')
-        # Cambiar el estado de la cuenta a 'Inactivo'
-        account.status = Account.Status.DOWN
+        # Cambiar el estado de la cuenta a 'BLOCKEADO'
+        account.status = Account.Status.BLOCK
         account.save()
         # Enviar el correo de reactivación
           # Generar un token de reactivación
@@ -87,7 +117,7 @@ def deactivate_account(request,account_id):
 @login_required
 def reactivate_account(request, token):
     # Lógica para reactivar la cuenta del usuario
-    account = Account.objects.filter(reactivation_token=token, status=Account.Status.DOWN).first()
+    account = Account.objects.filter(reactivation_token=token, status=Account.Status.BLOCK).first()
     if account:
         account.status = Account.Status.ACTIVE
         account.reactivation_token = None

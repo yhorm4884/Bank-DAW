@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ account.alias }} Details
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>{{ account.alias }} Details</h1>
+
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="account-details">
+    <p>Code: {{ account.code }}</p>
+    <p>Balance: {{ account.balance }}</p>
+  </div>
+
+  <h2>Credit Cards</h2>
+  {% if credit_cards %}
+    <ul class="credit-card-list">
+      {% for credit_card in credit_cards %}
+        <li class="credit-card-item">
+          <p>Card Code: {{ credit_card.card_code }}</p>
+          <p>Alias: {{ credit_card.alias }}</p>
+          <!-- Enlaces para acciones -->
+            <div class="account-actions">
+                <a href="{% url 'account:edit_alias' account.id %}">Edit Alias</a>
+                <a href="{% url 'account:deactivate' account.id %}">Deactivate Account</a>
+            </div>
+        </li>
+        
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No credit cards associated with this account.</p>
+  {% endif %}
+</div>
+
+<!-- Bloque de estilo -->
+<style>
+  /* Estilos generales de la página */
+  .container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Estilos para la lista de tarjetas de crédito */
+  .credit-card-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .credit-card-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+
+  /* Estilo para el botón flotante */
+  .floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+  }
+
+  .floating-button a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .floating-button span {
+    display: block;
+    text-align: center;
+  }
+</style>
+
+<!-- Botón flotante -->
+<div class="floating-button">
+  <a href="{% url 'account:add_money' account.id %}">
+    <span>&#x1F4B0;+</span>
+  </a>
+</div>
+
+
+
+{% endblock %}

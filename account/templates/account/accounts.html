@@ -15,19 +15,21 @@
     </div>
     {% endif %}
     {% for account in accounts %}
-      <div class="account-card">
-        <div class="account-header">
-          <h2>{{ account.alias }}</h2>
+      {% if account.status == 'AC' %}
+        <div class="account-card">
+          <div class="account-header">
+            <h2><a href="{% url 'account:account_details' account.id %}">{{ account.alias }}</a></h2>
+          </div>
+          <div class="account-body">
+            <p>Code: {{ account.code }}</p>
+            <p>Balance: {{ account.balance }}</p>
+          </div>
+          <div class="account-footer">
+            <a href="{% url 'account:edit_alias' account.id %}">Edit Alias</a>
+            <a href="{% url 'account:deactivate' account.id %}">Deactivate Account</a>
+          </div>
         </div>
-        <div class="account-body">
-          <p>Code: {{ account.code }}</p>
-          <p>Balance: {{ account.balance }}</p>
-        </div>
-        <div class="account-footer">
-          <a href="{% url 'account:edit_alias' account.id %}">Edit Alias</a>
-          <a href="{% url 'account:deactivate' account.id %}">Deactivate Account</a>
-        </div>
-      </div>
+      {% endif %}
     {% endfor %}
   </div>
 {% endblock %}

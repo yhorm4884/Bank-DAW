@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+<head>
+    <link href="{% static " css/style.css" %}" rel="stylesheet">
+</head>
+{% block content %}
+  <h1>Add Money to {{ account.alias }}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Money</button>
+  </form>
+  <a href="{% url 'account:account_details' account_id=account.id %}">Back to Account Details</a>
+{% endblock %}

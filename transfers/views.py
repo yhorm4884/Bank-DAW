@@ -38,13 +38,13 @@ def incoming(request):
     else:
         return HttpResponseNotFound("La transferencia ha sido un éxito")
 
-@login_required
-def transfer_form(request):
-    if request.method == 'POST':
-        form = TransferForm(request.POST)
-        if form.is_valid():
+# @login_required
+# def transfer_form(request):
+#     if request.method == 'POST':
+#         form = TransferForm(request.POST)
+#         if form.is_valid():
             
            
-    else:
-        form = TransferForm()
-    return render(request, 'payments/payment_form.html', {'form': form})
+#     else:
+#         form = TransferForm()
+#     return render(request, 'payments/payment_form.html', {'form': form})
