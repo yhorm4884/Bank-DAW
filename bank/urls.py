@@ -26,8 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('client/', include('clients.urls')),
     path('', include('account.urls')),
-    path('', include('payments.urls')),
-    path('transfer/', include('transfers.urls')),
+    path('', include('transactions.urls')),
     path('cards/', include('cards.urls')),
 ]
 if settings.DEBUG:
