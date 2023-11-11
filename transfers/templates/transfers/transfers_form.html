@@ -7,8 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="d-flex justify-content-between align-items-center mb-0">
-                        <span>Payment Details</span>
-                        <img class="img-fluid" src="https://i.imgur.com/2zDU056.png" width="50px">
+                        <span>Transferencia</span>
                     </h4>
                 </div>
                 <div class="card-body p-4">
@@ -17,15 +16,14 @@
                     <form method="post" action="{% url 'payments:payment' %}">
                         {% csrf_token %}
                         <div class="mb-4">
-                            <label for="business" class="form-label">Business</label>
-                            <input type="text" id="business" name="business" class="form-control">
+                            <input type="hidden" id="sender" name="sender" value="" class="form-control">
                         </div>
                         <div class="mb-4">
-                            <label for="ccc" class="form-label">Client Card Code (CCC)</label>
-                            <input type="text" id="ccc" name="ccc" class="form-control">
+                            <label for="cac" class="form-label">Código de cuenta cliente (client account code)</label>
+                            <input type="text" id="cac" name="cac" class="form-control">
                         </div>
                         <div class="mb-4">
-                            <label for="pin" class="form-label">PIN</label>
+                            <label for="concept" class="form-label">Concept</label>
                             <input type="password" id="pin" name="pin" class="form-control">
                         </div>
                         <div class="mb-4">
@@ -33,7 +31,7 @@
                             <input type="number" step="0.01" id="amount" name="amount" class="form-control">
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Pay</button>
+                            <button type="submit" class="btn btn-primary">Do transact</button>
                         </div>
                     </form>
 
