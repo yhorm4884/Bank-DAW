@@ -1,12 +1,25 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 {% block title %}Edit your account{% endblock %}
 {% block content %}
-<h1>Edit your account</h1>
-<p>You can edit your account using the following form:</p>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ client_form.as_p }}
-    {{ user_form.as_p }}
-    <p><input type="submit" value="Save changes"></p>
-</form>
+<div class="container-profile">
+    <div class="container-fluid edit-profile">
+        <h1 class="display-4"><strong><b>Edit your account</strong></b></h1>
+        <div class="row">
+            <div class="col-md-3 imagen-edit">
+                <input type="file" name="photo" accept="image/*" id="photo-input" style="display: none;">
+                <label for="photo-input">
+                    <img src="{% thumbnail photo.photo 180x180 %}" class="user-detail">
+                </label>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-md-3 info">
+                    <strong><b>{{ user_form.as_p }}</strong></b>
+                </div>
+                <button class="btn btn-primary button" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

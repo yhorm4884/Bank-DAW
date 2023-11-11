@@ -1,8 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #fff;
+    background-color: #219ebc;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 header {
@@ -45,8 +46,9 @@ nav a:hover {
 }
 
 .user a {
-    color: #fff;
+    color: #023047;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .user a:hover {
@@ -96,6 +98,10 @@ nav a:hover {
     font-size: 36px;
     margin-left: 50px;
 }
+
+#navbarNav ul li a{
+    color: #023047;
+}
 .openbtn {
     font-size: 20px;
     cursor: pointer;
@@ -142,4 +148,175 @@ ul.messagelist li {
     margin-top: 20px; /* Añade margen superior */
     /* Otros estilos personalizados según tus preferencias */
   }
+
+  main {
+    background-color: #219EBC;
+    height: 100vh;
+    padding-top: 20px;
+  }
+
+  /* Center the login form */
+  .formulario-defecto {
+    font-family: Arial, sans-serif;
+    background-color: #f0a93e;
+  }
+
+  .formulario-defecto h1 {
+    text-align: center;
+    font-weight: bold;
+    color: #023047;
+  }
   
+  .formulario-defecto .alert {
+    background-color: #8ECAE6;
+    color: #023047;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .formulario-defecto .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .formulario-defecto input[type="text"],
+  .formulario-defecto input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .formulario-defecto button{
+    padding: 10px 20px;
+    background-color: #023047;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .formulario-defecto .btn-primary{
+    padding: 10px 20px;
+    background-color: #023047;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .formulario-defecto button:hover{
+    background-color: #126782;
+  }
+  
+  .formulario-defecto .link {
+    text-decoration: none;
+  }
+
+  .container-profile {
+    margin: 0 auto;
+    padding: 20px;
+    width: 70%;
+  }
+  
+  .container-profile .profile h1, .container-profile .edit-profile h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #023047;
+    text-align: center;
+  }
+  
+.container-profile img.user-detail {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+  
+.container-profile .info{
+  margin-left: 10%;
+}
+
+  .profile p {
+    margin-bottom: 0 !important;
+    margin-bottom: 5px;;
+  }
+
+  .container-profile .user{
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+  
+  .container-profile .profile , .edit-profile{
+    background-color: #f0a93e;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    padding-left: 5%;
+  }
+
+.container-profile .button{
+  padding: 10px 20px;
+  background-color: #023047;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.container-profile .edit-profile .button{
+  padding: 10px 20px;
+  margin-left: 25%;
+  background-color: #023047;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.container-profile .edit-profile .info{
+  margin: 0px;
+  margin-left: 15%;
+}
+
+.container-profile .edit-profile{
+  width: 65%;
+}
+
+.container-profile .edit-profile .row{
+  margin-left: 8%;
+}
+
+.container-profile .edit-profile form{
+  width: 70%;
+}
+
+.edit-profile p{
+  margin-bottom: 15%;
+  width: 200%;
+}
+
+.container-profile .edit-profile .user-detail:hover {
+  animation: neon-border 5s infinite alternate;
+}
+
+@keyframes neon-border {
+  0% {
+    box-shadow: 0 0 10px #3a86ff;
+  }
+  25% {
+    box-shadow: 0 0 20px #7b2cbf;
+  }
+  50% {
+    box-shadow: 0 0 30px #3a86ff;
+  }
+  75% {
+    box-shadow: 0 0 40px #7b2cbf;
+  }
+  100% {
+    box-shadow: 0 0 50px #3a86ff;
+  }
+}

@@ -3,10 +3,27 @@
 {% block title %}Client profile{% endblock %}
 
 {% block content %}
-  <h1>Perfil de {{ client.user.username }}</h1>
-  <img src="{% thumbnail user.profile.photo 180x180 %}" class="user-detail">
-  <p>Nombre de usuario: {{ profile.user.username }}</p>
-  <p>Nombre: {{ profile.user.first_name }}</p>
-  <p>Apellido: {{ profile.user.last_name }}</p>
-  <p>Correo electrónico: {{ profile.user.email }}</p>
+  <div class="container container-profile" style="width: 750px;">
+    <div class="profile">
+      <h1 class="display-4"><strong><b>Perfil de {{ profile.user.username }}</strong></b></h1>
+      <div class="row">
+        <div class="col-md-4 imagen">
+          <img src="{% thumbnail profile.photo 180x180 %}" class="user-detail">
+        </div>
+        <div class="col-md-5 info">
+          <p class="lead mb-5"><strong><b>Nombre de usuario: </strong></b></p>
+          <p class="user">{{ profile.user.username }}</p>
+          <p class="lead mb-5"><strong><b>Nombre: </strong></b></p>
+          <p class="user">{{ profile.user.first_name }}</p>
+          <p class="lead mb-5"><strong><b>Apellido: </strong></b></p>
+          <p class="user">{{ profile.user.last_name }}</p>
+          <p class="lead mb-5"><strong><b>Correo electrónico: </strong></b></p>
+          <p class="user">{{ profile.user.email }}</p>
+        </div>
+        <form action="{% url 'edit' %}">
+          <button class="btn btn-primary button" type="submit">Edit Profile</button>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock %}

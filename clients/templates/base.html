@@ -38,7 +38,7 @@
     </nav>
     <span class="user">
       {% if request.user.is_authenticated %}
-      Hola <a href="{% url 'profile' %}">{{ request.user.client.first_name|default:request.user.username }}</a>,
+      Hola <a href="{% url 'profile' %}">{{ request.user.client.first_name|default:request.user.username }}</a> | 
       <a href="{% url 'logout' %}">Cerrar sesión</a>
       {% else %}
       <a href="{% url 'login' %}">Iniciar sesión</a>
