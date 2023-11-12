@@ -43,16 +43,16 @@ def payment(request):
             return HttpResponseForbidden('The PIN code does not match')
 
         # Realizar el pago y actualizar el balance de la tarjeta
-        comision = calcular_comision("payment", float(amount))
+        comision = calcular_comision("salida", float(amount))
         credit_card.account.balance -= float(amount) + comision
         credit_card.account.save()
 
         # Crear registro de la transacción
         Transaction.objects.create(
             agent=business,
-            concept="Payment",
+            concept="PAYMENT",
             amount=amount,
-            kind=Transaction.Kind.PAYMENT
+            kind='PAYMENT',
         )
 
         return HttpResponse("Ok!")
@@ -64,25 +64,29 @@ def incoming(request):
     if request.method == 'POST':
         # Obtener los datos del POST request
         data = json.loads(request.body)
-        #Lista de datos a recoger
+        # Lista de datos a recoger
         sender = data.get('sender')
         cac = data.get('cac')
         concept = data.get('concept')
         amount = data.get('amount')
 
         try:
-            account = Account.objects.get(code=cac, status="ACTIVE")
+            account = Account.objects.get(code=cac, status="AC")
         except Account.DoesNotExist:
             return HttpResponseForbidden(f"Account '{cac}' doesn't exist or is not active")
 
         # Realizar la transferencia y actualizar el balance de la cuenta
-        account.balance += float(amount)
+        comision = calcular_comision("entrada", float(amount))
+        print(comision)
+        print(amount)
+        account.balance += float(amount) -comision
         account.save()
 
+        # Crear la transacción
         Transaction.objects.create(
             agent=sender,
             amount=float(amount),
-            kind=Transaction.Kind.INCOMING_TRANSFER,
+            kind='INCOMING',
             concept=concept
         )
 

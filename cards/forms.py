@@ -1,6 +1,11 @@
 from django import forms
 from .models import CreditCard, Account
 
+class CreditCardFormWithoutAccount(forms.ModelForm):
+    class Meta:
+        model = CreditCard
+        fields = ['alias']
+
 class CreditCardForm(forms.ModelForm):
     account = forms.ModelChoiceField(queryset=Account.objects.none())
     

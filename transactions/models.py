@@ -18,9 +18,9 @@ class Transaction(models.Model):
     ]
 
     KIND_CHOICES = [
-        ('incoming', 'Incoming Transfer'),
-        ('outgoing', 'Outgoing Transfer'),
-        ('payment', 'Payment'),
+        ('INCOMING', 'Incoming Transfer'),
+        ('OUTGOING', 'Outgoing Transfer'),
+        ('PAYMENT', 'Payment'),
     ]
 
     agent = models.CharField(max_length=20, choices=AGENT_CHOICES)

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 from account.models import Account
 from .models import CreditCard
-from .forms import CreditCardForm
+from .forms import CreditCardForm, CreditCardFormWithoutAccount
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
@@ -61,7 +61,7 @@ def add_credit_card(request):
 
             # Enviar correo de éxito al usuario
             send_mail(
-                'Tu tarjeta ha sido creada con éxito',
+                f'Tu tarjeta {credit_card.card_code} ha sido creada con éxito',
                 f'Este es tu PIN: {pin}',
                 'your_email@example.com',
                 [request.user.email],
@@ -72,6 +72,50 @@ def add_credit_card(request):
         form = CreditCardForm(request.user.client)
 
     return render(request, 'cards/add_credit_card.html', {'form': form})
+
+@login_required
+def add_credit_card_without_account(request, account_id):
+    # Obtener la cuenta
+    account = get_object_or_404(Account, id=account_id)
+
+    # Obtener la cantidad de tarjetas de crédito que el usuario ya tiene
+    card_count = CreditCard.objects.filter(account=account).count()
+
+    # Verificar si el usuario ya ha alcanzado el límite de tarjetas
+    if card_count >= 4:
+        messages.error(request, 'Has alcanzado el límite máximo de tarjetas de crédito.')
+        return redirect('dashboard')
+
+    if request.method == 'POST':
+        form = CreditCardFormWithoutAccount(request.POST)
+        if form.is_valid():
+            # Crear el nuevo objeto CreditCard
+            credit_card = form.save(commit=False)
+            
+            # Asociar la tarjeta de crédito con la cuenta
+            credit_card.account = account
+            # Guardar el PIN en una variable antes de hashearla
+            pin = credit_card.pin
+            # Hashear el PIN
+            credit_card.pin = make_password(pin)
+            
+            credit_card.save()
+
+            # Enviar correo de éxito al usuario
+            send_mail(
+                f'Tu tarjeta {credit_card.card_code} ha sido creada con éxito',
+                f'Este es tu PIN: {pin}',
+                'your_email@example.com',
+                [request.user.email],
+                fail_silently=True,
+            )
+            messages.success(request, "Se ha creado la tarjeta con éxito")
+            return redirect('account:account_details', account_id=account.id)
+    else:
+        form = CreditCardFormWithoutAccount()
+
+    return render(request, 'cards/add_credit_card.html', {'form': form})
+
 
 @login_required
 def block_credit_card(request, card_code):
