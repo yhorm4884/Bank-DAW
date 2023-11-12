@@ -24,7 +24,7 @@ class Client(models.Model):
         DOWN = 'DO', 'Inactivo'
 
     # Campo OnetoOne que sirve para hacer referencia al
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True, blank=True)
 
     # Campo extra que servirá para cuando la cuenta esté desactivada
     reactivation_token = models.CharField(max_length=64, null=True, blank=True)

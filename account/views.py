@@ -32,14 +32,14 @@ def register(request):
 def accounts(request):
     # Obtener todas las cuentas del cliente
     accounts = Account.objects.filter(client=request.user.client, status=Account.Status.ACTIVE)
-    print(accounts)
     # Pasar las cuentas al contexto de la plantilla
     return render(request, 'account/accounts.html', {'accounts': accounts})
 
 @login_required
 def account_details(request, account_id):
     account = get_object_or_404(Account, id=account_id)
-    credit_cards = account.credit_cards.all()  
+    credit_cards = account.credit_cards.all()
+    # print(credit_cards)
     return render(request, 'account/account_details.html', {'account': account, 'credit_cards': credit_cards})
 
 @login_required
@@ -98,8 +98,7 @@ def deactivate_account(request,account_id):
         # Cambiar el estado de la cuenta a 'BLOCKEADO'
         account.status = Account.Status.BLOCK
         account.save()
-        # Enviar el correo de reactivación
-          # Generar un token de reactivación
+        # Generar un token de reactivación
         reactivation_token = get_random_string(length=32)
         account.reactivation_token = reactivation_token
         account.save()
