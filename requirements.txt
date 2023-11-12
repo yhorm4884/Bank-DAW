@@ -1,5 +1,4 @@
 django
 prettyconf
-django-taggit
-markdown
-psycopg2-binary
+Pillow
+easy_thumbnails

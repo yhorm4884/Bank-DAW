@@ -6,8 +6,7 @@ from . import views
 
 urlpatterns = [
     path('payment/', views.payment, name='payment'),
-    path('paymentform/', views.payment_form, name='paymentform'),
-    path('incoming/', views.incoming, name='incoming'),
+    path('outcoming/', views.outcoming, name='outcoming'),
 ]
 
 if settings.DEBUG:

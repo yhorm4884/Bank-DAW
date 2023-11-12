@@ -11,19 +11,13 @@ from django.db import models
 # └───────────────────────┘
 
 class Transaction(models.Model):
-    AGENT_CHOICES = [
-        ('bank', 'Bank'),
-        ('business', 'Business'),
-        ('client', 'Client'),
-    ]
-
     KIND_CHOICES = [
         ('INCOMING', 'Incoming Transfer'),
         ('OUTGOING', 'Outgoing Transfer'),
         ('PAYMENT', 'Payment'),
     ]
 
-    agent = models.CharField(max_length=20, choices=AGENT_CHOICES)
+    agent = models.CharField(max_length=20)
     concept = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
