@@ -1,3 +1,8 @@
+:root{
+  --mynaranja: #f0a93e;
+  --myazulf: #023047;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #219ebc;
@@ -315,6 +320,7 @@ ul.messagelist li {
 }
 
 
+
 /* Estilos para el contenedor de las cuentas */
 .account-list {
   display: flex;
@@ -325,33 +331,30 @@ ul.messagelist li {
 
 /* Estilos para cada tarjeta de cuenta */
 .account-card {
-background-color: #f0f0f0;
-border-radius: 10px;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-margin: 10px;
-padding: 20px;
-width: 300px;
-display: flex;
-flex-direction: column;
-align-items: center;
-text-align: center;
+  background-color: var(--mynaranja);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  display: inline-block;
 }
 
-/* Estilos para el encabezado de la cuenta */
-.account-header {
-margin-bottom: 10px;
-}
 
 /* Estilos para el alias de la cuenta */
 .account-header h2 {
-font-size: 1.2em;
-font-weight: bold;
-margin-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.account-header h2 a{
+  color: var(--myazulf);
 }
 
 /* Estilos para el cuerpo de la cuenta */
 .account-body {
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 /* Estilos para los detalles de la cuenta */
@@ -365,6 +368,17 @@ margin-bottom: 5px;
 display: flex;
 justify-content: space-around;
 width: 100%;
+}
+
+.account-footer .button{
+  padding: 10px 20px;
+  margin-left: 1%;
+  background-color: #023047;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* Estilos para los botones de acción de la cuenta */
@@ -381,8 +395,11 @@ margin-top: 10px;
 }
 
 .account-footer a:hover {
-background-color: #45a049;
+  background-color: #45a049;
 }
+
+
+
 
 @keyframes neon-border {
   0% {

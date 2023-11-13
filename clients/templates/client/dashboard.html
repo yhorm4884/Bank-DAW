@@ -25,7 +25,27 @@
     <button class="openbtn" onclick="openNav()">☰ Show Actions</button>
     <h1>Welcome, {{ user.username }}!</h1>
   </div>
-  {% include "account/accounts.html" %}
+    {% for account in accounts.alias %}
+      {% if account.status == 'AC' %}
+      <div class="account-card">
+        <div class="account-header">
+          <h2><a href="{% url 'account:account_details' account.id %}">{{ account.alias }}</a></h2>
+        </div>
+        <div class="account-body">
+          <p><strong>Code:</strong> {{ account.code }}</p>
+          <p><strong>Balance:</strong> {{ account.balance }}</p>
+        </div>
+        <div class="account-footer">
+          <a href="{% url 'account:edit_alias' account.id %}" class="button primary-button">Edit Alias</a>
+          <a href="{% url 'account:deactivate' account.id %}" class="button primary-button">Deactivate Account</a>
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  
+  
 </div>
 {% comment %} {% include "cards/cards_sidebar.html" %} {% endcomment %}
 <script>
