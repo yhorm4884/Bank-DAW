@@ -1,15 +1,25 @@
+import json
+
 import django
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
+import requests  # Para realizar la solicitud POST a la otra entidad bancaria
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
+from django.http import (
+    HttpResponse,
+    HttpResponseForbidden,
+    HttpResponseNotFound,
+    JsonResponse,
+)
+from django.shortcuts import redirect, render
+from django.views.decorators.csrf import csrf_exempt
+
 from account.models import Account
 from cards.models import CreditCard
-from .models import Transaction
-from .forms import PaymentForm
+
 from .commisions import calcular_comision
-import json
+from .forms import PaymentForm, TransferForm
+from .models import Transaction
+
 
 @login_required
 @csrf_exempt
@@ -18,14 +28,16 @@ def payment(request):
         # Obtener los datos del POST request
         data = json.loads(request.body)
         business = data.get('business')
-        ccc = data.get('ccc') #C2-0001
+        ccc = data.get('ccc')  # C2-0001
         pin = data.get('pin')
         amount = data.get('amount')
 
         try:
             credit_card = CreditCard.objects.get(card_code=ccc)
         except CreditCard.DoesNotExist:
-            return HttpResponseForbidden(f"Card '{ccc}' doesn't exist or doesn't match with any card")
+            return HttpResponseForbidden(
+                f"Card '{ccc}' doesn't exist or doesn't match with any card"
+            )
 
         if not check_password(pin, credit_card.pin):
             return HttpResponseForbidden('The PIN code does not match')
@@ -49,58 +61,60 @@ def payment(request):
     else:
         return HttpResponseNotFound("Payment failed")
 
-from django.http import JsonResponse
-import requests  # Para realizar la solicitud POST a la otra entidad bancaria
 
 @csrf_exempt
 def outcoming(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
+        print(request.POST)
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            form = TransferForm(request.POST)
+            if form.is_valid():
+                data = form.cleaned_data
+            else:
+                return HttpResponseForbidden(f"Invalid form data format")
         sender = data.get('sender')
         cac = data.get('cac')
         concept = data.get('concept')
         amount = data.get('amount')
-
+        print(data, sender, cac, concept)
         try:
             account = Account.objects.get(code=cac, status="AC")
         except Account.DoesNotExist:
-            return JsonResponse({"error": f"Account '{cac}' doesn't exist or is not active"})
+            return HttpResponseForbidden(f"Account '{cac}' doesn't exist or is not active")
 
         comision = calcular_comision("salida", float(amount))
         if account.balance < (float(amount) + comision):
             return JsonResponse({"error": "Not enough money for the transfer"})
 
-        account.balance -= float(amount) + comision
-        account.save()
+        url_banks = 'https://raw.githubusercontent.com/sdelquin/dsw/main/ut3/te1/files/banks.json'
+        response = requests.get(url_banks)
+        banks = response.json()
+        for bank in banks:
+            print(bank.get("id"))
 
-        # Crear la transacción
-        Transaction.objects.create(
-            agent=sender,
-            amount=float(amount),
-            kind='OUTGOING',
-            concept=concept
-        )
+            if bank.get("id") == int(cac[1]):
+                url = bank.get("url")
 
         # Enviar la solicitud POST al banco 2 para registrar la transacción entrante
-        bank2_url = "http://bank2/transfer/incoming"
-        payload = {
-            "sender": sender,
-            "cac": cac,
-            "concept": concept,
-            "amount": amount
-        }
+        bank2_url = url + "/transfer/incoming/"
+        payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}
         response = requests.post(bank2_url, json=payload)
-
+        print(response)
         if response.status_code == 200:
+            account.balance -= float(amount) + comision
+            account.save()
+            Transaction.objects.create(
+                agent=sender, amount=float(amount), kind='OUTGOING', concept=concept
+            )
             return JsonResponse({"message": "Transaction completed successfully"})
         else:
-            # Si la solicitud al banco 2 falla, debes manejar el error apropiadamente
-            # Puedes loggear el error o tomar otras acciones según tu necesidad
             return JsonResponse({"error": "Transaction to bank2 failed"})
     else:
-        return render(
-        request, 'transfers/transfers_form.html'
-    )
+        accounts = Account.objects.filter(client=request.user.client)
+
+        return render(request, 'transfers/transfers_form.html', {'accounts': accounts})
 
 
 @csrf_exempt
@@ -123,17 +137,14 @@ def incoming(request):
         comision = calcular_comision("entrada", float(amount))
         print(comision)
         print(amount)
-        account.balance += float(amount) -comision
+        account.balance += float(amount) - comision
         account.save()
 
         # Crear la transacción
         Transaction.objects.create(
-            agent=sender,
-            amount=float(amount),
-            kind='INCOMING',
-            concept=concept
+            agent=sender, amount=float(amount), kind='INCOMING', concept=concept
         )
 
-        return HttpResponse("Ok!")
+        return HttpResponse("Ok!", status=200)
     else:
         return HttpResponseNotFound("Incoming transfer failed")

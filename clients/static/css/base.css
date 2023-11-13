@@ -302,6 +302,9 @@ ul.messagelist li {
 .container-profile .edit-profile .user-detail:hover {
   animation: neon-border 5s infinite alternate;
 }
+.fondo{
+  background-color: #219EBC;
+}
 
 @keyframes neon-border {
   0% {

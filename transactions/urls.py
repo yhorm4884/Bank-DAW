@@ -1,11 +1,12 @@
-from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
-from . import views
 
+from . import views
 
 urlpatterns = [
     path('payment/', views.payment, name='payment'),
+    path('transfer/incoming/', views.incoming, name='incoming'),
     path('outcoming/', views.outcoming, name='outcoming'),
 ]
 
