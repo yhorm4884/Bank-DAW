@@ -25,9 +25,32 @@
     <button class="openbtn" onclick="openNav()">☰ Show Actions</button>
     <h1>Welcome, {{ user.username }}!</h1>
   </div>
+  {% for account in accounts.alias %}
+    <div id="carouselAccounts" class="carousel slide" data-ride="carousel" data-interval="false">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="card">
+            <div class="card-body bank-account">
+              {% include "account/accounts.html" %}
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+
+  <a class="carousel-control-prev" href="#carouselAccounts" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselAccounts" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  </div>
+  
+  
 </div>
-{% include "cards/cards_sidebar.html" %}
-{% include "account/accounts.html" %}
+{% comment %} {% include "cards/cards_sidebar.html" %} {% endcomment %}
 <script>
   function openNav() {
     document.getElementById("mySidebar").style.width = "250px";

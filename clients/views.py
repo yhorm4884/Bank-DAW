@@ -71,7 +71,6 @@ def client_login(request):
 def dashboard(request):
     # Obtener las cuentas del cliente
     accounts = Account.objects.filter(client=request.user.client)
-
     # Obtener las tarjetas de crédito asociadas a esas cuentas
     credit_cards = CreditCard.objects.filter(account__in=accounts)
 

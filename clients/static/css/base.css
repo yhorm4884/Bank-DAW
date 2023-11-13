@@ -248,7 +248,7 @@ ul.messagelist li {
     color: #FFFFFF;
   }
   
-  .container-profile .profile , .edit-profile{
+  .container-profile .profile , .edit-profile, .container-password{
     background-color: #f0a93e;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -256,7 +256,7 @@ ul.messagelist li {
     padding-left: 5%;
   }
 
-.container-profile .button{
+.container-profile .button, .container-password .button{
   padding: 10px 20px;
   background-color: #023047;
   color: #fff;
@@ -302,6 +302,48 @@ ul.messagelist li {
 .container-profile .edit-profile .user-detail:hover {
   animation: neon-border 5s infinite alternate;
 }
+
+.container-password{
+  margin: 0 auto;
+  padding: 20px;
+  padding-left: 5%;
+  width: 50%;
+}
+
+.container-password form p{
+  font-weight: bold;
+}
+
+#carouselAccounts{
+  width: 40%;
+}
+
+.bank-account {
+  background-color: #f0a93e;
+  border: 1px solid #023047;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.bank-account h5 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.bank-account .card-text {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #007bff;
+  border-radius: 50%;
+  color: white;
+  padding: 10px;
+}
+
 
 @keyframes neon-border {
   0% {
