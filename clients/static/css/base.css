@@ -314,36 +314,75 @@ ul.messagelist li {
   font-weight: bold;
 }
 
-#carouselAccounts{
-  width: 40%;
-}
 
-.bank-account {
-  background-color: #f0a93e;
-  border: 1px solid #023047;
-  border-radius: 8px;
+/* Estilos para el contenedor de las cuentas */
+.account-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   padding: 20px;
-  text-align: center;
 }
 
-.bank-account h5 {
-  font-size: 1.5em;
-  margin-bottom: 15px;
+/* Estilos para cada tarjeta de cuenta */
+.account-card {
+background-color: #f0f0f0;
+border-radius: 10px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+margin: 10px;
+padding: 20px;
+width: 300px;
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
 }
 
-.bank-account .card-text {
-  font-size: 1.2em;
-  margin-bottom: 10px;
+/* Estilos para el encabezado de la cuenta */
+.account-header {
+margin-bottom: 10px;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: #007bff;
-  border-radius: 50%;
-  color: white;
-  padding: 10px;
+/* Estilos para el alias de la cuenta */
+.account-header h2 {
+font-size: 1.2em;
+font-weight: bold;
+margin-bottom: 10px;
 }
 
+/* Estilos para el cuerpo de la cuenta */
+.account-body {
+margin-bottom: 10px;
+}
+
+/* Estilos para los detalles de la cuenta */
+.account-body p {
+font-size: 1em;
+margin-bottom: 5px;
+}
+
+/* Estilos para el pie de página de la cuenta */
+.account-footer {
+display: flex;
+justify-content: space-around;
+width: 100%;
+}
+
+/* Estilos para los botones de acción de la cuenta */
+.account-footer a {
+background-color: #4caf50;
+border: none;
+border-radius: 5px;
+color: white;
+cursor: pointer;
+padding: 10px 20px;
+font-size: 0.8em;
+text-decoration: none;
+margin-top: 10px;
+}
+
+.account-footer a:hover {
+background-color: #45a049;
+}
 
 @keyframes neon-border {
   0% {
