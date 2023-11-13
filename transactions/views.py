@@ -49,40 +49,59 @@ def payment(request):
     else:
         return HttpResponseNotFound("Payment failed")
 
+from django.http import JsonResponse
+import requests  # Para realizar la solicitud POST a la otra entidad bancaria
+
 @csrf_exempt
 def outcoming(request):
     if request.method == 'POST':
-        # Obtener los datos del POST request
         data = json.loads(request.body)
-        # Lista de datos a recoger
-        sender = data.get('sender') #Debe ser una de mis cuentas
-        cac = data.get('cac') #A5-0001 A2-0001 puede ser de ambos cuentas
+        sender = data.get('sender')
+        cac = data.get('cac')
         concept = data.get('concept')
         amount = data.get('amount')
 
         try:
             account = Account.objects.get(code=cac, status="AC")
         except Account.DoesNotExist:
-            return HttpResponseForbidden(f"Account '{cac}' doesn't exist or is not active")
-        try:
-            # Realizar la transferencia y actualizar el balance de la cuenta
-            comision = calcular_comision("salida", float(amount))
-            account.balance -= float(amount) + comision
-            account.save()
+            return JsonResponse({"error": f"Account '{cac}' doesn't exist or is not active"})
 
-            # Crear la transacción
-            Transaction.objects.create(
-                agent=sender,
-                amount=float(amount),
-                kind='OUTGOING',
-                concept=concept
-            )
+        comision = calcular_comision("salida", float(amount))
+        if account.balance < (float(amount) + comision):
+            return JsonResponse({"error": "Not enough money for the transfer"})
 
-            return HttpResponse("Ok!")
-        except django.db.utils.IntegrityError:
-            return HttpResponseNotFound("Not money enought for transfer")
+        account.balance -= float(amount) + comision
+        account.save()
+
+        # Crear la transacción
+        Transaction.objects.create(
+            agent=sender,
+            amount=float(amount),
+            kind='OUTGOING',
+            concept=concept
+        )
+
+        # Enviar la solicitud POST al banco 2 para registrar la transacción entrante
+        bank2_url = "http://bank2/transfer/incoming"
+        payload = {
+            "sender": sender,
+            "cac": cac,
+            "concept": concept,
+            "amount": amount
+        }
+        response = requests.post(bank2_url, json=payload)
+
+        if response.status_code == 200:
+            return JsonResponse({"message": "Transaction completed successfully"})
+        else:
+            # Si la solicitud al banco 2 falla, debes manejar el error apropiadamente
+            # Puedes loggear el error o tomar otras acciones según tu necesidad
+            return JsonResponse({"error": "Transaction to bank2 failed"})
     else:
-        return HttpResponseNotFound("Outgoing transfer failed")
+        return render(
+        request, 'transfers/transfers_form.html'
+    )
+
 
 @csrf_exempt
 def incoming(request):

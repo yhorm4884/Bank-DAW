@@ -13,11 +13,9 @@
                 <div class="card-body p-4">
 
                     <!-- Modificación: enviar la solicitud POST a la URL de la vista process_payment -->
-                    <form method="post" action="{% url 'payments:payment' %}">
+                    <form method="post" action="{% url 'outcoming' %}">
                         {% csrf_token %}
-                        <div class="mb-4">
-                            <input type="hidden" id="sender" name="sender" value="" class="form-control">
-                        </div>
+                        
                         <div class="mb-4">
                             <label for="cac" class="form-label">Código de cuenta cliente (client account code)</label>
                             <input type="text" id="cac" name="cac" class="form-control">
