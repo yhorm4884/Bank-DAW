@@ -61,6 +61,7 @@ def payment(request):
     else:
         return HttpResponseNotFound("Payment failed")
 
+
 @login_required
 @csrf_exempt
 def outcoming(request):
@@ -149,16 +150,23 @@ def incoming(request):
     else:
         return HttpResponseNotFound("Incoming transfer failed")
 
+
 @login_required
 def transactions(request):
-    
-    client = request.user.client
-    print(client)
-    
+    accounts = Account.objects.filter(client=request.user.client, status=Account.Status.ACTIVE)
 
-    if client:
-        transactions = Transaction.objects.filter(client=client)
-    else:
-        transactions = Transaction.objects.none()
+    return render(request, 'transfers/select_account.html', {'accounts': accounts})
 
-    return render(request, 'transfers/list.html', {'transactions': transactions})
+
+@login_required
+def transactions_list(request, account=str):
+    account = Account.objects.get(code=account, status=Account.Status.ACTIVE)
+    transferencia = Transaction.objects.filter(account=account)
+    print("---------------", transferencia)
+
+    # if accounts:
+    #     transactions = Transaction.objects.filter(account=accounts)
+    # else:
+    #     transactions = Transaction.objects.none()
+
+    return render(request, 'transfers/list.html', {'transactions': transferencia})
