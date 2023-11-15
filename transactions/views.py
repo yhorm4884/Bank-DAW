@@ -61,7 +61,7 @@ def payment(request):
     else:
         return HttpResponseNotFound("Payment failed")
 
-
+@login_required
 @csrf_exempt
 def outcoming(request):
     if request.method == 'POST':
@@ -148,3 +148,17 @@ def incoming(request):
         return HttpResponse("Ok!", status=200)
     else:
         return HttpResponseNotFound("Incoming transfer failed")
+
+@login_required
+def transactions(request):
+    
+    client = request.user.client
+    print(client)
+    
+
+    if client:
+        transactions = Transaction.objects.filter(client=client)
+    else:
+        transactions = Transaction.objects.none()
+
+    return render(request, 'transfers/list.html', {'transactions': transactions})

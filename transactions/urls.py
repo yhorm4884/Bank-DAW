@@ -8,6 +8,7 @@ urlpatterns = [
     path('payment/', views.payment, name='payment'),
     path('transfer/incoming/', views.incoming, name='incoming'),
     path('outcoming/', views.outcoming, name='outcoming'),
+    path('transactions/', views.transactions, name='transactions'),
 ]
 
 if settings.DEBUG:
