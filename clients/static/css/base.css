@@ -344,6 +344,52 @@ ul.messagelist li {
   padding: 10px;
 }
 
+.account-card {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.account-header {
+  margin-bottom: 10px;
+}
+
+.account-footer {
+  margin-top: 10px;
+}
+.account-card .card-header a{
+  font-weight: bold;
+  color: #023047;
+}
+
+.account-card div{
+  width: 100%;
+  background-color: #f0a93e;
+}
+
+.account-card .card-body{
+  background-color: #ffd670;
+}
+
+.account-card .card-footer .btn{
+  padding: 10px 20px;
+  background-color: #023047;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.account-card .card-footer .btn:hover{
+  background-color: #007bff;
+}
+
+.dashboard-title{
+  font-weight: bold;
+  color: #023047;
+  text-align: center;
+}
 
 @keyframes neon-border {
   0% {
