@@ -162,7 +162,6 @@ def transactions(request):
 def transactions_list(request, account=str):
     account = Account.objects.get(code=account, status=Account.Status.ACTIVE)
     transferencia = Transaction.objects.filter(account=account)
-    print("---------------", transferencia)
 
     # if accounts:
     #     transactions = Transaction.objects.filter(account=accounts)
