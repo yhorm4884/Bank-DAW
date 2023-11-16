@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>My Accounts</h1>
-  <div class="account-list">
+  <h1 class="dashboard-title">My Accounts</h1>
+  <div class="container account-list">
     {% if messages %}
     <div class="messages">
         {% for message in messages %}
@@ -11,22 +11,26 @@
         {% endfor %}
     </div>
     {% endif %}
-    {% for account in accounts %}
-      {% if account.status == 'AC' %}
-        <div class="account-card">
-          <div class="account-header">
-            <h2><a href="{% url 'account:account_details' account.id %}">{{ account.alias }}</a></h2>
+    <div class="row">
+      {% for account in accounts %}
+        {% if account.status == 'AC' %}
+          <div class="col-md-4">
+            <div class="card account-card">
+              <div class="card-header">
+                <h2><a href="{% url 'account:account_details' account.id %}">{{ account.alias }}</a></h2>
+              </div>
+              <div class="card-body">
+                <p>Code: {{ account.code }}</p>
+                <p>Balance: {{ account.balance }}</p>
+              </div>
+              <div class="card-footer">
+                <a href="{% url 'account:edit_alias' account.id %}" class="btn btn-primary">Edit Alias</a>
+                <a href="{% url 'account:deactivate' account.id %}" class="btn btn-danger">Deactivate Account</a>
+              </div>
+            </div>
           </div>
-          <div class="account-body">
-            <p>Code: {{ account.code }}</p>
-            <p>Balance: {{ account.balance }}</p>
-          </div>
-          <div class="account-footer">
-            <a href="{% url 'account:edit_alias' account.id %}">Edit Alias</a>
-            <a href="{% url 'account:deactivate' account.id %}">Deactivate Account</a>
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}
