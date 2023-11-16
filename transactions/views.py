@@ -87,7 +87,7 @@ def outcoming(request):
 
         comision = calcular_comision("salida", float(amount))
         if account.balance < (float(amount) + comision):
-            return JsonResponse({"error": "Not enough money for the transfer"})
+            return HttpResponse("Not enough money for the transfer")
 
         url_banks = 'https://raw.githubusercontent.com/sdelquin/dsw/main/ut3/te1/files/banks.json'
         response = requests.get(url_banks)
@@ -107,11 +107,11 @@ def outcoming(request):
             account.balance -= float(amount) + comision
             account.save()
             Transaction.objects.create(
-                agent=sender, amount=float(amount), kind='OUTGOING', concept=concept
+                agent=sender, amount=float(amount), kind='OUTGOING', concept=concept, account=account
             )
-            return JsonResponse({"message": "Transaction completed successfully"})
+            return HttpResponse("Transaction completed successfully")
         else:
-            return JsonResponse({"error": "Transaction to bank2 failed"})
+            return HttpResponse({"Transaction to bank failed"})
     else:
         accounts = Account.objects.filter(client=request.user.client)
 
@@ -143,7 +143,7 @@ def incoming(request):
 
         # Crear la transacción
         Transaction.objects.create(
-            agent=sender, amount=float(amount), kind='INCOMING', concept=concept
+            agent=sender, amount=float(amount), kind='INCOMING', concept=concept , account=account
         )
 
         return HttpResponse("Ok!", status=200)

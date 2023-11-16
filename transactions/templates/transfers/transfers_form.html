@@ -12,7 +12,7 @@
         <div class="card-body p-4">
 
             <!-- Modificación: enviar la solicitud POST a la URL de la vista process_payment -->
-            <form method="post"  action="{% url 'outcoming' %}">
+            <form method="post"  action="{% url 'transactions:outcoming' %}">
                 {% csrf_token %}
                 <div class="mb-4">
                     <select name="sender" class="form-select">
