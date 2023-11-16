@@ -93,7 +93,7 @@ def outcoming(request):
                 return HttpResponse("Not enough money for the transfer")
         except AttributeError:
             print(request.user.client.account)
-
+    
         url_banks = 'https://raw.githubusercontent.com/sdelquin/dsw/main/ut3/te1/files/banks.json'
         response = requests.get(url_banks)
         banks = response.json()
