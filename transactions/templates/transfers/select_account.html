@@ -2,18 +2,19 @@
 {% block title %}My Accounts{% endblock %}
 
 {% block content %}
-    <form method="get">
-        <select  onchange="window.location.href=this.value;" name="account_id">
+    <form method="get" class="selectForm">
+        <select  onchange="window.location.href=this.value;" class="accountSelect" name="account_id">
             <option value="">Selecciona una cuenta</option>
             {% for account in accounts %}
                 <option  value="{% url "transactions:transactions_list" account.code%}">{{ account.alias }}</option>
             {% endfor %}
         </select>
-        <select name="status">
+        <select name="status" class="accountStatus">
             <option value="AC">Activo</option>
             <option value="BL">Bloqueado</option>
             <option value="DO">Inactivo</option>
         </select>
+        <button class="filterButton" type="submit">Filtrar</button>
     </form>
     
 {% endblock %}
