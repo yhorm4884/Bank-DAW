@@ -10,6 +10,7 @@ from django.http import (
     HttpResponseNotFound,
     JsonResponse,
 )
+from django.core.exceptions import FieldError
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 
@@ -83,11 +84,15 @@ def outcoming(request):
         try:
             account = Account.objects.get(code=cac, status="AC")
         except Account.DoesNotExist:
-            return HttpResponseForbidden(f"Account '{cac}' doesn't exist or is not active")
+            account = cac
 
         comision = calcular_comision("salida", float(amount))
-        if account.balance < (float(amount) + comision):
-            return HttpResponse("Not enough money for the transfer")
+        print(type(account))
+        try:
+            if account.balance < (float(amount) + comision):
+                return HttpResponse("Not enough money for the transfer")
+        except AttributeError:
+            print(request.user.client.account)
 
         url_banks = 'https://raw.githubusercontent.com/sdelquin/dsw/main/ut3/te1/files/banks.json'
         response = requests.get(url_banks)
@@ -97,14 +102,15 @@ def outcoming(request):
 
             if bank.get("id") == int(cac[1]):
                 url = bank.get("url")
+                url.join(":8000")
 
         # Enviar la solicitud POST al banco 2 para registrar la transacción entrante
         bank2_url = url + "/transfer/incoming/"
         payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}
-        response = requests.post(bank2_url, json=payload)
+        response = requests.post('http://dsw.pc17.aula109:8000/transfer/incoming/', json=payload)
         print(response)
         if response.status_code == 200:
-            account.balance -= float(amount) + comision
+            account.balance -= float(amount)# + comision
             account.save()
             Transaction.objects.create(
                 agent=sender, amount=float(amount), kind='OUTGOING', concept=concept, account=account
