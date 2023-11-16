@@ -1,22 +1,10 @@
 {% extends "base.html" %}
-
 {% block title %}Deactivate Account{% endblock %}
-
 {% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="alert alert-warning mt-5" style="background-color: #f0a93e;">
-          <h1 style="color:#023047"><strong>Are you sure you want to deactivate your account?</strong></h1>
-          <p>This action cannot be undone. All of your data will be permanently deleted.</p>
-          <form method="post">
-            {% csrf_token %}
-            <div class="text-center">
-              <button type="submit" class="btn btn-danger">Deactivate Account</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h1>Are you sure you want to deactivate your account?</h1>
+  <p>This action cannot be undone. All of your data will be permanently deleted.</p>
+  <form method="post">
+    {% csrf_token %}
+    <p><input type="submit" value="Deactivate Account"></p>
+  </form>
 {% endblock %}
