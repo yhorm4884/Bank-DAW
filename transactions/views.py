@@ -11,7 +11,7 @@ from django.http import (
     JsonResponse,
 )
 from django.core.exceptions import FieldError
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.csrf import csrf_exempt
 
 from account.models import Account
@@ -81,36 +81,32 @@ def outcoming(request):
         concept = data.get('concept')
         amount = data.get('amount')
         print(data, sender, cac, concept)
+        # Comprobar si la cuenta (cac) existe en la base de datos
         try:
             account = Account.objects.get(code=cac, status="AC")
         except Account.DoesNotExist:
-            account = cac
-
+            # Si la cuenta no existe en la base de datos, usar la cuenta actual del usuario
+            selected_account_alias = data.get('sender')
+            account = get_object_or_404(Account, alias=selected_account_alias, client=request.user.client)            
         comision = calcular_comision("salida", float(amount))
-        print(type(account))
-        try:
-            if account.balance < (float(amount) + comision):
-                return HttpResponse("Not enough money for the transfer")
-        except AttributeError:
-            print(request.user.client.account)
+        
+        if account.balance < (float(amount) + comision):
+            return HttpResponse("Not enough money for the transfer")
     
         url_banks = 'https://raw.githubusercontent.com/sdelquin/dsw/main/ut3/te1/files/banks.json'
         response = requests.get(url_banks)
         banks = response.json()
         for bank in banks:
-            print(bank.get("id"))
-
             if bank.get("id") == int(cac[1]):
                 url = bank.get("url")
-                url.join(":8000")
 
         # Enviar la solicitud POST al banco 2 para registrar la transacción entrante
-        bank2_url = url + "/transfer/incoming/"
+        bank2_url = url+":8000"+ "/transfer/incoming/"
         payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}
-        response = requests.post('http://dsw.pc17.aula109:8000/transfer/incoming/', json=payload)
-        print(response)
+        print(bank2_url)
+        response = requests.post(bank2_url, json=payload)
         if response.status_code == 200:
-            account.balance -= float(amount)# + comision
+            account.balance -= float(amount) + comision
             account.save()
             Transaction.objects.create(
                 agent=sender, amount=float(amount), kind='OUTGOING', concept=concept, account=account
