@@ -178,6 +178,7 @@ ul.messagelist li {
     margin-bottom: 20px;
   }
   
+  
   .formulario-defecto input[type="text"],
   .formulario-defecto input[type="password"] {
     width: 100%;
@@ -248,7 +249,7 @@ ul.messagelist li {
     color: #FFFFFF;
   }
   
-  .container-profile .profile , .edit-profile{
+  .container-profile .profile , .edit-profile, .container-password{
     background-color: #f0a93e;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -256,7 +257,7 @@ ul.messagelist li {
     padding-left: 5%;
   }
 
-.container-profile .button{
+.container-profile .button, .container-password .button{
   padding: 10px 20px;
   background-color: #023047;
   color: #fff;
@@ -306,6 +307,94 @@ ul.messagelist li {
   background-color: #219EBC;
 }
 
+.container-password{
+  margin: 0 auto;
+  padding: 20px;
+  padding-left: 5%;
+  width: 50%;
+}
+
+.container-password form p{
+  font-weight: bold;
+}
+
+#carouselAccounts{
+  width: 40%;
+}
+
+.bank-account {
+  background-color: #f0a93e;
+  border: 1px solid #023047;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.bank-account h5 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.bank-account .card-text {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #007bff;
+  border-radius: 50%;
+  color: white;
+  padding: 10px;
+}
+
+.account-card {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.account-header {
+  margin-bottom: 10px;
+}
+
+.account-footer {
+  margin-top: 10px;
+}
+.account-card .card-header a{
+  font-weight: bold;
+  color: #023047;
+}
+
+.account-card div{
+  width: 100%;
+  background-color: #f0a93e;
+}
+
+.account-card .card-body{
+  background-color: #ffd670;
+}
+
+.account-card .card-footer .btn{
+  padding: 10px 20px;
+  background-color: #023047;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.account-card .card-footer .btn:hover{
+  background-color: #007bff;
+}
+
+.dashboard-title{
+  font-weight: bold;
+  color: #023047;
+  text-align: center;
+}
+
 @keyframes neon-border {
   0% {
     box-shadow: 0 0 10px #3a86ff;
@@ -322,4 +411,104 @@ ul.messagelist li {
   100% {
     box-shadow: 0 0 50px #3a86ff;
   }
+}
+
+/*Add Card*/
+.addCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin-top: 10%;
+  width: 100%;
+  padding: 10px;
+  
+}
+
+.addCardForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #3bb6d4;
+  padding: 30px;
+
+}
+
+.addCardBtn {
+  font-size: 16px;
+  font-family: 'Verdana', sans-serif;
+  font-weight: 400;
+  color: #444;
+  padding: .4em 1.4em .3em .8em;
+  line-height: 1.3;
+  width: 150px;
+  max-width: 100%; 
+  box-sizing: border-box;
+  margin: 10px;
+  border: 1px solid #f0a93e;
+  border-radius: .3em;
+}
+
+.addCardBtn:hover {
+  background-color: #f0a93e;
+  border-color: #f0a93e;
+  border-radius: .3rem;
+  color: #000;
+}
+
+/* Confirm Delete Card */
+.confirmDeleteCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 75%;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.deleteConfirmBtn {
+  font-size: 16px;
+  font-family: 'Verdana', sans-serif;
+  font-weight: 400;
+  color: #444;
+  padding: .4em 1.4em .3em .8em;
+  line-height: 1.3;
+  width: 150px;
+  max-width: 100%; 
+  box-sizing: border-box;
+  margin: 10px;
+  border: 1px solid #f0a93e;
+  border-radius: .3em;
+}
+
+.deleteConfirmBtn:hover {
+  background-color: #f0a93e;
+  border-color: #f0a93e;
+  border-radius: .3rem;
+  color: #000;
+}
+
+.deleteCancelBtn {
+  border: 1px solid rgb(221, 220, 220);
+  background-color: rgb(221, 220, 220);
+  font-size: 16px;
+  font-family: 'Verdana', sans-serif;
+  font-weight: 400;
+  color: #444;
+  padding: .4em 1.4em .3em .8em;
+  line-height: 1.3;
+  width: 100px;
+  max-width: 100%; 
+  box-sizing: border-box;
+  margin: 10px;
+  border: 1px solid #f0a93e;
+  border-radius: .3em;
+}
+
+.deleteCancelBtn:hover {
+  background-color: #f0a93e;
+  border-color: #f0a93e;
+  border-radius: .3rem;
+  color: #000;
 }

@@ -1,14 +1,20 @@
-from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth.decorators import login_required
-from .forms import AccountRegistrationForm, AccountEditForm, AddMoneyForm
-from .models import Account
-from django.utils.crypto import get_random_string
-from django.core.mail import send_mail
 from django.contrib import messages
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.crypto import get_random_string
+
+from .forms import AccountEditForm, AccountRegistrationForm, AddMoneyForm
+from .models import Account
+
 
 @login_required
 def register(request):
+    current_account_count = Account.objects.filter(client=request.user.client).count()
+    if current_account_count >=3:
+        messages.error(request, 'Numero máximo de cuentas excedido (máximo 3 cuentas).')
+        return redirect('home')
     if request.method == 'POST':
         form = AccountRegistrationForm(request.POST)
         if form.is_valid():
