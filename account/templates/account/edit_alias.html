@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Edit Alias{% endblock %}
 {% block content %}
-  <h1>Edit Alias</h1>
-  <form method="post">
+<div class="container rounded" style="text-align: center; background-color: #f0a93e; width: 30%;">
+  <h1 style="color: #023047; font-weight: bold;padding-top: 4%;">Edit Alias</h1>
+  <form method="post" class="mx-auto" style="max-width: 400px;">
     {% csrf_token %}
-    <p>New Alias: <input type="text" name="new_alias" value="{{ account.alias }}"></p>
-    <p><input type="submit" value="Save Changes"></p>
+    <div class="form-group">
+      <label for="new_alias"><strong>New Alias:</strong></label>
+      <input type="text" class="form-control" id="new_alias" name="new_alias" value="{{ account.alias }}">
+    </div>
+    <button type="submit" class="btn btn-primary btn-account">Save Changes</button>
   </form>
+</div>
 {% endblock %}
+
+
