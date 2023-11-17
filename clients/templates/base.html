@@ -1,4 +1,5 @@
 {% load static %}
+{% load thumbnail %}
 <!DOCTYPE html>
 <html>
 
@@ -31,21 +32,20 @@
             <a class="nav-link" href="{% url 'transactions:transactions' %}">Transferencias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'account:accounts' %}">Cuentas bancarias</a>
             <a class="nav-link" href="{% url 'transactions:outcoming' %}">Do transfers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cuentas bancarias</a>
+            <a class="nav-link" href="{% url 'account:accounts' %}">Cuentas bancarias</a>
           </li>
         </ul>
       </div>
     </nav>
     <span class="user">
       {% if request.user.is_authenticated %}
-      Hola <a href="{% url 'profile' %}">{{ request.user.client.first_name|default:request.user.username }}</a> | 
-      <a href="{% url 'logout' %}">Cerrar sesión</a>
+        Hola <a href="{% url 'profile' %}"><img src="{% thumbnail request.user.client.photo 50x50 %}" class="user-detail"></a> | 
+        <a href="{% url 'logout' %}">Cerrar sesión</a>
       {% else %}
-      <a href="{% url 'login' %}">Iniciar sesión</a>
+        <a href="{% url 'login' %}">Iniciar sesión</a>
       {% endif %}
     </span>
   </header>
