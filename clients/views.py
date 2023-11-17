@@ -92,6 +92,7 @@ def edit(request):
         client_form = ClientEditForm(
             instance=request.user.client, files=request.FILES, data=request.POST
         )
+        print(request.FILES)
         user_form = UserEditForm(instance=request.user, data=request.POST)
 
         if client_form.is_valid() and user_form.is_valid():
