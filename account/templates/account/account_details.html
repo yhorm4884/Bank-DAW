@@ -6,7 +6,6 @@
 
 {% block content %}
 <div class="container">
-  <h1>{{ account.alias }} Details</h1>
 
   {% if messages %}
     <div class="messages">
@@ -18,81 +17,109 @@
     </div>
   {% endif %}
 
-  <div class="account-details">
-    <p>Code: {{ account.code }}</p>
-    <p>Balance: {{ account.balance }}</p>
-    <a href="{% url 'account:edit_alias' account.id %}" class="button">Edit Alias</a>
-    <a href="{% url 'account:deactivate' account.id %}" class="button">Deactivate Account</a>
+  <div class="col-md-4">
+    <div class="card account-card">
+      <div class="card-header">
+        <h2><a href="{% url 'account:account_details' account.id %}">{{ account.alias }}</a></h2>
+      </div>
+      <div class="card-body">
+        <p>Code: {{ account.code }}</p>
+        <p>Balance: {{ account.balance }}</p>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'account:edit_alias' account.id %}" class="btn btn-primary">Edit Alias</a>
+        <a href="{% url 'account:deactivate' account.id %}" class="btn btn-danger">Deactivate Account</a>
+      </div>
+    </div>
   </div>
-
-  <h2>Credit Cards</h2>
   {% if credit_cards %}
-    <a href="{% url 'cards:add_credit_card_without_account' account.id %}">Add more credit cards</a>
-    <ul class="credit-card-list">
-      {% for credit_card in credit_cards %}
-        <li class="credit-card-item">
-          <p>Card Code: {{ credit_card.card_code }}</p>
-          <p>Alias: {{ credit_card.alias }}</p>
-            <div class="account-actions">
-              <a href="{% url 'cards:block_credit_card' credit_card.card_code %}" class="button">Bloquear</a>
-              <a href="{% url 'cards:delete_credit_card' credit_card.card_code %}" class="button">Eliminar</a>
-            </div>
-        </li>
-      {% endfor %}
+      {% include "cards/credit_card_list.html" with credit_cards=credit_cards %}
+
     </ul>
   {% else %}
-    <p>No credit cards associated with this account.</p>
-    <a href="{% url 'cards:add_credit_card_without_account' account.id %}">Add Credit Card</a>
+    <p><strong>No credit cards associated with this account.</strong></p>
+    <a href="{% url 'cards:add_credit_card_without_account' account.id %}" class="button">Add Credit Card</a>
   {% endif %}
 </div>
 
 <style>
-  /* Estilos generales de la página */
-  .container {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Estilos para la lista de tarjetas de crédito */
-  .credit-card-list {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .credit-card-item {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-  }
-
-  /* Estilo para el botón flotante */
-  .floating-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 50%;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-size: 20px;
-  }
-
-  .floating-button a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .floating-button span {
-    display: block;
-    text-align: center;
-  }
+  <style>
+    /* Estilos generales de la página */
+    .container {
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  
+    /* Estilos para los encabezados */
+    h1, h2 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  
+    /* Estilos para los párrafos */
+    p {
+      margin-bottom: 10px;
+    }
+  
+    /* Estilos para los botones */
+    .button {
+      padding: 10px 20px;
+      background-color: #023047;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  
+    .button:hover {
+      background-color: #007bff;
+      color: #FFFFFF
+    }
+  
+    /* Estilos para la lista de tarjetas de crédito */
+    .credit-card-list {
+      list-style-type: none;
+      padding: 0;
+    }
+  
+    .credit-card-item {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+  
+    /* Estilo para el botón flotante */
+    .floating-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 50%;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 20px;
+    }
+  
+    .floating-button a {
+      text-decoration: none;
+      color: inherit;
+    }
+  
+    .floating-button span {
+      display: block;
+      text-align: center;
+    }
+  </style>
+  
 </style>
 
 <!-- Botón flotante -->

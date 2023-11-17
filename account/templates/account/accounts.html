@@ -1,32 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>My Accounts</h1>
-  <div class="account-list">
+  <h1 class="dashboard-title">My Accounts</h1>
+  <div class="container account-list">
     {% if messages %}
-    <div class="messages">
+      <div class="messages">
         {% for message in messages %}
-        <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %}">
+          <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %}">
             {{ message }}
-        </div>
+          </div>
         {% endfor %}
-    </div>
+      </div>
     {% endif %}
-    {% for account in accounts %}
-      {% if account.status == 'AC' %}
-        <div class="account-card">
-          <div class="account-header">
-            <h2><a href="{% url 'account:account_details' account.id %}">{{ account.alias }}</a></h2>
+
+    <div class="row">
+      {% for account in accounts %}
+        {% if account.status == 'AC' %}
+          <div class="col-md-4">
+            <div class="card account-card">
+              <div class="card-header">
+                <h2><a href="{% url 'account:account_details' account.id %}">{{ account.alias }}</a></h2>
+              </div>
+              <div class="card-body">
+                <p>Code: {{ account.code }}</p>
+                <p>Balance: {{ account.balance }}</p>
+              </div>
+              <div class="card-footer">
+                <a href="{% url 'account:edit_alias' account.id %}" class="btn btn-primary">Edit Alias</a>
+                <a href="{% url 'account:deactivate' account.id %}" class="btn btn-danger">Deactivate Account</a>
+              </div>
+            </div>
           </div>
-          <div class="account-body">
-            <p>Code: {{ account.code }}</p>
-            <p>Balance: {{ account.balance }}</p>
-          </div>
-          <div class="account-footer">
-            <a href="{% url 'account:edit_alias' account.id %}">Edit Alias</a>
-            <a href="{% url 'account:deactivate' account.id %}">Deactivate Account</a>
+        {% endif %}
+      {% endfor %}
+
+      <div class="col-md-4 ml-auto">
+        <div class="card text-dark rounded" style="background-color: #f0a93e">
+          <div class="card-body">
+            <h6 class="card-title" style="color: #023047"><strong>Create your account here!</strong></h6>
+            <a href="{% url 'account:register' %}" class="btn btn-primary">Create Account</a>
           </div>
         </div>
-      {% endif %}
-    {% endfor %}
+      </div>
+    </div>
   </div>
 {% endblock %}
