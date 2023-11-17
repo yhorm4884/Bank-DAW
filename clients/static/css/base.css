@@ -233,6 +233,7 @@ ul.messagelist li {
   object-fit: cover;
   border-radius: 50%;
   margin-bottom: 10px;
+  margin-left: 20%;
 }
   
 .container-profile .info{
@@ -280,15 +281,11 @@ ul.messagelist li {
 
 .container-profile .edit-profile .info{
   margin: 0px;
-  margin-left: 15%;
+  margin-left: 10%;
 }
 
 .container-profile .edit-profile{
   width: 65%;
-}
-
-.container-profile .edit-profile .row{
-  margin-left: 8%;
 }
 
 .container-profile .edit-profile form{

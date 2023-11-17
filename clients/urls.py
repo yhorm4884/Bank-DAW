@@ -16,6 +16,8 @@ urlpatterns = [
     path('deactivate/', views.deactivate_account, name='deactivate'),
     path('reactivate/<str:token>/', views.reactivate_account, name='reactivate'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
