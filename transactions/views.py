@@ -59,7 +59,7 @@ def payment(request):
             Transaction.objects.create(
                 agent=business,
                 concept="PAYMENT",
-                amount=amount,
+                amount=float(amount + comision),
                 kind='PAYMENT',
                 account=credit_card.account,
             )
@@ -118,7 +118,7 @@ def outcoming(request):
             account.balance -= float(amount) + comision
             account.save()
             Transaction.objects.create(
-                agent=sender, amount=float(amount), kind='OUTGOING', concept=concept, account=account
+                agent=sender, amount=(float(amount)+ comision), kind='OUTGOING', concept=concept, account=account
             )
             return HttpResponse("Transaction completed successfully")
         else:
@@ -154,7 +154,7 @@ def incoming(request):
 
         # Crear la transacción
         Transaction.objects.create(
-            agent=sender, amount=float(amount), kind='INCOMING', concept=concept , account=account
+            agent=sender, amount=(float(amount)- comision), kind='INCOMING', concept=concept , account=account
         )
 
         return HttpResponse("Ok!", status=200)
