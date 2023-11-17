@@ -3,3 +3,4 @@ prettyconf
 Pillow
 easy_thumbnails
 requests
+django-filter

@@ -8,10 +8,9 @@ from django.http import (
     HttpResponse,
     HttpResponseForbidden,
     HttpResponseNotFound,
-    JsonResponse,
 )
-from django.core.exceptions import FieldError
-from django.shortcuts import get_object_or_404, redirect, render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_exempt
 
 from account.models import Account
@@ -163,21 +162,31 @@ def incoming(request):
         return HttpResponseNotFound("Incoming transfer failed")
 
 
-@login_required
-def transactions(request):
+def movements(request):
+    # Obtener todas las cuentas bancarias del usuario actual
     accounts = Account.objects.filter(client=request.user.client, status=Account.Status.ACTIVE)
 
-    return render(request, 'transfers/select_account.html', {'accounts': accounts})
+    # Filtrado por cuenta
+    account_id = request.GET.get('account_id', '')
+    if account_id:
+        transactions = Transaction.objects.filter(account__code=account_id)
+    else:
+        # Si no se especifica una cuenta, mostrar todas las transacciones del usuario
+        transactions = Transaction.objects.filter(account__in=accounts)
 
+    # Filtrado por tipo de transacción
+    transaction_type = request.GET.get('transaction_type', '')
+    if transaction_type:
+        transactions = transactions.filter(kind=transaction_type)
 
-@login_required
-def transactions_list(request, account=str):
-    account = Account.objects.get(code=account, status=Account.Status.ACTIVE)
-    transferencia = Transaction.objects.filter(account=account).exclude(kind="PAYMENT")
-    return render(request, 'transfers/list.html', {'transactions': transferencia})
+    # Paginación
+    paginator = Paginator(transactions, 5)
+    page = request.GET.get('page', 1)
+    try:
+        transactions = paginator.page(page)
+    except PageNotAnInteger:
+        transactions = paginator.page(1)
+    except EmptyPage:
+        transactions = paginator.page(paginator.num_pages)
 
-@login_required
-def all_actions_list(request, id=str):
-    account = Account.objects.get(id=id, status=Account.Status.ACTIVE)
-    actions = Transaction.objects.filter(account=account)
-    return render(request, 'all_actions.html', {'actions': actions})
+    return render(request, 'transfers/movements.html', {'transactions': transactions, 'accounts': accounts})

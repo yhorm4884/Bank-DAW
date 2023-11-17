@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'cards.apps.CardsConfig',
     'transactions.apps.TransactionsConfig',
+    'django_filters',
     'easy_thumbnails',
     'django.contrib.admin',
     'django.contrib.auth',
