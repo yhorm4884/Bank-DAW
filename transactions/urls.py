@@ -10,6 +10,7 @@ urlpatterns = [
     path('transfer/incoming/', views.incoming, name='incoming'),
     path('transfer/outcoming/', views.outcoming, name='outcoming'),
     path('transactions/<str:account>/', views.transactions_list, name='transactions_list'),
+    path('all_actions_list/<str:id>/', views.transactions_list, name='allactions'),
     path('transactions/', views.transactions, name='transactions'),
 ]
 

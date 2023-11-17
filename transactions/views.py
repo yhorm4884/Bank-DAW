@@ -36,7 +36,7 @@ def payment(request):
             else:
                 return HttpResponseForbidden(f"Invalid form data format")
         business = data.get('business')
-        ccc = data.get('ccc')  # C2-0001
+        ccc = data.get('ccc')  
         pin = data.get('pin')
         amount = data.get('amount')
 
@@ -53,6 +53,7 @@ def payment(request):
             # Realizar el pago y actualizar el balance de la tarjeta
             comision = calcular_comision("salida", float(amount))
             credit_card.account.balance -= float(amount) + comision
+            print(credit_card.account)
             credit_card.account.save()
 
             # Crear registro de la transacción
@@ -61,6 +62,7 @@ def payment(request):
                 concept="PAYMENT",
                 amount=amount,
                 kind='PAYMENT',
+                account=credit_card.account,
             )
 
             return HttpResponse("Ok!")
@@ -171,12 +173,11 @@ def transactions(request):
 @login_required
 def transactions_list(request, account=str):
     account = Account.objects.get(code=account, status=Account.Status.ACTIVE)
-    transferencia = Transaction.objects.filter(account=account)
-    print("---------------", transferencia)
-
-    # if accounts:
-    #     transactions = Transaction.objects.filter(account=accounts)
-    # else:
-    #     transactions = Transaction.objects.none()
-
+    transferencia = Transaction.objects.filter(account=account).exclude(kind="PAYMENT")
     return render(request, 'transfers/list.html', {'transactions': transferencia})
+
+@login_required
+def all_actions_list(request, id=str):
+    account = Account.objects.get(id=id, status=Account.Status.ACTIVE)
+    actions = Transaction.objects.filter(account=account)
+    return render(request, 'all_actions.html', {'actions': actions})

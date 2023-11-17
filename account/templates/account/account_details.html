@@ -40,7 +40,10 @@
     <p><strong>No credit cards associated with this account.</strong></p>
     <a href="{% url 'cards:add_credit_card_without_account' account.id %}" class="button">Add Credit Card</a>
   {% endif %}
+
 </div>
+{% include "all_actions.html" with allactions=account.id %}
+
 
 <style>
   <style>
