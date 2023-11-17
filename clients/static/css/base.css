@@ -597,6 +597,14 @@ ul.messagelist li {
   color: #fff;
 }
 
+thead {
+  background-color: #f0a93e;
+}
+
+tbody {
+  background-color: #eccc9c;
+}
+
 /*Transaction Form*/
 .card {
   border: none;
