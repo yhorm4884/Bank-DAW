@@ -265,6 +265,7 @@ ul.messagelist li {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 1%;
 }
 
 .container-profile .edit-profile .button{
@@ -383,7 +384,7 @@ ul.messagelist li {
   background-color: #ffd670;
 }
 
-.account-card .card-footer .btn{
+.account-card .card-footer .btn, .account-list .btn{
   padding: 10px 20px;
   background-color: #023047;
   font-weight: bold;
@@ -421,6 +422,10 @@ ul.messagelist li {
   background-color: #8ECAE6;
 }
 
+span .user-detail{
+  object-fit: cover;
+  border-radius: 50%;
+}
 
 @keyframes neon-border {
   0% {

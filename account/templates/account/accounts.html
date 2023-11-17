@@ -3,14 +3,15 @@
   <h1 class="dashboard-title">My Accounts</h1>
   <div class="container account-list">
     {% if messages %}
-    <div class="messages">
+      <div class="messages">
         {% for message in messages %}
-        <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %}">
+          <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %}">
             {{ message }}
-        </div>
+          </div>
         {% endfor %}
-    </div>
+      </div>
     {% endif %}
+
     <div class="row">
       {% for account in accounts %}
         {% if account.status == 'AC' %}
@@ -31,6 +32,15 @@
           </div>
         {% endif %}
       {% endfor %}
+
+      <div class="col-md-4 ml-auto">
+        <div class="card text-dark rounded" style="background-color: #f0a93e">
+          <div class="card-body">
+            <h6 class="card-title" style="color: #023047"><strong>Create your account here!</strong></h6>
+            <a href="{% url 'account:register' %}" class="btn btn-primary">Create Account</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}
