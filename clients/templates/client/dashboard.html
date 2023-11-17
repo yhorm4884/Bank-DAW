@@ -25,6 +25,7 @@
     <button class="openbtn" onclick="openNav()">☰ Show Actions</button>
     <h1 class="dashboard-title">Welcome, {{ user.username }}!</h1>
   </div>
+  
   <div class="container">
     <div class="row">
       {% for account in accounts %}
@@ -50,7 +51,7 @@
   </div>
   
 </div>
-{% comment %} {% include "cards/cards_sidebar.html" %} {% endcomment %}
+
 <script>
   function openNav() {
     document.getElementById("mySidebar").style.width = "250px";

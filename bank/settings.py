@@ -20,8 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-ALLOWED_HOSTS = ['dsw.pc04.aula109','localhost', '*']
-
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=config.list)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 

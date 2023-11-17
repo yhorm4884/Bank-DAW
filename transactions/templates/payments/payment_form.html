@@ -14,7 +14,7 @@
                 <div class="card-body p-4">
 
                     <!-- Modificación: enviar la solicitud POST a la URL de la vista process_payment -->
-                    <form method="post" action="{% url 'payments:payment' %}">
+                    <form method="post" action="{% url 'transactions:payment' %}">
                         {% csrf_token %}
                         <div class="mb-4">
                             <label for="business" class="form-label">Business</label>

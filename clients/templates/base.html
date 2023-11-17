@@ -26,13 +26,10 @@
             <a class="nav-link" href="{% url 'cards:credit_cards' %}">Tarjetas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pagos</a>
+            <a class="nav-link" href="{% url 'transactions:payment' %}">Pagos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'transactions:transactions' %}">Transferencias</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'transactions:outcoming' %}">Do transfers</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'account:accounts' %}">Cuentas bancarias</a>

@@ -27,7 +27,14 @@ from .models import Transaction
 def payment(request):
     if request.method == 'POST':
         # Obtener los datos del POST request
-        data = json.loads(request.body)
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            form = PaymentForm(request.POST)
+            if form.is_valid():
+                data = form.cleaned_data
+            else:
+                return HttpResponseForbidden(f"Invalid form data format")
         business = data.get('business')
         ccc = data.get('ccc')  # C2-0001
         pin = data.get('pin')
@@ -60,14 +67,15 @@ def payment(request):
         except django.db.utils.IntegrityError:
             return HttpResponseNotFound("You don't have enought money for the payment")
     else:
-        return HttpResponseNotFound("Payment failed")
+        accounts = Account.objects.filter(client=request.user.client)
+        return render(request, 'payments/payment_form.html', {'accounts': accounts})
+
 
 
 @login_required
 @csrf_exempt
 def outcoming(request):
     if request.method == 'POST':
-        print(request.POST)
         try:
             data = json.loads(request.body)
         except json.JSONDecodeError:
@@ -80,7 +88,7 @@ def outcoming(request):
         cac = data.get('cac')
         concept = data.get('concept')
         amount = data.get('amount')
-        print(data, sender, cac, concept)
+        # print(data, sender, cac, concept)
         # Comprobar si la cuenta (cac) existe en la base de datos
         try:
             account = Account.objects.get(code=cac, status="AC")
