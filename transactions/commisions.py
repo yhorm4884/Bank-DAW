@@ -1,5 +1,6 @@
 from django.conf import settings
 from prettyconf import config
+from decimal import Decimal
 
 # |                  | $[0€-50€)$ | $[50€-500€)$ | $≥500€$ |
 # | ---------------- | ---------- | ------------ | ------- |
@@ -37,5 +38,5 @@ def calcular_comision(operation, amount):
 
     for (min_amount, max_amount), porcentaje in comisiones.items():
         if min_amount < amount <= max_amount:
-            return amount * porcentaje
+            return Decimal(amount * porcentaje)
 

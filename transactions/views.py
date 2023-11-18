@@ -51,7 +51,8 @@ def payment(request):
         try:
             # Realizar el pago y actualizar el balance de la tarjeta
             comision = calcular_comision("salida", float(amount))
-            credit_card.account.balance -= float(amount) + comision
+            print()
+            credit_card.account.balance -= amount + comision
             print(credit_card.account)
             credit_card.account.save()
 
@@ -59,7 +60,7 @@ def payment(request):
             Transaction.objects.create(
                 agent=business,
                 concept="PAYMENT",
-                amount=float(amount + comision),
+                amount=amount + comision,
                 kind='PAYMENT',
                 account=credit_card.account,
             )
@@ -99,7 +100,7 @@ def outcoming(request):
             account = get_object_or_404(Account, alias=selected_account_alias, client=request.user.client)            
         comision = calcular_comision("salida", float(amount))
         
-        if account.balance < (float(amount) + comision):
+        if account.balance < (amount + comision):
             return HttpResponse("Not enough money for the transfer")
     
         url_banks = 'https://raw.githubusercontent.com/sdelquin/dsw/main/ut3/te1/files/banks.json'
@@ -113,12 +114,12 @@ def outcoming(request):
         bank2_url = url+":8000"+ "/transfer/incoming/"
         payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}
         print(bank2_url)
-        response = requests.post(bank2_url, json=payload)
+        response = requests.post("http://127.0.0.1:8000/transfer/outcoming/", json=payload)
         if response.status_code == 200:
-            account.balance -= float(amount) + comision
+            account.balance -= amount + comision
             account.save()
             Transaction.objects.create(
-                agent=sender, amount=(float(amount)+ comision), kind='OUTGOING', concept=concept, account=account
+                agent=sender, amount=(amount+ comision), kind='OUTGOING', concept=concept, account=account
             )
             return HttpResponse("Transaction completed successfully")
         else:
@@ -149,12 +150,12 @@ def incoming(request):
         comision = calcular_comision("entrada", float(amount))
         print(comision)
         print(amount)
-        account.balance += float(amount) - comision
+        account.balance += amount - comision
         account.save()
 
         # Crear la transacción
         Transaction.objects.create(
-            agent=sender, amount=(float(amount)- comision), kind='INCOMING', concept=concept , account=account
+            agent=sender, amount=(amount- comision), kind='INCOMING', concept=concept , account=account
         )
 
         return HttpResponse("Ok!", status=200)

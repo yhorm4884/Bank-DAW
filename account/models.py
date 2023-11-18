@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.validators import FileExtensionValidator, RegexValidator
+from django.core.validators import MinValueValidator, RegexValidator
 from django.db import models
 from clients.models import Client
 
@@ -33,7 +33,7 @@ class Account(models.Model):
     reactivation_token = models.CharField(max_length=64, null=True, blank=True)
 
     # Balance que dice el total de dinero en la cuenta del banco
-    balance = models.PositiveIntegerField(null=True,default=0)
+    balance = models.DecimalField(decimal_places=2, max_digits=6, validators=[MinValueValidator(0)], null=True,default=0)
 
 
     # Estado en el que se encuentra la cuenta actualmente
