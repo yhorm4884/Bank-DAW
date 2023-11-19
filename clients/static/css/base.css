@@ -544,6 +544,30 @@ span .user-detail{
 }
 
 /*Sidebar Transaction List*/
+.cardList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 25px;
+}
+
+.cardBtn {
+  text-align: center;
+  color: #fff;
+  padding: .5em;
+  box-sizing: border-box;
+  margin: 10px;
+  border: 1px solid #023047;
+  border-radius: .3em;
+  background-color: #023047;
+}
+
+.cardBtn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
 .selectForm {
   display: flex;
   flex-direction: row;
