@@ -150,16 +150,13 @@ def incoming(request):
             return HttpResponseForbidden(f"Account '{cac}' doesn't exist or is not active")
 
         # Realizar la transferencia y actualizar el balance de la cuenta
-        print(amount, type(amount))
         comision = calcular_comision("entrada", Decimal(amount))
-        print(comision)
-        print(amount)
         account.balance += Decimal(amount) - comision
         account.save()
 
         # Crear la transacción
         Transaction.objects.create(
-            agent=sender, amount=(amount- comision), kind='INCOMING', concept=concept , account=account
+            agent=sender, amount=(Decimal(amount)- comision), kind='INCOMING', concept=concept , account=account
         )
 
         return HttpResponse("Ok!", status=200)
