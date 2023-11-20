@@ -1,3 +1,4 @@
+from decimal import Decimal
 import json
 
 import django
@@ -113,9 +114,10 @@ def outcoming(request):
         # Enviar la solicitud POST al banco 2 para registrar la transacción entrante
         bank2_url = url+":8000"+ "/transfer/incoming/"
         payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}
-        print(bank2_url)
-        response = requests.post("http://127.0.0.1:8000/transfer/outcoming/", json=payload)
+        response = requests.post(bank2_url, json=payload)
+        print(bank2_url, payload)
         if response.status_code == 200:
+            
             account.balance -= amount + comision
             account.save()
             Transaction.objects.create(
@@ -123,6 +125,7 @@ def outcoming(request):
             )
             return HttpResponse("Transaction completed successfully")
         else:
+            print(response.status_code)
             return HttpResponse({"Transaction to bank failed"})
     else:
         accounts = Account.objects.filter(client=request.user.client)
@@ -136,7 +139,7 @@ def incoming(request):
         # Obtener los datos del POST request
         data = json.loads(request.body)
         # Lista de datos a recoger
-        sender = data.get('sender')
+        sender = data.get("sender")
         cac = data.get('cac')
         concept = data.get('concept')
         amount = data.get('amount')
@@ -147,10 +150,11 @@ def incoming(request):
             return HttpResponseForbidden(f"Account '{cac}' doesn't exist or is not active")
 
         # Realizar la transferencia y actualizar el balance de la cuenta
-        comision = calcular_comision("entrada", float(amount))
+        print(amount, type(amount))
+        comision = calcular_comision("entrada", Decimal(amount))
         print(comision)
         print(amount)
-        account.balance += amount - comision
+        account.balance += Decimal(amount) - comision
         account.save()
 
         # Crear la transacción

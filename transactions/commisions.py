@@ -38,5 +38,5 @@ def calcular_comision(operation, amount):
 
     for (min_amount, max_amount), porcentaje in comisiones.items():
         if min_amount < amount <= max_amount:
-            return Decimal(amount * porcentaje)
+            return Decimal(amount) * Decimal(porcentaje)
 
