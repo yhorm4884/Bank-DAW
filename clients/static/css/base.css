@@ -1,58 +1,89 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #219ebc;
-    margin: 0;
-    padding: 0;
-    height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #219ebc;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 header {
-    background-color: #f0a93e;
-    color: #f0a93e;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
+  background: linear-gradient(to top, #001548, #1098e1);
+  color: #001548;
+  padding: 10px 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 5;
+  border-bottom: 4px solid #f0a93e;
+  box-shadow: 0 0 10px rgba(240, 169, 62, 0.8); /* Agrega una sombra de color naranja (efecto neón) */
+  animation: neon 1.5s infinite alternate; /* Agrega una animación de parpadeo */
+}
+
+@keyframes neon {
+  from {
+    box-shadow: 0 0 20px rgba(158, 105, 26, 0.8);
+  }
+  to {
+    box-shadow: 0 0 40px rgba(240, 169, 62, 1), 0 0 30px rgba(240, 169, 62, 0.8);
+  }
 }
 
 header h1 {
-    margin: 0;
-    font-size: 1.5em;
+  margin: 0;
+  font-size: 1.5em;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
+nav ul.nav-header, nav a.navbar-brand{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  color: #f0a93e;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+nav ul.nav-header{
+  width: 31em;
+}
+
+#navbarNav{
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 nav li {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+  color: #f0a93e;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 nav a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .user {
-    display: inline-block;
-    margin: 10px 20px;
+  display: inline-block;
+  margin: 10px 20px;
 }
 
-.user a {
-    color: #023047;
-    text-decoration: none;
-    font-weight: bold;
+.user a, .user{
+  color: #f0a93e;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.user img{
+  border: 2px solid #f0a93e;
 }
 
 .user a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 #content {
@@ -63,12 +94,13 @@ nav a:hover {
 .main-content {
     flex: 1;
     padding: 20px;
+    z-index: 5;
 }
 .sidebar {
     height: 100%;
     width: 0;
     position: absolute;
-    z-index: 1;
+    z-index: 5;
     top: 5em; /* Cambiado de 0 a 3em */
     right: 0;
     background-color: #111;
@@ -99,9 +131,10 @@ nav a:hover {
     margin-left: 50px;
 }
 
-#navbarNav ul li a{
+/* #navbarNav ul li a{
     color: #023047;
-}
+} Comentado por Afellay*/
+
 .openbtn {
     font-size: 20px;
     cursor: pointer;
@@ -131,10 +164,12 @@ ul.messagelist li {
     color: var(--body-fg);
     word-break: break-word;
   }
-  ul > li {
+  /* ul > li {
     list-style-type: square;
     padding: 1px 0;
-  }
+  } Lo quito Afellay para que el header funcione*/
+
+
   li, dt, dd {
     font-size: 0.8125rem;
     line-height: 1.25rem;
@@ -359,6 +394,7 @@ ul.messagelist li {
   justify-content: center;
   text-align: center;
   margin-bottom: 5%;
+  z-index: 5;
 }
 
 .account-header {
