@@ -14,8 +14,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_exempt
 
-from account.models import Account
-from cards.models import CreditCard
+from clients.models import Account, CreditCard
 
 from .commisions import calcular_comision
 from .forms import PaymentForm, TransferForm
@@ -110,7 +109,7 @@ def outcoming(request):
         for bank in banks:
             if bank.get("id") == int(cac[1]):
                 url = bank.get("url")
-
+        
         # Enviar la solicitud POST al banco 2 para registrar la transacción entrante
         bank2_url = url+":8000"+ "/transfer/incoming/"
         payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}

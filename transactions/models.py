@@ -1,6 +1,6 @@
 from django.db import models
 
-from account.models import Account
+from clients.models import Account
 
 # ┌───────────────────────┐
 # │   Transactions        │

@@ -24,8 +24,12 @@
                     <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
                     <div class="bar"></div>
                     <div class="row">
-                        <a href="{% url 'cards:block_credit_card' card.card_code %}" class="button">Bloquear</a>
-                        <a href="{% url 'cards:delete_credit_card' card.card_code %}" class="button">Eliminar</a>
+                        {% if card.status == 'AC' %}
+                        <a href="{% url 'clients:block_credit_card' card.card_code %}">Bloquear</a>
+                        {% elif card.status == 'BL' %}
+                            <a href="{% url 'clients:reactivate_credit_card' card.card_code %}">Desbloquear</a>
+                        {% endif %}
+                        <a href="{% url 'clients:delete_credit_card' card.card_code %}" class="button">Eliminar</a>
                     </div>
                 </div>
             </div>

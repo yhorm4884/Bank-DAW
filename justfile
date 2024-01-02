@@ -45,7 +45,7 @@ clean:
 
 # Create database migrations for single app or whole project
 makemigrations app="": database
-    python manage.py makemigrations {{ app }}
+    python3 manage.py makemigrations {{ app }}
 
 # Run pending migrations for single app or whole project
 migrate app="": database
@@ -113,15 +113,16 @@ djangodoc query: check_venv
 zip: clean
     #!/usr/bin/env bash
     rm -f {{ project_name }}.zip
-    zip -r {{ project_name }}.zip . -x .env .venv/**\*
+    zip -r {{ project_name }}.zip . -x .venv/**\*
+
+# Launch project through Docker
+dockup:
+    docker compose up
 
 # Install Python requirements
 pipi: check_venv
     python -m pip install -r requirements.txt
 
-# Launch project through Docker
-dockup:
-    docker compose up
 
 # Check if virtualenv is active
 [private]

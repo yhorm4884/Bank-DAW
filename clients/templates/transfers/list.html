@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    
+    <div class="table-responsive">
+      <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Transfer Type</th>
+                    <th>Agent</th>
+                    <th>Concept</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{transaction.kind}}</td>
+                        <td>{{transaction.agent}}</td>
+                        <td>{{transaction.concept}}</td>
+                        <td>{{transaction.timestamp}}</td>
+                        <td>{{transaction.amount}}</td>
+                        
+                    </tr>
+                {% endfor %}
+            <tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

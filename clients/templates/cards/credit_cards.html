@@ -17,7 +17,7 @@
             </select>
             <button class="filterButton" type="submit">Filtrar</button>
         </form>
-        <a href="{% url 'cards:add_credit_card' %}"><button class="cardBtn">Añadir Tarjeta</button></a>
+        <a href="{% url 'clients:add_credit_card' %}"><button class="cardBtn">Añadir Tarjeta</button></a>
     </div>
   {% include "cards/credit_card_list.html" with credit_cards=credit_cards %}
 {% endblock %}

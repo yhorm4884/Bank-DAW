@@ -34,8 +34,6 @@ DEBUG = True
 
 INSTALLED_APPS = [
     'clients.apps.ClientsConfig',
-    'account.apps.AccountConfig',
-    'cards.apps.CardsConfig',
     'transactions.apps.TransactionsConfig',
     'django_filters',
     'easy_thumbnails',

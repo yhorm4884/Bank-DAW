@@ -6,7 +6,7 @@
   <form method="post">
     {% csrf_token %}
     <input class="deleteConfirmBtn" type="submit" value="Sí, estoy seguro">
-    <a class="deleteCancelBtn" role="button" href="{% url 'cards:credit_card_list' %}">Cancelar</a>
+    <a class="deleteCancelBtn" role="button" href="{{ request.META.HTTP_REFERER }}">Cancelar</a>
   </form>
 </div>
 {% endblock %}

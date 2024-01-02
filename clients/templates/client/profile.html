@@ -20,13 +20,14 @@
           <p class="lead mb-5"><strong><b>Correo electrónico: </strong></b></p>
           <p class="user">{{ profile.user.email }}</p>
         </div>
-        <form action="{% url 'edit' %}">
+        <form action="{% url 'clients:edit' %}">
           <button class="btn btn-primary button" type="submit">Edit Profile</button>
         </form>
         <form action="{% url 'password_reset' %}">
           <button class="btn btn-primary button" type="submit">Change Password</button>
         </form>
-        <form action="{% url 'deactivate' %}">
+        <form action="{% url 'clients:deactivate_client' request.user.client.id %}" method="post">
+          {% csrf_token %}
           <button class="btn btn-primary button" type="submit">Desactivate Account</button>
         </form>
       </div>
