@@ -10,7 +10,7 @@ urlpatterns = [
     path('transfer/incoming/', views.incoming, name='incoming'),
     path('transfer/outcoming/', views.outcoming, name='outcoming'),
     path('movements/', views.movements, name='movements'),
-    
+    path('movements/export-csv/', views.export_transactions_csv, name='export_transactions_csv'),
 ]
 
 if settings.DEBUG:
