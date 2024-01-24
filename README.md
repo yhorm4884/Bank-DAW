@@ -21,7 +21,7 @@ Bank es un proyecto de aplicación web desarrollado con Django que ofrece servic
 
 1. **Instalación:**
    ```bash
-   pip install -r requirements.txt
+     pip install -r requirements.txt
    ```
 2. **Configuración de la Base de Datos:**
   ```bash
