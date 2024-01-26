@@ -6,6 +6,8 @@ body {
     height: 100%;
   }
   
+  /* HEADER */
+
   header {
     background: linear-gradient(to top, #001548, #1098e1);
     color: #001548;
@@ -48,12 +50,13 @@ body {
   }
   
   #navbarNav{
-    padding-left: 5%;
-    padding-right: 5%;
+    margin-left: 1.5rem;
   }
   
   nav li {
+    width: auto;
     margin-right: 20px;
+    color: #e2bc83;
   }
   
   nav a {
@@ -63,7 +66,7 @@ body {
   }
   
   nav a:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }
   
   .user {
@@ -91,6 +94,8 @@ body {
       padding: 20px;
   }
   
+  /* dashboard.html */
+
   .main-content {
       flex: 1;
       padding: 20px;
@@ -191,6 +196,7 @@ body {
     }
   
     /* Center the login form */
+
     .formulario-defecto {
       font-family: Arial, sans-serif;
       background-color: #f0a93e;
@@ -249,6 +255,8 @@ body {
       text-decoration: none;
     }
   
+    /* profile.html // edit.html*/
+
     .container-profile {
       margin: 0 auto;
       padding: 20px;
