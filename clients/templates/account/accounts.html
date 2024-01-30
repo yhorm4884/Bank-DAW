@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block content %}
-  <h1 class="dashboard-title">My Accounts</h1>
+  <h1 class="dashboard-title">{% trans "My Accounts" %}</h1>
   <div class="container account-list">
     {% if messages %}
       <div class="messages">
@@ -21,12 +22,12 @@
                 <h2><a href="{% url 'clients:account_details' account.id %}">{{ account.alias }}</a></h2>
               </div>
               <div class="card-body">
-                <p>Code: {{ account.code }}</p>
-                <p>Balance: {{ account.balance }}</p>
+                <p>{% trans "Código:" %} {{ account.code }}</p>
+                <p>{% trans "Balance:" %} {{ account.balance }}</p>
               </div>
               <div class="card-footer">
-                <a href="{% url 'clients:edit_alias' account.id %}" class="btn btn-primary">Edit Alias</a>
-                <a href="{% url 'clients:deactivate' account.id %}" class="btn btn-danger">Deactivate Account</a>
+                <a href="{% url 'clients:edit_alias' account.id %}" class="btn btn-primary">{% trans "Editar alias" %}</a>
+                <a href="{% url 'clients:deactivate' account.id %}" class="btn btn-danger">{% trans "Desactivar cuenta" %}</a>
               </div>
             </div>
           </div>
@@ -36,8 +37,8 @@
       <div class="col-md-4 ml-auto">
         <div class="card text-dark rounded" style="background-color: #f0a93e">
           <div class="card-body">
-            <h6 class="card-title" style="color: #023047"><strong>Create your account here!</strong></h6>
-            <a href="{% url 'clients:register' %}" class="btn btn-primary">Create Account</a>
+            <h6 class="card-title" style="color: #023047"><strong>{% trans "¡Crea tu cuenta aquí!" %}</strong></h6>
+            <a href="{% url 'clients:register' %}" class="btn btn-primary">{% trans "Create Account" %}</a>
           </div>
         </div>
       </div>

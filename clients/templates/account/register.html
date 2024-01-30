@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Register Account{% endblock %}
+{% block title %}{% trans "Registrar una Cuenta" %}{% endblock %}
 
 {% block content %}
   <div class="container account-create">
@@ -18,12 +18,12 @@
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <div class="alert alert-warning mt-5" style="background-color: #f0a93e;">
-          <h1 style="text-align: center; color: #023047"><strong>Create a new account</strong></h1>
+          <h1 style="text-align: center; color: #023047"><strong>{% trans "Crear nueva cuenta." %}</strong></h1>
           <form method="post" style="color:black">
             {{ form.as_p }}
             {% csrf_token %}
             <div class="text-center">
-              <input type="submit" class="btn btn-primary" value="Create Account">
+              <input type="submit" class="btn btn-primary" value="{% trans "Create Account" %}">
             </div>
           </form>
         </div>

@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Edit Alias{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Editar alias" %}{% endblock %}
 {% block content %}
-  <h1>Edit Alias</h1>
+  <h1>{% trans "Editar alias" %}</h1>
   <form method="post">
     {% csrf_token %}
-    <p>New Alias: <input type="text" name="new_alias" value="{{ account.alias }}"></p>
-    <p><input type="submit" value="Save Changes"></p>
+    <p>{% trans "Nuevo alias:" %} <input type="text" name="new_alias" value="{{ account.alias }}"></p>
+    <p><input type="submit" value={% trans "Guardar cambios" %}></p>
   </form>
 {% endblock %}

@@ -1,29 +1,30 @@
 {% extends "base.html" %}
-{% block title %}Dashboard{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Panel principal" %}{% endblock %}
 {% block content %}
 <div class="dashboard-container">
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <details>
-      <summary>Acciones de Tarjetas</summary>
-      <a href="{% url 'clients:add_credit_card' %}">Añadir Tarjeta</a>
-      <a href="{% url 'clients:credit_cards' %}">Ver Tarjetas</a>
+      <summary>{% trans "Acciones de Tarjetas" %}</summary>
+      <a href="{% url 'clients:add_credit_card' %}">{% trans "Añadir Tarjeta" %}</a>
+      <a href="{% url 'clients:credit_cards' %}">{% trans "Ver Tarjetas" %}</a>
     </details>
     <details>
-      <summary>Acciones del Cliente</summary>
-      <a href="{% url 'clients:edit'%}">Editar Perfil</a>
-      <a href="{% url "password_reset" %}">Cambiar Contraseña</a>
-      <a href="{% url 'clients:deactivate' account_id=request.user.client.id%}">Desactivar Cuenta</a>
+      <summary>{% trans "Acciones del cliente" %}</summary>
+      <a href="{% url 'clients:edit'%}">{% trans "Editar Perfil" %}</a>
+      <a href="{% url "password_reset" %}">{% trans "Cambiar Contraseña" %}</a>
+      <a href="{% url 'clients:deactivate' account_id=request.user.client.id%}">{% trans "Desactivar Cuenta" %}</a>
     </details>
     <details>
-      <summary>Acciones Cuentas</summary>
-      <a href="{% url 'clients:register' %}">Registrar Cuenta</a>
+      <summary>{% trans "Acciones Cuentas" %}</summary>
+      <a href="{% url 'clients:register' %}">{% trans "Registrar Cuenta" %}</a>
     </details>
   </div>
 
   <div id="main" class="main-content">
-    <button class="openbtn" onclick="openNav()">☰ Show Actions</button>
-    <h1 class="dashboard-title">Welcome, {{ user.username }}!</h1>
+    <button class="openbtn" onclick="openNav()">☰ {% trans "Show Actions" %}</button>
+    <h1 class="dashboard-title">{% trans "Welcome," %} {{ user.username }}!</h1>
   </div>
   
   <div class="container">
@@ -36,12 +37,12 @@
                 <h2><a href="{% url 'clients:account_details' account.id %}">{{ account.alias }}</a></h2>
               </div>
               <div class="card-body">
-                <p>Code: {{ account.code }}</p>
-                <p>Balance: {{ account.balance }}</p>
+                <p>{% trans "Código:" %} {{ account.code }}</p>
+                <p>{% trans "Balance:" %} {{ account.balance }}</p>
               </div>
               <div class="card-footer">
-                <a href="{% url 'clients:edit_alias' account.id %}" class="btn btn-primary">Edit Alias</a>
-                <a href="{% url 'clients:deactivate' account.id %}" class="btn btn-danger">Deactivate Account</a>
+                <a href="{% url 'clients:edit_alias' account.id %}" class="btn btn-primary">{% trans "Edit Alias" %}</a>
+                <a href="{% url 'clients:deactivate' account.id %}" class="btn btn-danger">{% trans "Deactivate Account" %}</a>
               </div>
             </div>
           </div>

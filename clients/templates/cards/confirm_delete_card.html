@@ -2,11 +2,11 @@
 
 {% block content %}
 <div class="confirmDeleteCard">
-  <h2>Estás seguro de que quieres eliminar la tarjeta {{ card.card_code }}?</h2>
+  <h2>{% trans "Estas seguro de que quieres eliminar la tarjeta" %} {{ card.card_code }} </h2>
   <form method="post">
     {% csrf_token %}
-    <input class="deleteConfirmBtn" type="submit" value="Sí, estoy seguro">
-    <a class="deleteCancelBtn" role="button" href="{{ request.META.HTTP_REFERER }}">Cancelar</a>
+    <input class="deleteConfirmBtn" type="submit" value={{Si, estoy seguro}}>
+    <a class="deleteCancelBtn" role="button" href="{{ request.META.HTTP_REFERER }}">{% trans "Cancelar" %}</a>
   </form>
 </div>
 {% endblock %}

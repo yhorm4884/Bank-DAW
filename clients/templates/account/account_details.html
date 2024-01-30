@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block title %}
-{{ account.alias }} Details
+{{ account.alias }} {% trans "Detalles" %}
 {% endblock %}
 
 {% block content %}
@@ -23,12 +23,12 @@
         <h2><a href="{% url 'clients:account_details' account.id %}">{{ account.alias }}</a></h2>
       </div>
       <div class="card-body">
-        <p>Code: {{ account.code }}</p>
-        <p>Balance: {{ account.balance }}</p>
+        <p> {% trans "Código:" %} {{ account.code }}</p>
+        <p> {% trans "Balance:" %} {{ account.balance }}</p>
       </div>
       <div class="card-footer">
-        <a href="{% url 'clients:edit_alias' account.id %}" class="btn btn-primary">Edit Alias</a>
-        <a href="{% url 'clients:deactivate' account.id %}" class="btn btn-danger">Deactivate Account</a>
+        <a href="{% url 'clients:edit_alias' account.id %}" class="btn btn-primary">{% trans "Editar alias" %}</a>
+        <a href="{% url 'clients:deactivate' account.id %}" class="btn btn-danger">{% trans "Desactivar cuentas" %}</a>
       </div>
     </div>
   </div>
@@ -37,8 +37,10 @@
 
     </ul>
   {% else %}
-    <p><strong>No credit cards associated with this account.</strong></p>
-    <a href="{% url 'clients:add_credit_card_without_account' account.id %}" class="button">Add Credit Card</a>
+    <p>
+      <strong>{% trans "No credit cards associated with this account." %}</strong>
+    </p>
+    <a href="{% url 'clients:add_credit_card_without_account' account.id %}" class="button">{% trans "Añadir tarjeta de crédito" %}</a>
   {% endif %}
 
 </div>
@@ -128,7 +130,4 @@
     <span>&#x1F4B0;+</span>
   </a>
 </div>
-
-
-
 {% endblock %}

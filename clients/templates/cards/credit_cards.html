@@ -1,23 +1,26 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}My Credit Cards{% endblock %}
 
 {% block content %}
     <div class="cardList">
         <form class="selectForm" method="get">
             <select class="accountSelect" name="account_id">
-                <option value="">Selecciona una cuenta</option>
+                <option value="">{% trans "Selecciona una cuenta" %}</option>
                 {% for account in accounts %}
                     <option class="accountOption" value="{{ account.id }}">{{ account.alias }}</option>
                 {% endfor %}
             </select>
             <select class="accountStatus" name="status">
-                <option value="AC">Activo</option>
-                <option value="BL">Bloqueado</option>
-                <option value="DO">Inactivo</option>
+                <option value="AC">{% trans "Activo" %}</option>
+                <option value="BL">{% trans "Bloqueado" %}</option>
+                <option value="DO">{% trans "Inactivo" %}</option>
             </select>
-            <button class="filterButton" type="submit">Filtrar</button>
+            <button class="filterButton" type="submit">{% trans "Filtrar" %}</button>
         </form>
-        <a href="{% url 'clients:add_credit_card' %}"><button class="cardBtn">Añadir Tarjeta</button></a>
+        <a href="{% url 'clients:add_credit_card' %}">
+            <button class="cardBtn">{%trans "Añadir Tarjeta" %}</button>
+        </a>
     </div>
   {% include "cards/credit_card_list.html" with credit_cards=credit_cards %}
 {% endblock %}

@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Reactivate Account{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Reactivar cuenta" %}{% endblock %}
 {% block content %}
   {% if success %}
-    <h1>Your account has been successfully reactivated</h1>
+    <h1>{% trans "Su cuenta ha sido reactivada exitosamente" %}</h1>
   {% else %}
-    <h1>Failed to reactivate account</h1>
-    <p>Invalid or expired token. Please try again.</p>
+    <h1>{% trans "No se pudo reactivar la cuenta" %}</h1>
+    <p>{% trans "Token no válido o caducado. Inténtalo de nuevo."%}</p>
   {% endif %}
 {% endblock %}
