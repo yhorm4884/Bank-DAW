@@ -38,7 +38,7 @@
     </ul>
   {% else %}
     <p>
-      <strong>{% trans "No credit cards associated with this account." %}</strong>
+      <strong>{% trans "No hay tarjetas de crédito asociadas con esta cuenta." %}</strong>
     </p>
     <a href="{% url 'clients:add_credit_card_without_account' account.id %}" class="button">{% trans "Añadir tarjeta de crédito" %}</a>
   {% endif %}

@@ -1,34 +1,35 @@
 {% extends "base.html" %}
 {% load thumbnail %}
-{% block title %}Client profile{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Perfil de cliente" %}{% endblock %}
 
 {% block content %}
   <div class="container container-profile" style="width: 750px;">
     <div class="profile">
-      <h1 class="display-4"><strong><b>Perfil de {{ profile.user.username }}</strong></b></h1>
+      <h1 class="display-4"><strong><b>{% trans "Perfil de" %} {{ profile.user.username }}</strong></b></h1>
       <div class="row">
         <div class="col-md-4 imagen">
           <img src="{% thumbnail profile.photo 180x180 %}" class="user-detail">
         </div>
         <div class="col-md-5 info">
-          <p class="lead mb-5"><strong><b>Nombre de usuario: </strong></b></p>
+          <p class="lead mb-5"><strong><b>{% trans "Nombre de usuario:" %} </strong></b></p>
           <p class="user">{{ profile.user.username }}</p>
-          <p class="lead mb-5"><strong><b>Nombre: </strong></b></p>
+          <p class="lead mb-5"><strong><b>{% trans "Nombre:" %}</strong></b></p>
           <p class="user">{{ profile.user.first_name }}</p>
-          <p class="lead mb-5"><strong><b>Apellido: </strong></b></p>
+          <p class="lead mb-5"><strong><b>{% trans "Apellido:" %} </strong></b></p>
           <p class="user">{{ profile.user.last_name }}</p>
-          <p class="lead mb-5"><strong><b>Correo electrónico: </strong></b></p>
+          <p class="lead mb-5"><strong><b>{% trans "Correo electrónico:" %} </strong></b></p>
           <p class="user">{{ profile.user.email }}</p>
         </div>
         <form action="{% url 'clients:edit' %}">
-          <button class="btn btn-primary button" type="submit">Edit Profile</button>
+          <button class="btn btn-primary button" type="submit">{% trans "Editar perfil" %}</button>
         </form>
         <form action="{% url 'password_reset' %}">
-          <button class="btn btn-primary button" type="submit">Change Password</button>
+          <button class="btn btn-primary button" type="submit">{% trans "Cambiar contraseña" %}</button>
         </form>
         <form action="{% url 'clients:deactivate_client' request.user.client.id %}" method="post">
           {% csrf_token %}
-          <button class="btn btn-primary button" type="submit">Desactivate Account</button>
+          <button class="btn btn-primary button" type="submit">{% trans "Desactivar cuenta" %} </button>
         </form>
       </div>
     </div>

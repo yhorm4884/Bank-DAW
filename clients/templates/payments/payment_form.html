@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 <div class="container mt-5 mb-5">
@@ -7,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="d-flex justify-content-between align-items-center mb-0">
-                        <span>Payment Details</span>
+                        <span>{% trans "Detalles del pago" %}</span>
                         {% comment %} <img class="img-fluid" src="https://i.imgur.com/2zDU056.png" width="50px"> {% endcomment %}
                     </h4>
                 </div>
@@ -17,11 +18,11 @@
                     <form method="post" action="{% url 'transactions:payment' %}">
                         {% csrf_token %}
                         <div class="mb-4">
-                            <label for="business" class="form-label">Business</label>
+                            <label for="business" class="form-label">{% trans "Negocio" %}</label>
                             <input type="text" id="business" name="business" class="form-control">
                         </div>
                         <div class="mb-4">
-                            <label for="ccc" class="form-label">Client Card Code (CCC)</label>
+                            <label for="ccc" class="form-label">{% trans "Código de tarjeta de cliente (CCC):" %}</label>
                             <input type="text" id="ccc" name="ccc" class="form-control">
                         </div>
                         <div class="mb-4">
@@ -29,11 +30,11 @@
                             <input type="password" id="pin" name="pin" class="form-control">
                         </div>
                         <div class="mb-4">
-                            <label for="amount" class="form-label">Amount</label>
+                            <label for="amount" class="form-label">{% trans "Cantidad:" %}</label>
                             <input type="decimal" step="0.01" id="amount" name="amount" class="form-control">
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Pay</button>
+                            <button type="submit" class="btn btn-primary">{% trans "Pagar" %}</button>
                         </div>
                     </form>
 

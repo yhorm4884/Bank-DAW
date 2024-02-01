@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 <head>
   <link type="text/css" href="{% static "css/style.css" %}" rel="stylesheet">
   
@@ -12,16 +13,16 @@
       <div class="col-md-6 offset-md-3">
         
         <div class="formulario-defecto custom-row">
-          <h1 class="mt-4"> <strong> {% trans "Acceso"%} </strong> </h1>
+          <h1 class="mt-4"> <strong> {% trans "Acceso" %} </strong> </h1>
           <hr>
         {% if form.errors %}
           <div class="alert alert-danger">
-            {% trans"Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.Dock" %}
+            {% trans "Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo." %}
+            <a href="{% url "clients:client_register" %}" class="link">{% trans "Si no registrate aquí" %} </a>
           </div>
         {% else %}
           <p class="mt-4">
-            <strong><b>{% trans "Por favor, utilice el siguiente formulario para iniciar sesión.
-              Si no tienes una cuenta" %} <a href="{% url "clients:client_register" %}" class="link">register here</a></b></strong>.
+            <strong><b>{% trans "Por favor, utilice el siguiente formulario para iniciar sesión. Si no tienes una cuenta" %} <a href="{% url "clients:client_register" %}" class="link">{% trans "Registrate aquí" %} </a></b></strong>.
           </p>
         {% endif %}
           <form action="{% url 'login' %}" method="post">
@@ -36,11 +37,11 @@
             </div>
             <input type="hidden" name="next" value="{{ next }}" />
           </br>
-            <button type="submit" class="btn btn-primary"><strong><b>Log-in</strong></b></button>
+            <button type="submit" class="btn btn-primary"><strong><b> {% trans "Iniciar sesión" %}</strong></b></button>
           </form>
           <p class="mt-4">
             <a href="{% url "password_reset" %}" class="link">
-              <strong><b>Forgotten your password?</strong></b>
+              <strong><b>{% trans "¿Olvidaste la contraseña?" %}</strong></b>
             </a>
           </p>
         </div>

@@ -1,9 +1,10 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Justificante de Transferencia</title>
+    <title>{% trans "Justificante de Transferencia" %}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
@@ -53,15 +54,15 @@
             <div class="icon">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <h1>Justificante de Transferencia</h1>
+            <h1>{% trans "Justificante de Transferencia" %}</h1>
         </div>
         
         <div class="transaction-details">
-            <p class="label">Tipo de Transferencia: {{ transaction.kind }}</p>
-            <p class="label">Agente: {{ transaction.agent }}</p>
-            <p class="label">Concepto: {{ transaction.concept }}</p>
-            <p class="label">Fecha: {{ transaction.timestamp }}</p>
-            <p class="label">Monto: <span class="amount">{{ transaction.amount|floatformat:2 }}</span></p>
+            <p class="label">{% trans "Tipo de Transferencia:" %} {{ transaction.kind }}</p>
+            <p class="label">{% trans "Agente:" %} {{ transaction.agent }}</p>
+            <p class="label">{% trans "Concepto:" %} {{ transaction.concept }}</p>
+            <p class="label">{% trans "Fecha:" %} {{ transaction.timestamp }}</p>
+            <p class="label">{% trans "Cantidad:" %} <span class="amount">{{ transaction.amount|floatformat:2 }}</span></p>
         </div>
     </div>
 </body>

@@ -1,0 +1,664 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-01 18:54+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: bank/settings.py:26
+msgid "English"
+msgstr ""
+
+#: bank/settings.py:27
+msgid "Spanish"
+msgstr ""
+
+#: clients/templates/account/account_details.html:4
+msgid "Detalles"
+msgstr ""
+
+#: clients/templates/account/account_details.html:26
+#: clients/templates/account/accounts.html:25
+#: clients/templates/client/dashboard.html:40
+msgid "Código:"
+msgstr ""
+
+#: clients/templates/account/account_details.html:27
+#: clients/templates/account/accounts.html:26
+#: clients/templates/client/dashboard.html:41
+msgid "Balance:"
+msgstr ""
+
+#: clients/templates/account/account_details.html:30
+#: clients/templates/account/accounts.html:29
+#: clients/templates/account/edit_alias.html:3
+#: clients/templates/account/edit_alias.html:5
+msgid "Editar alias"
+msgstr ""
+
+#: clients/templates/account/account_details.html:31
+msgid "Desactivar cuentas"
+msgstr ""
+
+#: clients/templates/account/account_details.html:41
+msgid "No hay tarjetas de crédito asociadas con esta cuenta."
+msgstr ""
+
+#: clients/templates/account/account_details.html:43
+#: clients/templates/cards/add_credit_card.html:4
+#: clients/templates/cards/add_credit_card.html:9
+#: clients/templates/cards/add_credit_card.html:12
+msgid "Añadir tarjeta de crédito"
+msgstr ""
+
+#: clients/templates/account/accounts.html:4
+msgid "Mis cuentas"
+msgstr ""
+
+#: clients/templates/account/accounts.html:30
+#: clients/templates/account/deactivate_account.html:4
+#: clients/templates/account/deactivate_account.html:11
+#: clients/templates/client/profile.html:32
+msgid "Desactivar cuenta"
+msgstr ""
+
+#: clients/templates/account/accounts.html:40
+msgid "¡Crea tu cuenta aquí!"
+msgstr ""
+
+#: clients/templates/account/accounts.html:41
+#: clients/templates/account/register.html:27
+msgid "Create Account"
+msgstr ""
+
+#: clients/templates/account/add_money.html:14
+msgid "Añadir dinero a --> "
+msgstr ""
+
+#: clients/templates/account/add_money.html:22
+msgid "Añadir dinero"
+msgstr ""
+
+#: clients/templates/account/add_money.html:25
+msgid "Volver a los detalles de la cuenta"
+msgstr ""
+
+#: clients/templates/account/deactivate_account.html:6
+msgid "¿Estás seguro que quieres desactivar tu cuenta?"
+msgstr ""
+
+#: clients/templates/account/deactivate_account.html:7
+msgid ""
+"Esta acción no se puede deshacer. Todos sus datos serán eliminados "
+"permanentemente."
+msgstr ""
+
+#: clients/templates/account/edit_alias.html:8
+msgid "Nuevo alias:"
+msgstr ""
+
+#: clients/templates/account/edit_alias.html:9
+msgid "Guardar cambios"
+msgstr ""
+
+#: clients/templates/account/reactivate_account.html:3
+msgid "Reactivar cuenta"
+msgstr ""
+
+#: clients/templates/account/reactivate_account.html:6
+msgid "Su cuenta ha sido reactivada exitosamente"
+msgstr ""
+
+#: clients/templates/account/reactivate_account.html:8
+msgid "No se pudo reactivar la cuenta"
+msgstr ""
+
+#: clients/templates/account/reactivate_account.html:9
+msgid "Token no válido o caducado. Inténtalo de nuevo."
+msgstr ""
+
+#: clients/templates/account/register.html:4
+msgid "Registrar una Cuenta"
+msgstr ""
+
+#: clients/templates/account/register.html:22
+msgid "Crear nueva cuenta."
+msgstr ""
+
+#: clients/templates/base.html:24
+msgid "Inicio"
+msgstr ""
+
+#: clients/templates/base.html:27
+msgid "Tarjetas"
+msgstr ""
+
+#: clients/templates/base.html:30
+#: transactions/templates/transfers/movements.html:37
+msgid "Pagos"
+msgstr ""
+
+#: clients/templates/base.html:33
+msgid "Transferencias"
+msgstr ""
+
+#: clients/templates/base.html:36
+msgid "Cuentas bancarias"
+msgstr ""
+
+#: clients/templates/base.html:57
+msgid "Hola"
+msgstr ""
+
+#: clients/templates/base.html:60
+msgid "Cerrar sesión"
+msgstr ""
+
+#: clients/templates/base.html:63 clients/templates/client/login.html:40
+msgid "Iniciar sesión"
+msgstr ""
+
+#: clients/templates/cards/cards_sidebar.html:3
+msgid "Acciones de tarjetas"
+msgstr ""
+
+#: clients/templates/cards/cards_sidebar.html:5
+msgid "Añadir una tarjeta de crédito"
+msgstr ""
+
+#: clients/templates/cards/confirm_delete_card.html:5
+msgid "Estas seguro de que quieres eliminar la tarjeta"
+msgstr ""
+
+#: clients/templates/cards/confirm_delete_card.html:9
+msgid "Cancelar"
+msgstr ""
+
+#: clients/templates/cards/credit_card_list.html:29
+msgid "Bloquear"
+msgstr ""
+
+#: clients/templates/cards/credit_card_list.html:31
+msgid "Desbloquear"
+msgstr ""
+
+#: clients/templates/cards/credit_card_list.html:33
+msgid "Eliminar"
+msgstr ""
+
+#: clients/templates/cards/credit_cards.html:9
+#: transactions/templates/transfers/transfers_form.html:17
+msgid "Selecciona una cuenta"
+msgstr ""
+
+#: clients/templates/cards/credit_cards.html:15
+msgid "Activo"
+msgstr ""
+
+#: clients/templates/cards/credit_cards.html:16
+msgid "Bloqueado"
+msgstr ""
+
+#: clients/templates/cards/credit_cards.html:17
+msgid "Inactivo"
+msgstr ""
+
+#: clients/templates/cards/credit_cards.html:19
+#: transactions/templates/transfers/movements.html:40
+msgid "Filtrar"
+msgstr ""
+
+#: clients/templates/cards/credit_cards.html:22
+#: clients/templates/client/dashboard.html:10
+msgid "Añadir Tarjeta"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:3
+msgid "Panel principal"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:9
+msgid "Acciones de Tarjetas"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:11
+msgid "Ver Tarjetas"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:14
+msgid "Acciones del cliente"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:15
+msgid "Editar Perfil"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:16
+msgid "Cambiar Contraseña"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:17
+msgid "Desactivar Cuenta"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:20
+msgid "Acciones Cuentas"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:21
+msgid "Registrar Cuenta"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:26
+msgid "Show Actions"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:27
+msgid "Welcome,"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:44
+msgid "Edit Alias"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:45
+msgid "Deactivate Account"
+msgstr ""
+
+#: clients/templates/client/deactivate_account.html:2
+msgid "Cuenta desactivada"
+msgstr ""
+
+#: clients/templates/client/deactivate_account.html:3
+msgid ""
+"Tu cuenta ha sido desactivada. Revisa el correo electrónico para obtener un "
+"enlace para reactivar su cuenta."
+msgstr ""
+
+#: clients/templates/client/edit.html:4 clients/templates/client/edit.html:10
+msgid "Edita tu cuenta"
+msgstr ""
+
+#: clients/templates/client/edit.html:26
+msgid "Guardar"
+msgstr ""
+
+#: clients/templates/client/login.html:16
+msgid "Acceso"
+msgstr ""
+
+#: clients/templates/client/login.html:20
+msgid "Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo."
+msgstr ""
+
+#: clients/templates/client/login.html:21
+msgid "Si no registrate aquí"
+msgstr ""
+
+#: clients/templates/client/login.html:25
+msgid ""
+"Por favor, utilice el siguiente formulario para iniciar sesión. Si no tienes "
+"una cuenta"
+msgstr ""
+
+#: clients/templates/client/login.html:25
+msgid "Registrate aquí"
+msgstr ""
+
+#: clients/templates/client/login.html:44
+msgid "¿Olvidaste la contraseña?"
+msgstr ""
+
+#: clients/templates/client/profile.html:4
+msgid "Perfil de cliente"
+msgstr ""
+
+#: clients/templates/client/profile.html:9
+msgid "Perfil de"
+msgstr ""
+
+#: clients/templates/client/profile.html:15
+msgid "Nombre de usuario:"
+msgstr ""
+
+#: clients/templates/client/profile.html:17
+msgid "Nombre:"
+msgstr ""
+
+#: clients/templates/client/profile.html:19
+msgid "Apellido:"
+msgstr ""
+
+#: clients/templates/client/profile.html:21
+msgid "Correo electrónico:"
+msgstr ""
+
+#: clients/templates/client/profile.html:25
+msgid "Editar perfil"
+msgstr ""
+
+#: clients/templates/client/profile.html:28
+msgid "Cambiar contraseña"
+msgstr ""
+
+#: clients/templates/client/reactivate_account.html:2
+msgid "¡Cuenta reactivada!"
+msgstr ""
+
+#: clients/templates/client/reactivate_account.html:3
+msgid "Tu cuenta se ha reactivado. Puedes volver a iniciar sesión de nuevo."
+msgstr ""
+
+#: clients/templates/client/reactivate_account_failed.html:2
+msgid "Reactivación fallida"
+msgstr ""
+
+#: clients/templates/client/reactivate_account_failed.html:3
+msgid ""
+" Disculpe, no podemos reactivar su cuenta. El enlace ha expirado o es "
+"invalido."
+msgstr ""
+
+#: clients/templates/client/register.html:3
+#: clients/templates/client/register.html:9
+msgid "Crear una cuenta"
+msgstr ""
+
+#: clients/templates/client/register.html:11
+msgid "Por favor, regístrate utilizando el siguiente formulario:"
+msgstr ""
+
+#: clients/templates/client/register.html:16
+msgid "Crear my cuenta"
+msgstr ""
+
+#: clients/templates/client/register_done.html:3
+msgid "Bienvenido"
+msgstr ""
+
+#: clients/templates/client/register_done.html:5
+msgid "Bienvenido/a"
+msgstr ""
+
+#: clients/templates/client/register_done.html:7
+msgid "Su cuenta ha sido creada satisfactoriamente."
+msgstr ""
+
+#: clients/templates/client/register_done.html:8
+msgid "Ahora puedes"
+msgstr ""
+
+#: clients/templates/client/register_done.html:8
+msgid "iniciar sesión"
+msgstr ""
+
+#: clients/templates/payments/payment_form.html:11
+msgid "Detalles del pago"
+msgstr ""
+
+#: clients/templates/payments/payment_form.html:22
+msgid "Negocio"
+msgstr ""
+
+#: clients/templates/payments/payment_form.html:26
+msgid "Código de tarjeta de cliente (CCC):"
+msgstr ""
+
+#: clients/templates/payments/payment_form.html:34
+#: transactions/templates/pdf/justificante_template.html:65
+msgid "Cantidad:"
+msgstr ""
+
+#: clients/templates/payments/payment_form.html:38
+#: transactions/templates/payments/payment_form.html:37
+msgid "Pagar"
+msgstr ""
+
+#: clients/templates/registration/logged_out.html:3
+#: clients/templates/registration/logged_out.html:6
+msgid "Cerrada sesión"
+msgstr ""
+
+#: clients/templates/registration/logged_out.html:8
+msgid "Ha sido desconectado exitosamente."
+msgstr ""
+
+#: clients/templates/registration/logged_out.html:9
+msgid "Usted puede"
+msgstr ""
+
+#: clients/templates/registration/logged_out.html:9
+msgid "iniciar de nuevo"
+msgstr ""
+
+#: clients/templates/registration/password_change_done.html:3
+msgid "Contraseña modificada"
+msgstr ""
+
+#: clients/templates/registration/password_change_done.html:5
+msgid "Contraseña modificada "
+msgstr ""
+
+#: clients/templates/registration/password_change_done.html:6
+msgid "Su contraseña ha sido cambiada exitosamente."
+msgstr ""
+
+#: clients/templates/registration/password_change_form.html:3
+#: clients/templates/registration/password_change_form.html:7
+msgid "Cambia tu contraseña"
+msgstr ""
+
+#: clients/templates/registration/password_change_form.html:8
+msgid "Utilice el siguiente formulario para cambiar su contraseña."
+msgstr ""
+
+#: clients/templates/registration/password_change_form.html:12
+msgid "Modificar"
+msgstr ""
+
+#: clients/templates/registration/password_reset_complete.html:2
+msgid "Restablecimiento de contraseña"
+msgstr ""
+
+#: clients/templates/registration/password_reset_complete.html:4
+msgid "Establecer contraseña"
+msgstr ""
+
+#: clients/templates/registration/password_reset_complete.html:5
+msgid "Su contraseña ha sido establecida. Puede"
+msgstr ""
+
+#: clients/templates/registration/password_reset_complete.html:5
+msgid "acceder ahora."
+msgstr ""
+
+#: clients/templates/registration/password_reset_done.html:5
+msgid "Restablecer tu contraseña"
+msgstr ""
+
+#: clients/templates/registration/password_reset_done.html:6
+msgid ""
+"Le hemos enviado por correo electrónico instrucciones para configurar su "
+"contraseña."
+msgstr ""
+
+#: clients/templates/registration/password_reset_done.html:7
+msgid ""
+"Si no recibe un correo electrónico, asegúrese de haber ingresado la "
+"dirección con la que se registró."
+msgstr ""
+
+#: clients/templates/registration/password_reset_email.html:2
+msgid "Alguien solicitó restablecer la contraseña del correo electrónico"
+msgstr ""
+
+#: clients/templates/registration/password_reset_email.html:2
+msgid "Siga el siguiente enlace:"
+msgstr ""
+
+#: clients/templates/registration/password_reset_email.html:4
+msgid "Tu nombre de usuario, en caso de que lo hayas olvidado:"
+msgstr ""
+
+#: clients/templates/registration/password_reset_form.html:4
+msgid "Reinicia tu contraseña"
+msgstr ""
+
+#: clients/templates/registration/password_reset_form.html:7
+msgid "¿Haz olvidado tu contraseña?"
+msgstr ""
+
+#: clients/templates/registration/password_reset_form.html:8
+msgid ""
+"Ingrese su dirección de correo electrónico para obtener una nueva contraseña."
+msgstr ""
+
+#: clients/templates/registration/password_reset_form.html:11
+msgid "Enviar correo"
+msgstr ""
+
+#: transactions/templates/payments/payment_form.html:10
+msgid "Detalle de pago"
+msgstr ""
+
+#: transactions/templates/payments/payment_form.html:21
+msgid "Empresa"
+msgstr ""
+
+#: transactions/templates/payments/payment_form.html:25
+msgid "Codigo de tarjeta cliente (CCC)"
+msgstr ""
+
+#: transactions/templates/payments/payment_form.html:33
+#: transactions/templates/transfers/list.html:13
+#: transactions/templates/transfers/transfers_form.html:32
+msgid "Cantidad"
+msgstr ""
+
+#: transactions/templates/pdf/justificante_template.html:7
+#: transactions/templates/pdf/justificante_template.html:57
+msgid "Justificante de Transferencia"
+msgstr ""
+
+#: transactions/templates/pdf/justificante_template.html:61
+msgid "Tipo de Transferencia:"
+msgstr ""
+
+#: transactions/templates/pdf/justificante_template.html:62
+msgid "Agente:"
+msgstr ""
+
+#: transactions/templates/pdf/justificante_template.html:63
+msgid "Concepto:"
+msgstr ""
+
+#: transactions/templates/pdf/justificante_template.html:64
+msgid "Fecha:"
+msgstr ""
+
+#: transactions/templates/transfers/list.html:9
+msgid "Tipo de transferencia"
+msgstr ""
+
+#: transactions/templates/transfers/list.html:10
+#: transactions/templates/transfers/movements.html:49
+msgid "Agente"
+msgstr ""
+
+#: transactions/templates/transfers/list.html:11
+#: transactions/templates/transfers/movements.html:50
+#: transactions/templates/transfers/transfers_form.html:28
+msgid "Concepto"
+msgstr ""
+
+#: transactions/templates/transfers/list.html:12
+#: transactions/templates/transfers/movements.html:51
+msgid "Fecha"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:14
+#: transactions/templates/transfers/transfers_form.html:9
+msgid "Transferencia"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:17
+msgid "Realizar transferencia"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:18
+msgid "Exportar a CSV"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:23
+msgid "Cuenta:"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:25
+#: transactions/templates/transfers/movements.html:34
+msgid "Todas"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:32
+msgid "Tipo de transaccion:"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:35
+msgid "Entrantes"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:36
+msgid "Salientes"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:48
+msgid "Tipo de transferencia:"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:52
+msgid "Cantidad "
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:73
+msgid "Primera"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:74
+msgid "Anterior"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:78
+msgid "Página"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:78
+msgid "de"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:82
+msgid "Siguente"
+msgstr ""
+
+#: transactions/templates/transfers/movements.html:83
+msgid "Última"
+msgstr ""
+
+#: transactions/templates/transfers/transfers_form.html:24
+msgid "Código de cuenta cliente (CCC)"
+msgstr ""
+
+#: transactions/templates/transfers/transfers_form.html:35
+msgid "Hacer transacción"
+msgstr ""

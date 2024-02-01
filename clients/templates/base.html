@@ -1,5 +1,6 @@
 {% load static %}
 {% load thumbnail %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 
@@ -20,32 +21,46 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+            <a class="nav-link" href="{% url 'home' %}">{% trans "Inicio" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'clients:credit_cards' %}">Tarjetas</a>
+            <a class="nav-link" href="{% url 'clients:credit_cards' %}">{% trans "Tarjetas" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'transactions:payment' %}">Pagos</a>
+            <a class="nav-link" href="{% url 'transactions:payment' %}">{% trans "Pagos" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'transactions:movements' %}">Transferencias</a>
+            <a class="nav-link" href="{% url 'transactions:movements' %}">{% trans "Transferencias" %}</a>
           </li> 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'clients:accounts' %}">Cuentas bancarias</a>
+            <a class="nav-link" href="{% url 'clients:accounts' %}">{% trans "Cuentas bancarias" %}</a>
+          </li>
+          <li class="nav-item">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            <form class="nav-link " name="form">
+              <select name="opciones" onchange="location.href=form.opciones.value;">
+                {% for language in languages %}
+                  <option value="/{{ language.code }}/" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                  {{ language.name_local }}
+                  </option>
+                {% endfor %}
+              </select>
+            </form>
           </li>
         </ul>
       </div>
     </nav>
     <span class="user">
       {% if request.user.is_authenticated %}
-          Hola <a href="{% url 'clients:profile' %}"><img src="{% thumbnail request.user.client.photo 50x50 %}" class="user-detail"></a> | 
+          {% trans "Hola" %} <a href="{% url 'clients:profile' %}"><img src="{% thumbnail request.user.client.photo 50x50 %}" class="user-detail"></a> | 
           <form method="post" action="{% url 'logout' %}" style="display: inline;">
               {% csrf_token %}
-              <button type="submit" style="border: none; background: none; padding: 0; color: #007bff; cursor: pointer;">Cerrar sesión</button>
+              <button type="submit" style="border: none; background: none; padding: 0; color: #007bff; cursor: pointer;">{% trans "Cerrar sesión" %}</button>
           </form>
       {% else %}
-          <a href="{% url 'login' %}">Iniciar sesión</a>
+          <a href="{% url 'login' %}">{% trans "Iniciar sesión" %}</a>
       {% endif %}
   </span>
   

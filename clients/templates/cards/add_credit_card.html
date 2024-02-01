@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 {% block title %}{% trans "Añadir tarjeta de crédito" %}{% endblock %}
 {% block content %}
 
 <div class="addCard">
   <form class="addCardForm" method="post">
     <h1>{% trans "Añadir tarjeta de crédito" %}</h1>
-    {{ form.as_p }}
+    {{ form|crispy }}
     {% csrf_token %}
-    <p><input class="addCardBtn" type="submit" value="{{Añadir tarjeta de crédito}}"></p>
+    <p><input class="addCardBtn" type="submit" value="{% trans "Añadir tarjeta de crédito" %}"></p>
   </form>
 </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-
+{% load crispy_forms_tags %}
 {% load static %}
 
 <head>
@@ -11,18 +11,18 @@
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center">
   <div>
-    <h1 class="mt-4"><strong>{% trans "Añadir dinero a ->" %} {{ account.alias }}</strong></h1>
+    <h1 class="mt-4"><strong>{% trans "Añadir dinero a --> " %} {{ account.alias }}</strong></h1>
 
     <form method="post" class="mt-4">
       {% csrf_token %}
-      <strong>{{ form.as_p }}</strong>
+      <strong>{{ form|crispy }}</strong>
 
       <div class="row">
         <div class="col">
-          <button type="submit" class="btn btn-primary">{% trans "Add Money"%}</button>
+          <button type="submit" class="btn btn-primary">{% trans "Añadir dinero" %}</button>
         </div>
         <div class="col">
-          <a href="{% url 'clients:account_details' account_id=account.id %}" class="btn btn-secondary">{% trans "Back to Account Details" %}</a>
+          <a href="{% url 'clients:account_details' account_id=account.id %}" class="btn btn-secondary">{% trans "Volver a los detalles de la cuenta" %}</a>
         </div>
       </div>
     </form>

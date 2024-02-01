@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
+{% load i18n %}
 {% block title %}{% trans "Registrar una Cuenta" %}{% endblock %}
 
 {% block content %}
@@ -20,7 +21,7 @@
         <div class="alert alert-warning mt-5" style="background-color: #f0a93e;">
           <h1 style="text-align: center; color: #023047"><strong>{% trans "Crear nueva cuenta." %}</strong></h1>
           <form method="post" style="color:black">
-            {{ form.as_p }}
+            {{ form|crispy }}
             {% csrf_token %}
             <div class="text-center">
               <input type="submit" class="btn btn-primary" value="{% trans "Create Account" %}">
