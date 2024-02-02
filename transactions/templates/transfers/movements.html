@@ -24,8 +24,7 @@
                 <select name="account_id">
                     <option value="">{% trans "Todas" %}</option>
                     {% for account in accounts %}
-                    <option value="{{ account.code }}" {% if account.code == account_id %}selected{% endif %}>{{
-                        account.alias }}</option>
+                    <option value="{{ account.code }}" {% if account.code == account_id %}selected{% endif %}>{{account.alias }}</option>
                     {% endfor %}
                 </select>
 

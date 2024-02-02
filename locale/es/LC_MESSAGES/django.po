@@ -8,21 +8,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-02 12:02+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2024-02-02 18:19+0000\n"
+"PO-Revision-Date: 2024-02-02 18:18+0000\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
 
-#: bank/settings.py:26
+#: bank/settings.py:29
 msgid "English"
 msgstr ""
 
-#: bank/settings.py:27
+#: bank/settings.py:30
 msgid "Spanish"
 msgstr ""
 
@@ -141,8 +142,8 @@ msgid "Crear nueva cuenta."
 msgstr ""
 
 #: clients/templates/base.html:24
-msgid "Inicio"
-msgstr ""
+msgid "Home"
+msgstr "Inicio"
 
 #: clients/templates/base.html:27
 msgid "Tarjetas"

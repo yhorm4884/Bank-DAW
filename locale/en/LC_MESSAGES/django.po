@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-02 12:02+0000\n"
-"PO-Revision-Date: 2024-02-02 12:01+0000\n"
+"POT-Creation-Date: 2024-02-02 18:19+0000\n"
+"PO-Revision-Date: 2024-02-02 18:11+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.10.0\n"
 
-#: bank/settings.py:26
+#: bank/settings.py:29
 msgid "English"
 msgstr "English"
 
-#: bank/settings.py:27
+#: bank/settings.py:30
 msgid "Spanish"
 msgstr "Spanish"
 
@@ -148,7 +148,7 @@ msgstr "Home"
 
 #: clients/templates/base.html:27
 msgid "Tarjetas"
-msgstr "Tarjetas"
+msgstr "Cards"
 
 #: clients/templates/base.html:30
 #: transactions/templates/transfers/movements.html:37
@@ -666,3 +666,6 @@ msgstr "Customer account code (CCC)"
 #: transactions/templates/transfers/transfers_form.html:35
 msgid "Hacer transacción"
 msgstr "Make transaction"
+
+#~ msgid "Inicio"
+#~ msgstr "Home"

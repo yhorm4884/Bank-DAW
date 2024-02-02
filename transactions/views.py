@@ -127,7 +127,8 @@ def outcoming(request):
         # bank2_url = "http://192.168.1.42:8000/transfer/incoming/"
         payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}
         response = requests.post(bank2_url, json=payload)
-        print(bank2_url, payload)
+        # print(bank2_url, payload)
+        # print(response.status_code)
         if response.status_code == 200:
             
             account.balance -= amount + comision
@@ -149,9 +150,9 @@ def outcoming(request):
     else:
         accounts = Account.objects.filter(client=request.user.client)
 
-        return render(request, 'transfers/transfers_form.html', {'accounts': accounts})
+        return render(request, 'transfers/transference_form.html', {'accounts': accounts})
 
-
+@login_required
 @csrf_exempt
 def incoming(request):
     if request.method == 'POST':
@@ -182,7 +183,7 @@ def incoming(request):
     else:
         return HttpResponseNotFound("Incoming transfer failed")
 
-
+@login_required
 def movements(request):
     # Obtener todas las cuentas bancarias del usuario actual
     accounts = Account.objects.filter(client=request.user.client, status=Account.Status.ACTIVE)

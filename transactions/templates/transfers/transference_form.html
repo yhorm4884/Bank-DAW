@@ -16,7 +16,7 @@
                     <select name="sender" class="form-select">
                         <option value="">{% trans "Selecciona una cuenta" %}</option>
                         {% for account in accounts %}
-                            <option value="{{ account.alias }}">{{ account.alias }}</option>
+                            <option value="{{ account.alias }}"> {{ account.alias }}</option>
                         {% endfor %}
                     </select>
                 </div>

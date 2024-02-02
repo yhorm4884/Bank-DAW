@@ -22,6 +22,9 @@ LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=config.list)
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 LANGUAGES = [
  ('en', _('English')),
  ('es', _('Spanish')),
@@ -138,7 +141,7 @@ PASSWORD_HASHERS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
