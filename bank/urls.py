@@ -20,9 +20,8 @@ from django.contrib import admin
 from django.urls import include, path
 from clients import views as cliente
 from django.conf.urls.i18n import i18n_patterns
-
 urlpatterns = i18n_patterns(
-    
+    path('api/', include('api.urls')),
     path('',cliente.dashboard, name='home'),
     path('', include('clients.urls')),
     path('', include('transactions.urls')),

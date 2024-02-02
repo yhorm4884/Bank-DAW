@@ -35,9 +35,22 @@ SECRET_KEY = 'django-insecure-9$7qc2--8kk^^ufu#jw3z41@iamrp!vl%nr5z-&!@6ghuym8jz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Frameworks
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}
+
+
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'rosetta',
     'clients.apps.ClientsConfig',
     'transactions.apps.TransactionsConfig',
@@ -51,6 +64,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
+
 ]
 
 MIDDLEWARE = [

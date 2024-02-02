@@ -1,11 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 
 app_name = 'clients'
-
 urlpatterns = [
+
     path('', views.dashboard, name='home'),
     path('register/', views.register, name='register'),
     path('accounts/', views.accounts, name='accounts'),
@@ -37,6 +37,7 @@ urlpatterns = [
     path('edit-alias/<int:account_id>/', views.edit_alias, name='edit_alias'),
     path('deactivate-client/<int:client_id>/', views.deactivate_client, name='deactivate_client'),
     path('client/reactivate/<str:token>/', views.reactivate_client, name='reactivate'),
+
 ]
 
 if settings.DEBUG:

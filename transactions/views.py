@@ -2,7 +2,6 @@ import csv
 import datetime
 from decimal import Decimal
 import json
-
 import django
 import requests  # Para realizar la solicitud POST a la otra entidad bancaria
 from django.contrib.auth.decorators import login_required
