@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Desactivar cuenta" %}{% endblock %}
+{% block content %}
+  <h1>{%trans "¿Estás seguro que quieres desactivar tu cuenta?" %}</h1>
+  <p>{% trans "Esta acción no se puede deshacer. Todos sus datos serán eliminados permanentemente." %}</p>
+  <form method="post">
+    {% csrf_token %}
+    <p>
+      <input type="submit" value={% trans "Desactivar cuenta" %}>
+    </p>
+  </form>
+{% endblock %}
+

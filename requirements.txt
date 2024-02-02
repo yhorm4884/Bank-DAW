@@ -4,3 +4,7 @@ Pillow
 easy_thumbnails
 requests
 django-filter
+WeasyPrint
+crispy_bootstrap5
+django-rosetta
+djangorestframework

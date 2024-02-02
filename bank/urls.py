@@ -2,7 +2,7 @@
 URL configuration for bank project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
+    https://docs.djangoproject.com/en/5.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -18,16 +18,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
-
-from clients import views as acc_view
-
-urlpatterns = [
-    path('', acc_view.dashboard, name='HOME'),
-    path('admin/', admin.site.urls),
-    path('client/', include('clients.urls')),
-    path('', include('account.urls')),
+from clients import views as cliente
+from django.conf.urls.i18n import i18n_patterns
+urlpatterns = i18n_patterns(
+    path('api/', include('api.urls')),
+    path('',cliente.dashboard, name='home'),
+    path('', include('clients.urls')),
     path('', include('transactions.urls')),
-    path('cards/', include('cards.urls')),
-]
+    path('admin/', admin.site.urls),
+    path('rosetta/', include('rosetta.urls')),
+    path('', include('django.contrib.auth.urls')),
+    
+)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

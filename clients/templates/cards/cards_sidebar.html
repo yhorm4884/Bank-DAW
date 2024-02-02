@@ -1,0 +1,8 @@
+{% load i18n %}
+<div class="sidebar">
+    <h2>{% trans "Acciones de tarjetas" %}</h2>
+    {% if request.user.is_authenticated %}
+      <a href="{% url 'clients:add_credit_card' %}">{% trans "Añadir una tarjeta de crédito" %}</a>
+    {% endif %}
+</div>
+  

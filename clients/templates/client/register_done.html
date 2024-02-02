@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Welcome{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Bienvenido" %}{% endblock %}
 {% block content %}
-<h1>Welcome {{ new_user.first_name }}!</h1>
+<h1>{% trans "Bienvenido/a" %} {{ new_user.first_name }}!</h1>
 <p>
-Your account has been successfully created.
-Now you can <a href="{% url "login" %}">log in</a>.
+{% trans "Su cuenta ha sido creada satisfactoriamente." %}
+{% trans "Ahora puedes" %} <a href="{% url "login" %}"> {% trans "iniciar sesión"%}</a>.
 </p>
 {% endblock %}

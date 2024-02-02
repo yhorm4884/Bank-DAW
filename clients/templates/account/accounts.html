@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+  <h1 class="dashboard-title">{% trans "Mis cuentas" %}</h1>
+  <div class="container account-list">
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="row">
+      {% for account in accounts %}
+        {% if account.status == 'AC' %}
+          <div class="col-md-4">
+            <div class="card account-card">
+              <div class="card-header">
+                <h2><a href="{% url 'clients:account_details' account.id %}">{{ account.alias }}</a></h2>
+              </div>
+              <div class="card-body">
+                <p>{% trans "Código:" %} {{ account.code }}</p>
+                <p>{% trans "Balance:" %} {{ account.balance }}</p>
+              </div>
+              <div class="card-footer">
+                <a href="{% url 'clients:edit_alias' account.id %}" class="btn btn-primary">{% trans "Editar alias" %}</a>
+                <a href="{% url 'clients:deactivate' account.id %}" class="btn btn-danger">{% trans "Desactivar cuenta" %}</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <div class="col-md-4 ml-auto">
+        <div class="card text-dark rounded" style="background-color: #f0a93e">
+          <div class="card-body">
+            <h6 class="card-title" style="color: #023047"><strong>{% trans "¡Crea tu cuenta aquí!" %}</strong></h6>
+            <a href="{% url 'clients:register' %}" class="btn btn-primary">{% trans "Crear cuenta" %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

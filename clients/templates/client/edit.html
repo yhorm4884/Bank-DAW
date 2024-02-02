@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 {% load thumbnail %}
-{% block title %}Edit your account{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Edita tu cuenta" %}{% endblock %}
 {% block content %}
 <div class="container-profile">
     <div class="container-fluid edit-profile">
-        <h1 class="display-4"><strong><b>Edit your account</strong></b></h1>
+        <h1 class="display-4">
+            <strong>
+                <b>{% trans "Edita tu cuenta" %}</b>
+            </strong>
+        </h1>
         <div class="row">
             <div class="col-md-3 imagen-edit">
                 
@@ -16,9 +21,9 @@
                     <img src="{% thumbnail photo.photo 180x180 %}" class="user-detail">
                 </label>
                 <div class="col-md-3 info">
-                    <strong><b>{{ user_form.as_p }}</strong></b>
+                    <strong><b>{{ user_form|crispy }}</strong></b>
                 </div>
-                <button class="btn btn-primary button" type="submit">Save</button>
+                <button class="btn btn-primary button" type="submit">{% trans "Guardar"%}</button>
             </form>
         </div>
     </div>

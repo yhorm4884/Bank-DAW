@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<head>
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center">
+  <div>
+    <h1 class="mt-4"><strong>{% trans "Añadir dinero a --> " %} {{ account.alias }}</strong></h1>
+
+    <form method="post" class="mt-4">
+      {% csrf_token %}
+      <strong>{{ form|crispy }}</strong>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary">{% trans "Añadir dinero" %}</button>
+        </div>
+        <div class="col">
+          <a href="{% url 'clients:account_details' account_id=account.id %}" class="btn btn-secondary">{% trans "Volver a los detalles de la cuenta" %}</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<style>
+  .container {
+    background-color: #f0a93e;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    max-width: 600px;
+  }
+
+  h1 {
+    color: #023047;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    background-color: #023047;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+{% endblock %}

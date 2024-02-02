@@ -1,18 +1,19 @@
 {% extends "base.html" %}
-{% block title %}Create an account{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Crear una cuenta" %}{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row ">
         <div class="col-md-6 offset-md-3">
             <div class="row custom-row formulario-defecto">
-                <h1>Create an account</h1>
+                <h1>{% trans "Crear una cuenta" %}</h1>
                 <hr>
-                <p><strong><b>Please, sign up using the following form:</b></strong></p>
+                <p><strong><b>{% trans "Por favor, regístrate utilizando el siguiente formulario:" %}</b></strong></p>
                 <form method="post" enctype="multipart/form-data">
                     <strong><b>{{ user_form.as_p }}</b></strong>
                     {{ profile_form.as_p }}
                     {% csrf_token %}
-                    <p><input type="submit" class="btn btn-primary" value="Create my account"></p>
+                    <p><input type="submit" class="btn btn-primary" value={% trans "Crear mi cuenta"%}></p>
                 </form>
             </div>
         </div>

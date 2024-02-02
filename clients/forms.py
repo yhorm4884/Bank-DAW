@@ -1,11 +1,11 @@
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from .models import Client, Account,CreditCard
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from .models import Client
-
+# Usuario
 
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -66,7 +66,8 @@ class UserEditForm(forms.ModelForm):
             raise forms.ValidationError(' Email already in use.')
         return data
 
-
+# Clientes
+    
 class ClientRegistrationForm(forms.ModelForm):
     class Meta:
         model = Client
@@ -77,3 +78,52 @@ class ClientEditForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ['photo']
+class AccountRegistrationForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput, label='Current Password')
+
+    class Meta:
+        model = Account
+        fields = ['alias', 'password']
+
+
+    def clean_alias(self):
+        alias = self.cleaned_data['alias']
+        if Account.objects.filter(alias=alias).exists():
+            raise forms.ValidationError('Este alias ya está en uso.')
+        return alias
+
+class AccountEditForm(forms.ModelForm):
+    alias = forms.CharField(max_length=255)
+    class Meta:
+        model = Account
+        fields = ['alias']
+    def clean_alias(self):
+        alias = self.cleaned_data['alias']
+        if Account.objects.filter(alias=alias).exclude(id=self.instance.id).exists():
+            raise forms.ValidationError('Este alias ya está en uso.')
+        return alias
+        
+class AddMoneyForm(forms.Form):
+    amount = forms.DecimalField(
+        label='Amount',
+        min_value=0.01,
+        widget=forms.NumberInput(attrs={'step': '0.01'}),
+    )
+
+# Tarjetas de crédito.
+    
+class CreditCardFormWithoutAccount(forms.ModelForm):
+    class Meta:
+        model = CreditCard
+        fields = ['alias']
+
+class CreditCardForm(forms.ModelForm):
+    account = forms.ModelChoiceField(queryset=Account.objects.none())
+    
+    class Meta:
+        model = CreditCard
+        fields = ['alias', 'account']
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['account'].queryset = Account.objects.filter(client=user)

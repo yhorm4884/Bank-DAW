@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    
+    <div class="card">
+        <div class="card-header">
+            <h4 class="d-flex justify-content-between align-items-center mb-0">
+                {% trans "Transferencia" %}
+            </h4>
+        </div>
+        <div class="card-body p-4">
+            <form method="post"  action="{% url 'transactions:outcoming' %}">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <select name="sender" class="form-select">
+                        <option value="">{% trans "Selecciona una cuenta" %}</option>
+                        {% for account in accounts %}
+                            <option value="{{ account.alias }}"> {{ account.alias }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="cac" class="form-label">{% trans "Código de cuenta cliente (CCC)" %}</label>
+                    <input type="text" id="cac" name="cac" class="form-control">
+                </div>
+                <div class="mb-4">
+                    <label for="concept" class="form-label">{% trans "Concepto" %}</label>
+                    <input type="text" id="concept" name="concept" class="form-control">
+                </div>
+                <div class="mb-4">
+                    <label for="amount" class="form-label">{% trans "Cantidad" %}</label>
+                    <input type="decimal" min="0" step="1" id="amount" name="amount" class="form-control">
+                </div>
+                <button type="submit" class="transactButton">{% trans "Hacer transacción" %}</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
