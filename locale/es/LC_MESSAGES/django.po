@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 18:54+0000\n"
+"POT-Creation-Date: 2024-02-02 12:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,6 +46,7 @@ msgstr ""
 #: clients/templates/account/accounts.html:29
 #: clients/templates/account/edit_alias.html:3
 #: clients/templates/account/edit_alias.html:5
+#: clients/templates/client/dashboard.html:44
 msgid "Editar alias"
 msgstr ""
 
@@ -71,6 +72,7 @@ msgstr ""
 #: clients/templates/account/accounts.html:30
 #: clients/templates/account/deactivate_account.html:4
 #: clients/templates/account/deactivate_account.html:11
+#: clients/templates/client/dashboard.html:45
 #: clients/templates/client/profile.html:32
 msgid "Desactivar cuenta"
 msgstr ""
@@ -81,7 +83,7 @@ msgstr ""
 
 #: clients/templates/account/accounts.html:41
 #: clients/templates/account/register.html:27
-msgid "Create Account"
+msgid "Crear cuenta"
 msgstr ""
 
 #: clients/templates/account/add_money.html:14
@@ -263,19 +265,11 @@ msgid "Registrar Cuenta"
 msgstr ""
 
 #: clients/templates/client/dashboard.html:26
-msgid "Show Actions"
+msgid "Mostrar acciones"
 msgstr ""
 
 #: clients/templates/client/dashboard.html:27
-msgid "Welcome,"
-msgstr ""
-
-#: clients/templates/client/dashboard.html:44
-msgid "Edit Alias"
-msgstr ""
-
-#: clients/templates/client/dashboard.html:45
-msgid "Deactivate Account"
+msgid "Bienvenido,"
 msgstr ""
 
 #: clients/templates/client/deactivate_account.html:2
@@ -382,7 +376,7 @@ msgid "Por favor, regístrate utilizando el siguiente formulario:"
 msgstr ""
 
 #: clients/templates/client/register.html:16
-msgid "Crear my cuenta"
+msgid "Crear mi cuenta"
 msgstr ""
 
 #: clients/templates/client/register_done.html:3
@@ -518,7 +512,7 @@ msgid "Reinicia tu contraseña"
 msgstr ""
 
 #: clients/templates/registration/password_reset_form.html:7
-msgid "¿Haz olvidado tu contraseña?"
+msgid "¿Has olvidado tu contraseña?"
 msgstr ""
 
 #: clients/templates/registration/password_reset_form.html:8

@@ -23,8 +23,8 @@
   </div>
 
   <div id="main" class="main-content">
-    <button class="openbtn" onclick="openNav()">☰ {% trans "Show Actions" %}</button>
-    <h1 class="dashboard-title">{% trans "Welcome," %} {{ user.username }}!</h1>
+    <button class="openbtn" onclick="openNav()">☰ {% trans "Mostrar acciones" %}</button>
+    <h1 class="dashboard-title">{% trans "Bienvenido," %} {{ user.username }}!</h1>
   </div>
   
   <div class="container">
@@ -41,8 +41,8 @@
                 <p>{% trans "Balance:" %} {{ account.balance }}</p>
               </div>
               <div class="card-footer">
-                <a href="{% url 'clients:edit_alias' account.id %}" class="btn btn-primary">{% trans "Edit Alias" %}</a>
-                <a href="{% url 'clients:deactivate' account.id %}" class="btn btn-danger">{% trans "Deactivate Account" %}</a>
+                <a href="{% url 'clients:edit_alias' account.id %}" class="btn btn-primary">{% trans "Editar alias" %}</a>
+                <a href="{% url 'clients:deactivate' account.id %}" class="btn btn-danger">{% trans "Desactivar cuenta" %}</a>
               </div>
             </div>
           </div>
