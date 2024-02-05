@@ -15,7 +15,7 @@ body {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    position: absolute;
+    position: relative;
     z-index: 5;
     border-bottom: 4px solid #f0a93e;
     box-shadow: 0 0 10px rgba(240, 169, 62, 0.8); /* Agrega una sombra de color naranja (efecto neón) */
