@@ -6,8 +6,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.crypto import get_random_string
 from django.contrib.auth.hashers import make_password
 from .forms import AccountRegistrationForm, AddMoneyForm, ClientEditForm, ClientRegistrationForm, CreditCardForm, CreditCardFormWithoutAccount, LoginForm, UserEditForm, UserRegistrationForm
-from .models import Account, Client, CreditCard
-
+from .models import Account, Client, CreditCard 
+from transactions.models import Transaction
 
 #######################################################
 
@@ -46,8 +46,9 @@ def accounts(request):
 @login_required
 def account_details(request, account_id):
     account = get_object_or_404(Account, id=account_id)
+    transactions = Transaction.objects.filter(account=account).order_by('-timestamp')
     credit_cards = account.credit_cards.all()
-    return render(request, 'account/account_details.html', {'account': account, 'credit_cards': credit_cards})
+    return render(request, 'account/account_details.html', {'account': account,'transactions': transactions, 'credit_cards': credit_cards})
 
 @login_required
 def add_money(request, account_id):
@@ -84,6 +85,7 @@ def edit(request):
     else:
         client_form = ClientEditForm(instance=request.user.client)
         user_form = UserEditForm(instance=request.user)
+        print("\n\n\n\n\n\n\n\n\n   ",request.user.client)
         photo = request.user.client
 
     return render(
@@ -381,7 +383,7 @@ def edit(request):
     else:
         client_form = ClientEditForm(instance=request.user.client)
         user_form = UserEditForm(instance=request.user)
-        photo = request.user.client
+        photo = request.user.client.photo
 
     return render(request, 'client/edit.html', {'client_form': client_form, 'user_form': user_form, 'photo': photo})
 

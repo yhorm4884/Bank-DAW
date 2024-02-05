@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load thumbnail %}
 {% block title %}
 {{ account.alias }} {% trans "Detalles" %}
 {% endblock %}
@@ -17,117 +18,417 @@
     </div>
   {% endif %}
 
-  <div class="col-md-4">
-    <div class="card account-card">
-      <div class="card-header">
-        <h2><a href="{% url 'clients:account_details' account.id %}">{{ account.alias }}</a></h2>
+  <main>
+    <!-- Begin content header -->
+    <section class="my-app__header">
+      <div class="container">
+        <div class="my-app__header-inner">
+          <div class="my-app__header-text media">
+            <div class="media-body">
+              <img src="{% thumbnail account.client.photo 50x50 %}" class="user-detail">
+              <h1 class="my-app__header-title">{% trans "Bienvenido a la cuenta de: " %}{{account.alias|upper}}</h1>
+            </div>
+          </div>
+          <div class="my-action-buttons my-app__header__buttons">
+            <a class="my-action-button__icon" href="{% url 'transactions:payment' %}">{% trans "Enviar dinero" %}</a>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <p> {% trans "Código:" %} {{ account.code }}</p>
-        <p> {% trans "Balance:" %} {{ account.balance }}</p>
-      </div>
-      <div class="card-footer">
-        <a href="{% url 'clients:edit_alias' account.id %}" class="btn btn-primary">{% trans "Editar alias" %}</a>
-        <a href="{% url 'clients:deactivate' account.id %}" class="btn btn-danger">{% trans "Desactivar cuentas" %}</a>
-      </div>
-    </div>
-  </div>
-  {% if credit_cards %}
-      {% include "cards/credit_card_list.html" with credit_cards=credit_cards %}
+    </section>
+    <!-- End content header -->
 
-    </ul>
-  {% else %}
-    <p>
-      <strong>{% trans "No hay tarjetas de crédito asociadas con esta cuenta." %}</strong>
-    </p>
-    <a href="{% url 'clients:add_credit_card_without_account' account.id %}" class="button">{% trans "Añadir tarjeta de crédito" %}</a>
-  {% endif %}
+    <!-- Begin content body -->
+    <section class="my-app__body">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <!-- Begin Payment Balance card -->
+            <div class="my-card card">
+              <div class="my-card__header card-header">
+                <div class="my-card__header-title">
+                  <div class="my-text-overline">{% trans "Dinero actual" %}</div>
+                  <h3 class="my-text-headline">{{ account.balance }}€</h3>
+                </div>
+              </div>
+              <div class="my-card__body card-body">
+                <ul class="my-list my-list--simple list-inline mb-0">
+                  <li><a href="{% url 'clients:add_money' account.id %}">{%trans "Añadir dinero" %} &#x1F4B0;→</a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- End Payment Balance card -->
+
+            <!-- Begin Bank Accounts card -->
+            <div class="my-card card">
+              <div class="my-card__body card-body">
+                <div class="my-text-overline">{% trans "Tarjetas vinculadas a la cuenta" %}</div>
+                <ul class="my-list my-list--simple list-inline mb-0">
+                  {% for card in credit_cards|slice:":3" %}
+                    <li class="my-list-item">
+                      <span class="list__icon">
+                        <img src="https://www.ibercaja.es/public/img/tarjetas/tarjeta-visa-universal7.png" style="width: 60px;">
+                      </span>
+                      <span>{{ card.alias|upper }}</span>
+                    </li>
+                  {% endfor %}
+                </ul>
+                <hr class="my-divider">
+                <ul class="my-list-inline list-inline mb-0">
+                  <li><a href="{% url 'clients:add_credit_card' %}"> {% trans "Añadir tarjeta" %} →</a></li>
+                  <li><a href="{% url 'clients:credit_cards' %}">{% trans "Ver todas las tarjetas" %} →</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-8">
+            <div class="my-alert alert alert-info">
+              <img class="my-alert__icon" src="./images/icon-alert.svg" alt>
+              <span class="my-alert__text">
+                {% trans "Su última transacción puede tardar unos minutos en aparecer en su actividad." %}
+              </span>
+            </div>
+            {% comment %} https://docs.djangoproject.com/en/5.0/ref/templates/builtins/ {% endcomment %}
+            <div class="my-card card">
+              <div class="my-card__header card-header">
+                  <h3 class="my-card__header-title card-title">{% trans "Ultimos movimientos hechos"%}</h3>
+                  <a class="my-card__header-link" href="{% url 'transactions:movements' %}">{% trans "Ver todos los movimientos"%} →</a>
+              </div>
+              <ul class="my-list list-group list-group-flush">
+                  {% for transaction in transactions|slice:":3" %}
+                  <!-- Utilizamos el filtro |slice:":3" para limitar a las tres primeras transacciones -->
+                  <li class="my-list-item list-group-item">
+                      <div class="my-list-item__date">
+                          <span class="my-list-item__date-day">{{ transaction.timestamp|date:"d" }}</span>
+                          <span class="my-list-item__date-month">{{ transaction.timestamp|date:"M" }}</span>
+                      </div>
+                      <div class="my-list-item__text">
+                          <h4 class="my-list-item__text-title">{{ transaction.agent }}</h4>
+                          <p class="my-list-item__text-description">{{ transaction.concept }} </p>
+                      </div>
+                      <div class="my-list-item__fee">
+                          <span class="my-list-item__fee-delta">{{ transaction.amount|floatformat:2}}</span>
+                          <span class="my-list-item__fee-currency">€</span>
+                      </div>
+                  </li>
+                  {% endfor %}
+              </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End content body -->
+  </main>
 
 </div>
 
 <style>
-    /* Estilos generales de la página */
+  .my-app {
+    background-color: #fbfbfd;
+    color: #3e3f42;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 14px;
+  }
+  
+  
+  /* My navbar */
+  .my-header {
+  }
+  
+  .my-navbar {
+    padding: 1rem 1.875rem;
+    box-shadow: 0 0 1px #EAEDF3;
+  }
+  
+  .my-navbar__logo {
+    display: flex;
+    align-items: center;
+    margin-right: 1.875rem;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .navbar-light .my-navbar__logo {
+    color: #3E3F42;
+  }
+  
+  .my-navbar__logo-icon {
+    margin-right: .875rem;
+  }
+  
+  .my-navbar-button {
+    padding: 0;
+    border: none;
+    background: none;
+  }
+  
+  .my-navbar-button + .my-navbar-button {
+    margin-left: 1rem;
+  }
+  
+  .navbar-nav {
+    padding-left: .937rem;
+    border-left: 1px solid #EAEDF3;
+  }
+  
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: .937rem;
+    padding-left: .937rem;
+  }
+  
+  .navbar-light .navbar-nav .nav-link {
+    color: #6B6C6F;
+  }
+  
+  .navbar-light .navbar-nav .active > .nav-link {
+    color: #1665D8;
+  }
+  
+  /* Content header */
+  .my-app__header {
+    padding-top: 1.875rem;
+    padding-bottom: 1.875rem;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+  }
+  
+  .my-app__header-inner {
+    display: flex;
+  }
+  
+  .my-app__header-text {
+    flex: 1;
+  }
+  
+  .my-app__header-title {
+    margin: 0 0 .625rem;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 32px;
+  }
+  
+  .my-action-buttons {
+    display: flex;
+  }
+  
+  .my-action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    background: none;
+    line-height: 1;
+  }
+  
+  .my-action-button:hover,
+  .my-action-button:active,
+  .my-action-button:focus {
+    outline: none;
+  }
+  
+  .my-action-button__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: .875rem;
+    border: 1px solid #E2E5ED;
+    border-radius: 54px;
+    color: #1665D8;
+    object-fit: none;
+  }
+  
+  .my-app__body {
+    padding-top: 1.875rem;
+    padding-bottom: 1.875rem;
+  }
+  
+  /* My card */
+  .my-card:not(:last-child) {
+    margin-bottom: 1.875rem;
+  }
+  
+  .my-card__header {
+    display: flex;
+    padding: 1.5rem 1.875rem;
+    border-width: 0 0 1px;
+    /* border-bottom: 1px solid #eaedf3; */
+    border-color: rgba(0, 0, 0, .125);
+    background: none;
+  }
+  
+  .my-card__header-title {
+    flex: 1;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .my-card__header-link {
+    color: #9ea0a5;
+    /* 14px is default font size */
+  }
+  
+  .my-card__header-link:hover,
+  .my-card__header-link:focus {
+    color: #9ea0a5;
+  }
+  
+  .my-card__body {
+    padding: 1.5rem 1.875rem;
+  }
+  
+  /* My list */
+  .my-list-item {
+    display: flex;
+    padding: 1rem 1.875rem;
+  }
+  
+  .my-list-item__date,
+  .my-list-item__text,
+  .my-list-item__fee {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .my-list-item__date {
+    flex-direction: column-reverse;
+    margin-right: 25px;
+    color: #9ea0a5;
+  }
+  
+  .my-list-item__date-day {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  
+  .my-list-item__date-month {
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    text-transform: uppercase;
+  }
+  
+  .my-list-item__text {
+    flex: 1;
+  }
+  
+  .my-list-item__text-title {
+    margin: 0 0 7px;
+    /* 14px is default font size */
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .my-list-item__text-description {
+    margin: 0;
+    color: #9ea0a5;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  
+  .my-list-item__fee {
+    text-align: right;
+  }
+  
+  .my-list-item__fee-delta {
+    color: #3BAD4B;
+    /* 14px is default font size */
+    font-weight: 500;
+  }
+  
+  .my-list-item__fee-currency {
+    color: #9EA0A5;
+    font-size: 12px;
+  }
+  
+  /* My inline-list */
+  .my-list-inline li:not(:last-child) {
+    margin-bottom: .5rem;
+  }
+  
+  /* My dl (definition list */
+  @media (min-width: 992px) {
+    .my-dl dt {
+      float: left;
+      color: #9EA0A5;
+      font-weight: 400;
+    }
+    
+    .my-dl dd {
+      text-align: right;
+    }
+  }
+  
+  /* My typography */
+  .my-text-headline {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 400;
+  }
+  
+  .my-text-overline {
+    margin-bottom: .75rem;
+    color: #9EA0A5;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  
+  /* Divider */
+  .my-divider {
+    margin: 1.25rem 0;
+  }
+  
+  /* Input */
+  .my-input {
+    max-width: 186px;
+  }
+  
+  .my-select {
+    border-color: #D8DCE6;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+    font-size: 14px;
+  }
+  
+  /* Bootstrap custom fixes */
+  @media (max-width: 1199px) {
     .container {
-      margin: 20px;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background-color: #f9f9f9;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 100%;
     }
+  }
   
-    /* Estilos para los encabezados */
-    h1, h2 {
-      color: #333;
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
+  .my-alert {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.875rem;
+    padding-top: .937rem;
+    padding-bottom: .937rem;
+    border: none;
+    box-shadow: none;
+  }
   
-    /* Estilos para los párrafos */
-    p {
-      margin-bottom: 10px;
-    }
+  .my-alert.alert-info {
+    background-color: #1665D8;
+    color: #fff;
+  }
   
-    /* Estilos para los botones */
-    .button {
-      padding: 10px 20px;
-      background-color: #023047;
-      color: #fff;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+  .my-alert__icon {
+    margin-right: 1.25rem;
+  }
   
-    .button:hover {
-      background-color: #007bff;
-      color: #FFFFFF
-    }
-  
-    /* Estilos para la lista de tarjetas de crédito */
-    .credit-card-list {
-      list-style-type: none;
-      padding: 0;
-    }
-  
-    .credit-card-item {
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      padding: 10px;
-      background-color: #f9f9f9;
-    }
-  
-    /* Estilo para el botón flotante */
-    .floating-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #007bff;
-      color: #fff;
-      border-radius: 50%;
-      padding: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      font-size: 20px;
-    }
-  
-    .floating-button a {
-      text-decoration: none;
-      color: inherit;
-    }
-  
-    .floating-button span {
-      display: block;
-      text-align: center;
-    }
+  /* List icon */
+  .list__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 40px;
+    border: 1px solid #E2E5ED;
+    border-radius: .25rem;
+  }
   </style>
   
 </style>
 
-<!-- Botón flotante -->
-<div class="floating-button">
-  <a href="{% url 'clients:add_money' account.id %}">
-    <span>&#x1F4B0;+</span>
-  </a>
-</div>
 {% endblock %}
