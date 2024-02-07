@@ -69,6 +69,96 @@
   <main>
     {% block content %}{% endblock %}
   </main>
+  <footer>
+    <section class="top">
+      <ul>
+        <li>
+          <h3>{% trans "Productos" %}</h3>
+          <a>{% trans "Cuentas" %}</a>
+          <a>{% trans "Tarjetas" %}</a>
+        </li>
+        <li>
+          <h3>{% trans "BankODPCS" %}</h3>
+          <a>{% trans "Sobre nosotros" %}</a>
+          <a>{% trans "Bancos socios" %}</a>
+          <a>{% trans "Ayuda" %}</a>
+        </li>
+      </ul>
+    </section>
+    <img src="/media/dibujo.svg" class="section-image" />
+    <section class="bottom">&copy; 2023 BANK ODPCS. Todos los derechos reservados.</section>
+    
+  </footer>
 </body>
+<style>
+  
+  footer {
+    padding: 10px 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    z-index: 5;
+    padding-bottom: 20px;
+    background: #0a1535;
+    color: #f9f9f9;
+  }
+  
+  footer section {
+    padding: 0 50px;
+    text-align: center;
+  }
+  
+  section.top {
+    padding-top: 30px;
+    margin-bottom: 48px;
+    width: 100%;
+  }
+  
+  .section-image{
+    position: absolute;
+    width: 100px;
+    margin-left: 1860px;
+    margin-top: 40px;
+  }
+  
+  section.top ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (width > 600px) {
+    section.top ul {
+      grid-template-columns: repeat(2, 1fr);
+      padding-right: 0;
+    }
+  }
+  
+  section.top ul li a {
+    display: block;
+    margin-bottom: 10px;
+    color: rgb(255 255 255 / 90%);
+  }
+  
+  section.top h3 {
+    color: rgb(255 255 255 / 40%);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  
+  section.bottom {
+    padding-top: 10px;
+    border-top: 2px solid rgb(255 255 255 / 10%);
+    color: rgb(255 255 255 / 40%);
+    font-size: 13px;
+    margin-top: 175px;
+  }
+  
+</style>
 
 </html>

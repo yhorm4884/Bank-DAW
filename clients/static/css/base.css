@@ -15,7 +15,6 @@ body {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    align-items: center;
     position: relative;
     z-index: 5;
     border-bottom: 4px solid #f0a93e;
@@ -36,17 +35,11 @@ body {
     margin: 0;
     font-size: 1.5em;
   }
-
-  header select {
-    font-weight: bold;
-    color: #444;
-    width: 150px;
-    box-sizing: border-box;
-    border: 1px solid #aaa;
-    border-radius: .3em;
-  }
   
   nav ul.nav-header, nav a.navbar-brand{
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     color: #f0a93e;
     text-shadow: 2px 2px 4px #000000;
@@ -58,10 +51,6 @@ body {
   
   #navbarNav{
     margin-left: 1.5rem;
-  }
-
-  #navbarNav a:hover {
-    color: #e2bc83;
   }
   
   nav li {
@@ -76,8 +65,8 @@ body {
     font-weight: bold;
   }
   
-  .navbar-brand:hover {
-    text-decoration: underline;
+  nav a:hover {
+    /* text-decoration: underline; */
   }
   
   .user {
@@ -201,7 +190,6 @@ body {
     }
   
     main {
-      background-color: #219EBC;
       height: 100vh;
       padding-top: 20px;
     }
@@ -210,8 +198,10 @@ body {
 
     .formulario-defecto {
       font-family: Arial, sans-serif;
-      background-color: #f0a93e;
+      background-color: #16677b;
+      opacity: 80%;
     }
+    
   
     .formulario-defecto h1 {
       text-align: center;
