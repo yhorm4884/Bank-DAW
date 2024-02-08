@@ -10,24 +10,23 @@ body {
 
   header {
     background: linear-gradient(to top, #001548, #1098e1);
-    color: #000000;
+    color: white;
     padding: 10px 20px;
     display: flex;
     width: 100%;
     justify-content: space-between;
     position: relative;
     z-index: 5;
-    border-bottom: 4px solid #f0a93e;
-    box-shadow: 0 0 10px rgba(240, 169, 62, 0.8); /* Agrega una sombra de color naranja (efecto neón) */
+    box-shadow: 0 0 10px rgba(30, 72, 211, 0.8); /* Agrega una sombra de color naranja (efecto neón) */
     animation: neon 1.5s infinite alternate; /* Agrega una animación de parpadeo */
   }
   
   @keyframes neon {
     from {
-      box-shadow: 0 0 20px rgba(158, 105, 26, 0.8);
+      box-shadow: 0 0 20px rgba(3, 153, 240, 0.8);
     }
     to {
-      box-shadow: 0 0 40px rgba(240, 169, 62, 1), 0 0 30px rgba(240, 169, 62, 0.8);
+      box-shadow: 0 0 40px #3555e7, 0 0 30px rgba(30, 72, 211, 0.8);
     }
   }
   
@@ -56,11 +55,11 @@ body {
   nav li {
     width: auto;
     margin-right: 20px;
-    color: #e2bc83;
+    color: white;
   }
   
   nav a {
-    color: #f0a93e;
+    color: white;
     text-decoration: none;
     font-weight: bold;
   }
@@ -75,7 +74,7 @@ body {
   }
   
   .user a, .user{
-    color: #f0a93e;
+    color: white;
     text-decoration: none;
     font-weight: bold;
     text-shadow: 2px 2px 4px #000000;

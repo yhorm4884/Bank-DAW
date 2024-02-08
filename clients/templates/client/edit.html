@@ -21,7 +21,7 @@
                     <img src="{% thumbnail photo.photo 180x180 %}" class="user-detail">
                 </label>
                 <div class="col-md-3 info">
-                    <strong><b>{{ user_form|crispy }}</strong></b>
+                    <strong><b>{{ user_form.as_p }}</strong></b>
                 </div>
                 <button class="btn btn-primary button" type="submit">{% trans "Guardar"%}</button>
             </form>
