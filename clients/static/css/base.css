@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #219ebc;
+    background-color: white;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -33,6 +33,10 @@ body {
   header h1 {
     margin: 0;
     font-size: 1.5em;
+  }
+
+  .navbar {
+    background-color: #16677be8;
   }
   
   nav ul.nav-header, nav a.navbar-brand{
@@ -143,14 +147,15 @@ body {
       font-size: 20px;
       cursor: pointer;
       padding: 10px 15px;
+      border-radius: .25rem;
       border: none;
-      background-color: #111;
+      background-color: #16677be8;
       color: white;
       float: right;
     }
   
   .openbtn:hover {
-      background-color: #444;
+      background-color: #0d3944e8;
   }
   
   #main {
@@ -504,9 +509,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #3bb6d4;
+    background-color: #16677be8;
     padding: 30px;
-  
+    border: none;
+    border-radius: 5px;
+  }
+
+  .addCardForm h1 {
+    font-weight: bold;
   }
   
   .addCardBtn {
