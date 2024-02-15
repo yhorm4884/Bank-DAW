@@ -1,0 +1,124 @@
+{% load static %}
+{% load thumbnail %}
+{% load i18n %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Bank ODPCS{% endblock %}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="css/banco.css" rel="stylesheet">
+
+    </head>
+    
+    <body>
+
+        <main>
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="index.html">
+                        <i class="navbar-brand-icon bi-book me-2"></i>
+                        <span>BANK ODPCS</span>
+                    </a>
+
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-lg-auto me-lg-4">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_1">Home</a>
+                            </li>
+    
+
+                           
+                        </ul>
+
+                        <div class="d-none d-lg-block">
+                            <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
+                                <i class="btn-icon bi-cloud-download"></i>
+                                <span>Acceso</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            
+
+            <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-5 pb-5 pb-lg-0 mb-lg-0">
+
+                            
+
+                            <h1 class="text-white mb-4"i>Bienvenido a Bank ODPCS</h1>
+                            <p>
+                                ¡Bienvenido a nuestra nueva aplicación web bancaria! Con nuestra aplicación, realizar transferencias y pagos, así como recibir fondos, nunca ha sido tan fácil y sencillo. Estamos encantados de ofrecerte una experiencia fluida y segura para gestionar tus finanzas de manera conveniente.</p>
+
+
+                        </div>
+                        <div class="hero-image-wrap col-lg-6 col-12 mt-3 mt-lg-0">
+                            <img src="images/webapp.png" class="hero-image img-fluid" alt="Imágen de la aplicacion web" style="border: 6px solid black; border-radius: 10px; max-width: 80%; height: auto;">
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="featured-section">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12">
+                            <div class="avatar-group d-flex flex-wrap align-items-center">
+    
+                                <div class="reviews-group mt-3 mt-lg-0">
+                                    <strong>1/6</strong>
+
+                                    
+
+                                    <small class="ms-3">
+                                        <p>Este número es indicativo del riesgo del producto, siendo 1 / 6 </p>
+                                        <p>indicativo de menor riesgo y 6 / 6 de mayor riesgo.</p>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <div class="reviews-group mt-3 mt-lg-0">
+                    
+                                <strong>Novedad para menores de edad</strong>
+                                
+
+                                <small class="ms-3">
+                                    <p>Introducimos con entusiasmo nuestra innovadora cuenta para menores, diseñada específicamente </p>
+                                    <p>para brindar a los más jóvenes una introducción segura y educativa al mundo de las finanzas</p>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+         <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/click-scroll.js"></script>
+        <script src="js/custom.js"></script>
+
+    </body>
+</html>

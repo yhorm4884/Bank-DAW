@@ -356,11 +356,14 @@ def client_login(request):
 
     return render(request, 'client/login.html', {'form': form})
 
-@login_required
+
 def dashboard(request):
-    accounts = Account.objects.filter(client=request.user.client)
-    credit_cards = CreditCard.objects.filter(account__in=accounts)
-    return render(request, 'client/dashboard.html', {'accounts': accounts, 'credit_cards': credit_cards})
+    if request.user.is_authenticated:
+        accounts = Account.objects.filter(client=request.user.client)
+        credit_cards = CreditCard.objects.filter(account__in=accounts)
+        return render(request, 'client/dashboard.html', {'accounts': accounts, 'credit_cards': credit_cards})
+    # else:
+    #     return render()
 
 @login_required
 def profile(request):
