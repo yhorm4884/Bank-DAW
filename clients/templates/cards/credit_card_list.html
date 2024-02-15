@@ -1,39 +1,48 @@
-{% load static %}
-{% load i18n %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+{% load static %} {% load i18n %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 
 <div class="container">
-    {% for card in credit_cards %}
-        <div class="card">
-            <div class="card-inner">
-                <div class="front">
-                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                    <div>
-                        <img src="https://i.ibb.co/G9pDnYJ/chip.png" width="60px">
-                    </div>
-                    <div class="row card-no">
-                        <p>{{ card.card_code }}</p>
-                    </div>
-                    <div class="row card-holder">
-                        <p>{{ card.alias|upper }}</p>
-                    </div>
-                    <div class="row name">
-                        <p>{{ card.user.get_full_name|upper }}</p>
-                    </div>
-                </div>
-                <div class="back">
-                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                    <div class="bar"></div>
-                    <div class="row">
-                        {% if card.status == 'AC' %}
-                        <a href="{% url 'clients:block_credit_card' card.card_code %}">{% trans "Bloquear" %}</a>
-                        {% elif card.status == 'BL' %}
-                            <a href="{% url 'clients:reactivate_credit_card' card.card_code %}">{% trans "Desbloquear" %}</a>
-                        {% endif %}
-                        <a href="{% url 'clients:delete_credit_card' card.card_code %}" class="button">{%trans "Eliminar" %}</a>
-                    </div>
-                </div>
-            </div>
+  {% for card in credit_cards %}
+  <div class="card">
+    <div class="card-inner">
+      <div class="front">
+        <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img" />
+        <div>
+          <img src="https://i.ibb.co/G9pDnYJ/chip.png" width="60px" />
         </div>
-    {% endfor %}
+        <div class="row card-no">
+          <p>{{ card.card_code }}</p>
+        </div>
+        <div class="row card-holder">
+          <p>{{ card.alias|upper }}</p>
+        </div>
+        <div class="row name">
+          <p>{{ card.user.get_full_name|upper }}</p>
+        </div>
+      </div>
+      <div class="back">
+        <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img" />
+        <div class="bar"></div>
+        <div class="row">
+          {% if card.status == 'AC' %}
+          <a
+            href="{% url 'clients:block_credit_card' card.card_code %}"
+            class="button"
+            >{% trans "Bloquear" %}</a
+          >
+          {% elif card.status == 'BL' %}
+          <a href="{% url 'clients:reactivate_credit_card' card.card_code %}"
+            >{% trans "Desbloquear" %}</a
+          >
+          {% endif %}
+          <a
+            href="{% url 'clients:delete_credit_card' card.card_code %}"
+            class="button"
+            >{%trans "Eliminar" %}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
