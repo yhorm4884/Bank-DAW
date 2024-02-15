@@ -7,7 +7,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="d-flex justify-content-between align-items-center mb-0">
+                    <h4 class="d-flex mb-0">
                         <span>{% trans "Detalles del pago" %}</span>
                         {% comment %} <img class="img-fluid" src="https://i.imgur.com/2zDU056.png" width="50px"> {% endcomment %}
                     </h4>
@@ -46,24 +46,32 @@
 <style>
 
 .card {
-    border: none;
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
 }
 
 .card-header {
-    background-color: #fff;
+    background-color: #16677b;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 20px;
+    justify-content: center;
+}
+
+.card-header h4 {
+    font-weight: 600;
+    font-size: 30px;
 }
 
 .card-body {
-    background-color: #fff;
+    background-color: #16677b;
     padding: 30px;
+    font-size: 25px;
+    font-weight: 600;
 }
 
 .form-label {
-    font-size: 14px;
+    font-size: 15px;
     margin-bottom: 5px;
 }
 

@@ -121,7 +121,7 @@ body {
       z-index: 5;
       top: 5em; /* Cambiado de 0 a 3em */
       right: 0;
-      background-color: #111;
+      background-color: #16677b;
       overflow-x: hidden;
       transition: 0.5s;
       padding-top: 60px;
@@ -716,11 +716,6 @@ body {
   }
   
   /*Transaction Form*/
-  .card {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  }
   
   .card-header {
     display: flex;
@@ -729,7 +724,7 @@ body {
     justify-content: space-between;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 20px;
-    background-color: #f0a93e;
+    /* background-color: #f0a93e; */
   }
   
   .transferBtn {
@@ -743,11 +738,7 @@ body {
   .transferBtn:hover {
     background-color: #007bff;
   }
-  
-  .card-body {
-    background-color: #ffd670;
-    padding: 30px;
-  }
+
   
   .form-label {
     font-size: 14px;
