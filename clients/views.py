@@ -362,8 +362,10 @@ def dashboard(request):
         accounts = Account.objects.filter(client=request.user.client)
         credit_cards = CreditCard.objects.filter(account__in=accounts)
         return render(request, 'client/dashboard.html', {'accounts': accounts, 'credit_cards': credit_cards})
+    elif hasattr(request, 'logout') and request.logout:
+        return render(request, 'extra/extras.html')
     else:
-        return render(request,'extra/extras.html',)
+        return render(request, 'extra/extras.html')
 
 @login_required
 def profile(request):
