@@ -53,19 +53,24 @@ def account_details(request, account_id):
 @login_required
 def add_money(request, account_id):
     account = get_object_or_404(Account, id=account_id)
-
     if request.method == 'POST':
         form = AddMoneyForm(request.POST)
         if form.is_valid():
             amount = form.cleaned_data['amount']
-            account.balance += amount
-            account.save()
-            messages.success(request, f'Se han añadido {amount} euros a la cuenta {account.alias}. Balance actual: {account.balance} euros.')
-            return redirect('clients:account_details', account_id=account.id)
+            if amount <= 1000000:
+                if account.balance < 999999999.99:
+                    account.balance += amount
+                    account.save()
+                else:
+                    form.add_error('amount', 'La cantidad que ha puesto excede el límite que puede alvergar la cuenta.')
+                messages.success(request, f'Se han añadido {amount} euros a la cuenta {account.alias}. Balance actual: {account.balance} euros.')
+                return redirect('clients:account_details', account_id=account.id)
+            else:
+                form.add_error('amount', 'La cantidad no puede superar 1 millón de euros.') 
     else:
         form = AddMoneyForm()
 
-    return render(request, 'account/add_money.html', {'form': form, 'account': account})    
+    return render(request, 'account/add_money.html', {'form': form, 'account': account})  
 @login_required
 def edit(request):
     if request.method == 'POST':
@@ -212,7 +217,7 @@ def add_credit_card_without_account(request, account_id):
 
     if card_count >= 4:
         messages.error(request, 'Has alcanzado el límite máximo de tarjetas de crédito.')
-        return redirect('dashboard')
+        return redirect('home')
 
     if request.method == 'POST':
         form = CreditCardFormWithoutAccount(request.POST)

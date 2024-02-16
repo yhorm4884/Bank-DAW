@@ -16,7 +16,6 @@
     <form method="post" class="mt-4">
       {% csrf_token %}
       <strong>{{ form|crispy }}</strong>
-
       <div class="row">
         <div class="col">
           <button type="submit" class="btn btn-primary">{% trans "Añadir dinero" %}</button>

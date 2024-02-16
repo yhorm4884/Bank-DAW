@@ -74,7 +74,7 @@ def payment(request):
             return HttpResponseNotFound("You don't have enought money for the payment")
     else:
         accounts = Account.objects.filter(client=request.user.client)
-        return render(request, 'payments/payment_form.html', {'accounts': accounts})
+        return render(request, 'payments/payments_form.html', {'accounts': accounts})
 
 def generate_pdf(transaction):
     # Renderizar el contenido del PDF con la información de la transacción
@@ -123,7 +123,7 @@ def outcoming(request):
                 url = bank.get("url")
         
         # Enviar la solicitud POST al banco 2 para registrar la transacción entrante
-        bank2_url = url+":8000"+ "/transfer/incoming/"
+        bank2_url = url + "/transfer/incoming/"
         # bank2_url = "http://192.168.1.42:8000/transfer/incoming/"
         payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}
         response = requests.post(bank2_url, json=payload)

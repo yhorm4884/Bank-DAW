@@ -60,7 +60,7 @@
                 </ul>
                 <hr class="my-divider">
                 <ul class="my-list-inline list-inline mb-0">
-                  <li><a href="{% url 'clients:add_credit_card' %}"> {% trans "Añadir tarjeta" %} →</a></li>
+                  <li><a href="{% url 'clients:add_credit_card_without_account' account_id=account.id %}"> {% trans "Añadir tarjeta" %} →</a></li>
                   <li><a href="{% url 'clients:credit_cards' %}">{% trans "Ver todas las tarjetas" %} →</a></li>
                 </ul>
               </div>

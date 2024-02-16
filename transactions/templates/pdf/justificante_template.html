@@ -1,6 +1,6 @@
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,6 +46,10 @@
             color: #28a745;
             font-size: 1.5em;
         }
+        .fish-image {
+            max-width: 100px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -58,11 +62,29 @@
         </div>
         
         <div class="transaction-details">
-            <p class="label">{% trans "Tipo de Transferencia:" %} {{ transaction.kind }}</p>
-            <p class="label">{% trans "Agente:" %} {{ transaction.agent }}</p>
-            <p class="label">{% trans "Concepto:" %} {{ transaction.concept }}</p>
-            <p class="label">{% trans "Fecha:" %} {{ transaction.timestamp }}</p>
-            <p class="label">{% trans "Cantidad:" %} <span class="amount">{{ transaction.amount|floatformat:2 }}</span></p>
+            <table>
+                <tr>
+                    <td class="label">{% trans "Tipo de Transferencia:" %}</td>
+                    <td>{{ transaction.kind }}</td>
+                </tr>
+                <tr>
+                    <td class="label">{% trans "Agente:" %}</td>
+                    <td>{{ transaction.agent }}</td>
+                </tr>
+                <tr>
+                    <td class="label">{% trans "Concepto:" %}</td>
+                    <td>{{ transaction.concept }}</td>
+                </tr>
+                <tr>
+                    <td class="label">{% trans "Fecha:" %}</td>
+                    <td>{{ transaction.timestamp }}</td>
+                </tr>
+                <tr>
+                    <td class="label">{% trans "Cantidad:" %}</td>
+                    <td><span class="amount">{{ transaction.amount|floatformat:2 }}</span></td>
+                </tr>
+            </table>
+            <img src="https://example.com/fish-image.jpg" alt="Pescado" class="fish-image">
         </div>
     </div>
 </body>

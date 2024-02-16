@@ -29,13 +29,12 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-lg-auto me-lg-4">
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'clients:login' %}">{% trans "Iniciar sesión" %}</a>
                             </li>
                         </ul>
                         <div class="d-none d-lg-block">
-                            <a href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
+                            <a href="{% url 'clients:login' %}" class="btn custom-btn custom-border-btn btn-naira btn-inverted">
                                 <i class="btn-icon bi-cloud-download"></i>
-                                <span>Acceso</span>
+                                <span>{% trans "Iniciar sesión" %}</span>
                             </a>
                         </div>
                     </div>

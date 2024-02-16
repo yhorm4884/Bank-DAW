@@ -18,19 +18,19 @@
                         {% csrf_token %}
                         <div class="mb-4">
                             <label for="business" class="form-label">{% trans "Empresa" %}</label>
-                            <input type="text" id="business" name="business" class="form-control">
+                            <input type="text" id="business" name="business" class="form-control" placeholder="Ingrese nombre de la empresa" required>
                         </div>
                         <div class="mb-4">
                             <label for="ccc" class="form-label">{% trans "Codigo de tarjeta cliente (CCC)"%}</label>
-                            <input type="text" id="ccc" name="ccc" class="form-control">
+                            <input type="text" id="ccc" name="ccc" class="form-control" placeholder="Ingrese el código de tarjeta cliente. Ejemplo 'C2-XXXX' " required>
                         </div>
                         <div class="mb-4">
                             <label for="pin" class="form-label">PIN</label>
-                            <input type="password" id="pin" name="pin" class="form-control">
+                            <input type="password" id="pin" name="pin" class="form-control" placeholder="PIN de la tarjeta que recibio en el correo" required>
                         </div>
                         <div class="mb-4">
                             <label for="amount" class="form-label">{% trans "Cantidad" %}</label>
-                            <input type="decimal" step="0.01" id="amount" name="amount" class="form-control">
+                            <input type="number" step="0.01" id="amount" name="amount" class="form-control" placeholder="Ingrese la cantidad" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">{% trans "Pagar"%}</button>

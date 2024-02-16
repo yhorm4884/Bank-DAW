@@ -23,24 +23,24 @@ class LoginForm(forms.Form):
         return cd
 
 
+
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(
-        label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter password', 'required': 'required'})
     )
     password2 = forms.CharField(
-        label='Repeat password', widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        label='Repeat password', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Repeat password', 'required': 'required'})
     )
 
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter username', 'required': 'required'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter first name', 'required': 'required'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter last name', 'required': 'required'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter email', 'required': 'required'}),
         }
-
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
@@ -78,6 +78,7 @@ class ClientEditForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ['photo']
+
 class AccountRegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label='Current Password')
 
@@ -85,12 +86,11 @@ class AccountRegistrationForm(forms.ModelForm):
         model = Account
         fields = ['alias', 'password']
 
-
-    def clean_alias(self):
-        alias = self.cleaned_data['alias']
-        if Account.objects.filter(alias=alias).exists():
-            raise forms.ValidationError('Este alias ya está en uso.')
-        return alias
+    # def clean_alias(self):
+    #     alias = self.cleaned_data['alias']
+    #     if Account.objects.filter(alias=alias).exists():
+    #         raise forms.ValidationError('Este alias ya está en uso.')
+    #     return alias
 
 class AccountEditForm(forms.ModelForm):
     alias = forms.CharField(max_length=255)
@@ -107,7 +107,9 @@ class AddMoneyForm(forms.Form):
     amount = forms.DecimalField(
         label='Amount',
         min_value=0.01,
-        widget=forms.NumberInput(attrs={'step': '0.01'}),
+        max_value=1000000,  
+        widget=forms.NumberInput(attrs={'step': '0.01', 'max': '1000000'}),  
+        error_messages={'max_value': 'El cantidad no puede superar 1 millón de euros'},
     )
 
 # Tarjetas de crédito.

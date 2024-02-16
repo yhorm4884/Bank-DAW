@@ -74,8 +74,7 @@ class Account(models.Model):
     reactivation_token = models.CharField(max_length=64, null=True, blank=True)
 
     # Balance que dice el total de dinero en la cuenta del banco
-    balance = models.DecimalField(decimal_places=2, max_digits=6, validators=[MinValueValidator(0)], null=True,default=0)
-
+    balance = models.DecimalField(decimal_places=2, max_digits=13, validators=[MinValueValidator(0)], null=True,default=0)
 
     # Estado en el que se encuentra la cuenta actualmente
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.ACTIVE)
