@@ -86,11 +86,11 @@ class AccountRegistrationForm(forms.ModelForm):
         model = Account
         fields = ['alias', 'password']
 
-    # def clean_alias(self):
-    #     alias = self.cleaned_data['alias']
-    #     if Account.objects.filter(alias=alias).exists():
-    #         raise forms.ValidationError('Este alias ya está en uso.')
-    #     return alias
+    def clean_alias(self):
+        alias = self.cleaned_data['alias']
+        if Account.objects.filter(alias=alias).exists():
+            raise forms.ValidationError('Este alias ya está en uso.')
+        return alias
 
 class AccountEditForm(forms.ModelForm):
     alias = forms.CharField(max_length=255)

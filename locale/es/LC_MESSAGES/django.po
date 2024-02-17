@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-02 18:19+0000\n"
+"POT-Creation-Date: 2024-02-17 14:38+0000\n"
 "PO-Revision-Date: 2024-02-02 18:18+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,47 +27,71 @@ msgstr ""
 msgid "Spanish"
 msgstr ""
 
-#: clients/templates/account/account_details.html:4
+#: clients/templates/account/account_details.html:5
 msgid "Detalles"
 msgstr ""
 
-#: clients/templates/account/account_details.html:26
+#: clients/templates/account/account_details.html:17
+msgid "Bienvenido a la cuenta de: "
+msgstr ""
+
+#: clients/templates/account/account_details.html:21
+msgid "Enviar dinero"
+msgstr ""
+
+#: clients/templates/account/account_details.html:35
+msgid "Dinero actual"
+msgstr ""
+
+#: clients/templates/account/account_details.html:41
+#: clients/templates/account/add_money.html:21
+msgid "Añadir dinero"
+msgstr ""
+
+#: clients/templates/account/account_details.html:50
+msgid "Tarjetas vinculadas a la cuenta"
+msgstr ""
+
+#: clients/templates/account/account_details.html:63
+msgid "Añadir tarjeta"
+msgstr ""
+
+#: clients/templates/account/account_details.html:64
+msgid "Ver todas las tarjetas"
+msgstr ""
+
+#: clients/templates/account/account_details.html:74
+msgid ""
+"Su última transacción puede tardar unos minutos en aparecer en su actividad."
+msgstr ""
+
+#: clients/templates/account/account_details.html:81
+msgid "Ultimos movimientos hechos"
+msgstr ""
+
+#: clients/templates/account/account_details.html:82
+msgid "Ver todos los movimientos"
+msgstr ""
+
+#: clients/templates/account/accounts.html:4
+msgid "Mis cuentas"
+msgstr ""
+
 #: clients/templates/account/accounts.html:25
 #: clients/templates/client/dashboard.html:40
 msgid "Código:"
 msgstr ""
 
-#: clients/templates/account/account_details.html:27
 #: clients/templates/account/accounts.html:26
 #: clients/templates/client/dashboard.html:41
 msgid "Balance:"
 msgstr ""
 
-#: clients/templates/account/account_details.html:30
 #: clients/templates/account/accounts.html:29
 #: clients/templates/account/edit_alias.html:3
 #: clients/templates/account/edit_alias.html:5
 #: clients/templates/client/dashboard.html:44
 msgid "Editar alias"
-msgstr ""
-
-#: clients/templates/account/account_details.html:31
-msgid "Desactivar cuentas"
-msgstr ""
-
-#: clients/templates/account/account_details.html:41
-msgid "No hay tarjetas de crédito asociadas con esta cuenta."
-msgstr ""
-
-#: clients/templates/account/account_details.html:43
-#: clients/templates/cards/add_credit_card.html:4
-#: clients/templates/cards/add_credit_card.html:9
-#: clients/templates/cards/add_credit_card.html:12
-msgid "Añadir tarjeta de crédito"
-msgstr ""
-
-#: clients/templates/account/accounts.html:4
-msgid "Mis cuentas"
 msgstr ""
 
 #: clients/templates/account/accounts.html:30
@@ -91,11 +115,7 @@ msgstr ""
 msgid "Añadir dinero a --> "
 msgstr ""
 
-#: clients/templates/account/add_money.html:22
-msgid "Añadir dinero"
-msgstr ""
-
-#: clients/templates/account/add_money.html:25
+#: clients/templates/account/add_money.html:24
 msgid "Volver a los detalles de la cuenta"
 msgstr ""
 
@@ -141,37 +161,68 @@ msgstr ""
 msgid "Crear nueva cuenta."
 msgstr ""
 
-#: clients/templates/base.html:24
-msgid "Home"
-msgstr "Inicio"
+#: clients/templates/base.html:25
+msgid "Inicio"
+msgstr ""
 
-#: clients/templates/base.html:27
+#: clients/templates/base.html:25
+msgid "Actual"
+msgstr ""
+
+#: clients/templates/base.html:28 clients/templates/base.html:74
 msgid "Tarjetas"
 msgstr ""
 
-#: clients/templates/base.html:30
-#: transactions/templates/transfers/movements.html:37
+#: clients/templates/base.html:31
+#: transactions/templates/transfers/movements.html:36
 msgid "Pagos"
 msgstr ""
 
-#: clients/templates/base.html:33
+#: clients/templates/base.html:34
 msgid "Transferencias"
 msgstr ""
 
-#: clients/templates/base.html:36
-msgid "Cuentas bancarias"
-msgstr ""
-
-#: clients/templates/base.html:57
+#: clients/templates/base.html:54
 msgid "Hola"
 msgstr ""
 
-#: clients/templates/base.html:60
+#: clients/templates/base.html:57
 msgid "Cerrar sesión"
 msgstr ""
 
-#: clients/templates/base.html:63 clients/templates/client/login.html:40
+#: clients/templates/base.html:60 clients/templates/client/login.html:49
+#: clients/templates/extra/extras.html:37
 msgid "Iniciar sesión"
+msgstr ""
+
+#: clients/templates/base.html:72
+msgid "Productos"
+msgstr ""
+
+#: clients/templates/base.html:73
+msgid "Cuentas"
+msgstr ""
+
+#: clients/templates/base.html:77
+msgid "BankODPCS"
+msgstr ""
+
+#: clients/templates/base.html:78
+msgid "Sobre nosotros"
+msgstr ""
+
+#: clients/templates/base.html:79
+msgid "Bancos socios"
+msgstr ""
+
+#: clients/templates/base.html:80
+msgid "Ayuda"
+msgstr ""
+
+#: clients/templates/cards/add_credit_card.html:4
+#: clients/templates/cards/add_credit_card.html:9
+#: clients/templates/cards/add_credit_card.html:12
+msgid "Añadir tarjeta de crédito"
 msgstr ""
 
 #: clients/templates/cards/cards_sidebar.html:3
@@ -190,20 +241,20 @@ msgstr ""
 msgid "Cancelar"
 msgstr ""
 
-#: clients/templates/cards/credit_card_list.html:29
+#: clients/templates/cards/credit_card_list.html:31
 msgid "Bloquear"
 msgstr ""
 
-#: clients/templates/cards/credit_card_list.html:31
+#: clients/templates/cards/credit_card_list.html:35
 msgid "Desbloquear"
 msgstr ""
 
-#: clients/templates/cards/credit_card_list.html:33
+#: clients/templates/cards/credit_card_list.html:41
 msgid "Eliminar"
 msgstr ""
 
 #: clients/templates/cards/credit_cards.html:9
-#: transactions/templates/transfers/transfers_form.html:17
+#: transactions/templates/transfers/transference_form.html:17
 msgid "Selecciona una cuenta"
 msgstr ""
 
@@ -220,7 +271,7 @@ msgid "Inactivo"
 msgstr ""
 
 #: clients/templates/cards/credit_cards.html:19
-#: transactions/templates/transfers/movements.html:40
+#: transactions/templates/transfers/movements.html:39
 msgid "Filtrar"
 msgstr ""
 
@@ -291,29 +342,29 @@ msgstr ""
 msgid "Guardar"
 msgstr ""
 
-#: clients/templates/client/login.html:16
+#: clients/templates/client/login.html:25
 msgid "Acceso"
 msgstr ""
 
-#: clients/templates/client/login.html:20
+#: clients/templates/client/login.html:29
 msgid "Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo."
 msgstr ""
 
-#: clients/templates/client/login.html:21
+#: clients/templates/client/login.html:30
 msgid "Si no registrate aquí"
 msgstr ""
 
-#: clients/templates/client/login.html:25
+#: clients/templates/client/login.html:34
 msgid ""
 "Por favor, utilice el siguiente formulario para iniciar sesión. Si no tienes "
 "una cuenta"
 msgstr ""
 
-#: clients/templates/client/login.html:25
+#: clients/templates/client/login.html:34
 msgid "Registrate aquí"
 msgstr ""
 
-#: clients/templates/client/login.html:44
+#: clients/templates/client/login.html:53
 msgid "¿Olvidaste la contraseña?"
 msgstr ""
 
@@ -400,6 +451,10 @@ msgstr ""
 msgid "iniciar sesión"
 msgstr ""
 
+#: clients/templates/extra/extras.html:24
+msgid "BANK ODPCS"
+msgstr ""
+
 #: clients/templates/payments/payment_form.html:11
 msgid "Detalles del pago"
 msgstr ""
@@ -413,12 +468,12 @@ msgid "Código de tarjeta de cliente (CCC):"
 msgstr ""
 
 #: clients/templates/payments/payment_form.html:34
-#: transactions/templates/pdf/justificante_template.html:65
+#: transactions/templates/pdf/justificante_template.html:83
 msgid "Cantidad:"
 msgstr ""
 
 #: clients/templates/payments/payment_form.html:38
-#: transactions/templates/payments/payment_form.html:37
+#: transactions/templates/payments/payments_form.html:37
 msgid "Pagar"
 msgstr ""
 
@@ -464,20 +519,20 @@ msgstr ""
 msgid "Modificar"
 msgstr ""
 
-#: clients/templates/registration/password_reset_complete.html:2
+#: clients/templates/registration/password_reset_complete.html:4
 msgid "Restablecimiento de contraseña"
 msgstr ""
 
-#: clients/templates/registration/password_reset_complete.html:4
+#: clients/templates/registration/password_reset_complete.html:6
 msgid "Establecer contraseña"
 msgstr ""
 
-#: clients/templates/registration/password_reset_complete.html:5
+#: clients/templates/registration/password_reset_complete.html:7
 msgid "Su contraseña ha sido establecida. Puede"
 msgstr ""
 
-#: clients/templates/registration/password_reset_complete.html:5
-msgid "acceder ahora."
+#: clients/templates/registration/password_reset_complete.html:7
+msgid " acceder ahora."
 msgstr ""
 
 #: clients/templates/registration/password_reset_done.html:5
@@ -525,42 +580,188 @@ msgstr ""
 msgid "Enviar correo"
 msgstr ""
 
-#: transactions/templates/payments/payment_form.html:10
+#: clients/views.py:23
+msgid "Número máximo de cuentas excedido (máximo 3 cuentas)."
+msgstr ""
+
+#: clients/views.py:36
+msgid "La contraseña actual ingresada no es correcta."
+msgstr ""
+
+#: clients/views.py:66
+msgid ""
+"La cantidad que ha puesto excede el límite que puede alvergar la cuenta."
+msgstr ""
+
+#: clients/views.py:69
+#, python-brace-format
+msgid ""
+"Se han añadido {amount} euros a la cuenta {alias}. Balance actual: {balance} "
+"euros."
+msgstr ""
+
+#: clients/views.py:72
+msgid "La cantidad no puede superar 1 millón de euros."
+msgstr ""
+
+#: clients/views.py:89
+msgid "¡ Perfil actualizado correctamente !"
+msgstr ""
+
+#: clients/views.py:92 clients/views.py:409
+msgid "Error al actualizar tu perfil"
+msgstr ""
+
+#: clients/views.py:113
+msgid "El alias de la cuenta se ha cambiado correctamente."
+msgstr ""
+
+#: clients/views.py:124
+msgid "La cuenta ya está desactivada."
+msgstr ""
+
+#: clients/views.py:134 clients/views.py:425
+msgid "Reactiva tu cuenta"
+msgstr ""
+
+#: clients/views.py:135
+#, python-brace-format
+msgid ""
+"Pulsa en el enlace para reactivar tu cuenta: http://localhost:8000/account/"
+"reactivate/{reactivation_token}"
+msgstr ""
+
+#: clients/views.py:191 clients/views.py:223
+msgid "Has alcanzado el límite máximo de tarjetas de crédito."
+msgstr ""
+
+#: clients/views.py:205 clients/views.py:236
+#, python-brace-format
+msgid "Tu tarjeta {codigo} ha sido creada con éxito"
+msgstr ""
+
+#: clients/views.py:206 clients/views.py:237
+#, python-brace-format
+msgid "Este es tu PIN: {pin}"
+msgstr ""
+
+#: clients/views.py:242
+msgid "Se ha creado la tarjeta con éxito"
+msgstr ""
+
+#: clients/views.py:255
+msgid "Esta tarjeta ya está bloqueada."
+msgstr ""
+
+#: clients/views.py:262
+msgid "Tu tarjeta ha sido bloqueada"
+msgstr ""
+
+#: clients/views.py:263
+msgid "Su tarjeta de crédito con código {} ha sido bloqueada exitosamente."
+msgstr ""
+
+#: clients/views.py:269
+msgid "Tarjeta de crédito bloqueada exitosamente"
+msgstr ""
+
+#: clients/views.py:272
+msgid "No estás autorizado a bloquear esta tarjeta de crédito"
+msgstr ""
+
+#: clients/views.py:280
+msgid "Esta tarjeta ya está activa."
+msgstr ""
+
+#: clients/views.py:287
+msgid "Su tarjeta de crédito ha sido reactivada"
+msgstr ""
+
+#: clients/views.py:288
+msgid "Su tarjeta de crédito con código {} ha sido reactivada exitosamente."
+msgstr ""
+
+#: clients/views.py:294
+msgid "Tarjeta reactivada correctamente"
+msgstr ""
+
+#: clients/views.py:297
+msgid "No estás autorizado para reactivar esta tarjeta de crédito."
+msgstr ""
+
+#: clients/views.py:308
+msgid "Su tarjeta de crédito ha sido eliminada"
+msgstr ""
+
+#: clients/views.py:309
+msgid "Su tarjeta de crédito con código {} ha sido eliminada exitosamente."
+msgstr ""
+
+#: clients/views.py:315
+msgid "La tarjeta ha sido eliminada correctamente."
+msgstr ""
+
+#: clients/views.py:367
+msgid ""
+"Tu cuenta está inactiva, por favor revisa tu correo electrónico para "
+"reactivarla"
+msgstr ""
+
+#: clients/views.py:369
+msgid "La cuenta está bloqueada"
+msgstr ""
+
+#: clients/views.py:371
+msgid "Inicio de sesión no válido o acceso denegado"
+msgstr ""
+
+#: clients/views.py:406
+msgid "Perfil actualizado con éxito"
+msgstr ""
+
+#: clients/views.py:426
+#, python-brace-format
+msgid ""
+"Haga clic en el enlace para reactivar su cuenta: http://localhost:8000/"
+"client/reactivate/{reactivation_token}"
+msgstr ""
+
+#: transactions/templates/payments/payments_form.html:10
 msgid "Detalle de pago"
 msgstr ""
 
-#: transactions/templates/payments/payment_form.html:21
+#: transactions/templates/payments/payments_form.html:21
 msgid "Empresa"
 msgstr ""
 
-#: transactions/templates/payments/payment_form.html:25
+#: transactions/templates/payments/payments_form.html:25
 msgid "Codigo de tarjeta cliente (CCC)"
 msgstr ""
 
-#: transactions/templates/payments/payment_form.html:33
+#: transactions/templates/payments/payments_form.html:33
 #: transactions/templates/transfers/list.html:13
-#: transactions/templates/transfers/transfers_form.html:32
+#: transactions/templates/transfers/transference_form.html:32
 msgid "Cantidad"
 msgstr ""
 
 #: transactions/templates/pdf/justificante_template.html:7
-#: transactions/templates/pdf/justificante_template.html:57
+#: transactions/templates/pdf/justificante_template.html:61
 msgid "Justificante de Transferencia"
 msgstr ""
 
-#: transactions/templates/pdf/justificante_template.html:61
+#: transactions/templates/pdf/justificante_template.html:67
 msgid "Tipo de Transferencia:"
 msgstr ""
 
-#: transactions/templates/pdf/justificante_template.html:62
+#: transactions/templates/pdf/justificante_template.html:71
 msgid "Agente:"
 msgstr ""
 
-#: transactions/templates/pdf/justificante_template.html:63
+#: transactions/templates/pdf/justificante_template.html:75
 msgid "Concepto:"
 msgstr ""
 
-#: transactions/templates/pdf/justificante_template.html:64
+#: transactions/templates/pdf/justificante_template.html:79
 msgid "Fecha:"
 msgstr ""
 
@@ -569,23 +770,23 @@ msgid "Tipo de transferencia"
 msgstr ""
 
 #: transactions/templates/transfers/list.html:10
-#: transactions/templates/transfers/movements.html:49
+#: transactions/templates/transfers/movements.html:48
 msgid "Agente"
 msgstr ""
 
 #: transactions/templates/transfers/list.html:11
-#: transactions/templates/transfers/movements.html:50
-#: transactions/templates/transfers/transfers_form.html:28
+#: transactions/templates/transfers/movements.html:49
+#: transactions/templates/transfers/transference_form.html:28
 msgid "Concepto"
 msgstr ""
 
 #: transactions/templates/transfers/list.html:12
-#: transactions/templates/transfers/movements.html:51
+#: transactions/templates/transfers/movements.html:50
 msgid "Fecha"
 msgstr ""
 
 #: transactions/templates/transfers/movements.html:14
-#: transactions/templates/transfers/transfers_form.html:9
+#: transactions/templates/transfers/transference_form.html:9
 msgid "Transferencia"
 msgstr ""
 
@@ -602,58 +803,99 @@ msgid "Cuenta:"
 msgstr ""
 
 #: transactions/templates/transfers/movements.html:25
-#: transactions/templates/transfers/movements.html:34
+#: transactions/templates/transfers/movements.html:33
 msgid "Todas"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:32
+#: transactions/templates/transfers/movements.html:31
 msgid "Tipo de transaccion:"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:35
+#: transactions/templates/transfers/movements.html:34
 msgid "Entrantes"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:36
+#: transactions/templates/transfers/movements.html:35
 msgid "Salientes"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:48
+#: transactions/templates/transfers/movements.html:47
 msgid "Tipo de transferencia:"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:52
+#: transactions/templates/transfers/movements.html:51
 msgid "Cantidad "
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:73
+#: transactions/templates/transfers/movements.html:72
 msgid "Primera"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:74
+#: transactions/templates/transfers/movements.html:73
 msgid "Anterior"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:78
+#: transactions/templates/transfers/movements.html:77
 msgid "Página"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:78
+#: transactions/templates/transfers/movements.html:77
 msgid "de"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:82
+#: transactions/templates/transfers/movements.html:81
 msgid "Siguente"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:83
+#: transactions/templates/transfers/movements.html:82
 msgid "Última"
 msgstr ""
 
-#: transactions/templates/transfers/transfers_form.html:24
+#: transactions/templates/transfers/transference_form.html:24
 msgid "Código de cuenta cliente (CCC)"
 msgstr ""
 
-#: transactions/templates/transfers/transfers_form.html:35
+#: transactions/templates/transfers/transference_form.html:35
 msgid "Hacer transacción"
 msgstr ""
+
+#: transactions/views.py:40
+msgid "Datos del formulario invalido"
+msgstr ""
+
+#: transactions/views.py:50
+#, python-brace-format
+msgid "La tarjeta '{ccc}' no existe o no coincide con ninguna tarjeta"
+msgstr ""
+
+#: transactions/views.py:54
+msgid "El código PIN no coincide"
+msgstr ""
+
+#: transactions/views.py:74
+msgid "No tienes suficiente dinero para el pago"
+msgstr ""
+
+#: transactions/views.py:97
+msgid "Formato de datos del formulario no válido"
+msgstr ""
+
+#: transactions/views.py:114
+msgid "No hay suficiente dinero para realizar una transferencia"
+msgstr ""
+
+#: transactions/views.py:147
+msgid "La transacción al banco falló"
+msgstr ""
+
+#: transactions/views.py:168
+#, python-brace-format
+msgid "La cuenta '{cac}' no existe o no está activa"
+msgstr ""
+
+#: transactions/views.py:182
+msgid "Error en la transferencia entrante"
+msgstr ""
+
+#~ msgid "Home"
+#~ msgstr "Inicio"

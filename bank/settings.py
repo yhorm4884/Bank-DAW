@@ -53,21 +53,21 @@ REST_FRAMEWORK = {
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'rosetta',
+    'rest_framework',    
     'clients.apps.ClientsConfig',
     'transactions.apps.TransactionsConfig',
     'django_filters',
-    'easy_thumbnails',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django_browser_reload',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
-    'crispy_bootstrap5',
-
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [

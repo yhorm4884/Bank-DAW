@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -19,7 +20,7 @@ from transactions.models import Transaction
 def register(request):
     current_account_count = Account.objects.filter(client=request.user.client).count()
     if current_account_count >= 3:
-        messages.error(request, 'Numero máximo de cuentas excedido (máximo 3 cuentas).')
+        messages.error(request,  _('Número máximo de cuentas excedido (máximo 3 cuentas).'))
         return redirect('home')
 
     if request.method == 'POST':
@@ -32,7 +33,7 @@ def register(request):
                 account.save()
                 return redirect('home')
             else:
-                messages.error(request, 'La contraseña actual ingresada no es correcta.')
+                messages.error(request, _('La contraseña actual ingresada no es correcta.'))
     else:
         form = AccountRegistrationForm()
 
@@ -62,11 +63,13 @@ def add_money(request, account_id):
                     account.balance += amount
                     account.save()
                 else:
-                    form.add_error('amount', 'La cantidad que ha puesto excede el límite que puede alvergar la cuenta.')
-                messages.success(request, f'Se han añadido {amount} euros a la cuenta {account.alias}. Balance actual: {account.balance} euros.')
+                    form.add_error('amount', _('La cantidad que ha puesto excede el límite que puede alvergar la cuenta.'))
+                alias=account.alias
+                balance=account.balance
+                messages.success(request, _(f'Se han añadido {amount} euros a la cuenta {alias}. Balance actual: {balance} euros.'))
                 return redirect('clients:account_details', account_id=account.id)
             else:
-                form.add_error('amount', 'La cantidad no puede superar 1 millón de euros.') 
+                form.add_error('amount', _('La cantidad no puede superar 1 millón de euros.')) 
     else:
         form = AddMoneyForm()
 
@@ -83,10 +86,10 @@ def edit(request):
         if client_form.is_valid() and user_form.is_valid():
             client_form.save()
             user_form.save()
-            messages.success(request, 'Profile updated successfully')
+            messages.success(request, _('¡ Perfil actualizado correctamente !'))
             return render(request, 'client/profile.html', {'profile': profile})
         else:
-            messages.error(request, 'Error updating your profile')
+            messages.error(request, _('Error al actualizar tu perfil'))
     else:
         client_form = ClientEditForm(instance=request.user.client)
         user_form = UserEditForm(instance=request.user)
@@ -107,7 +110,7 @@ def edit_alias(request, account_id):
         new_alias = request.POST.get('new_alias')
         account.alias = new_alias
         account.save()
-        messages.success(request, 'El alias de la cuenta se ha cambiado correctamente.')
+        messages.success(request, _('El alias de la cuenta se ha cambiado correctamente.'))
         return redirect('home')
     else:
         return render(request, 'account/edit_alias.html', {'account': account})
@@ -118,7 +121,7 @@ def deactivate_account(request, account_id):
         account = get_object_or_404(Account, id=account_id, client=request.user.client)
 
         if account.status == Account.Status.BLOCK:
-            messages.warning(request, 'La cuenta ya está desactivada.')
+            messages.warning(request, _('La cuenta ya está desactivada.'))
             return redirect('home')
 
         account.status = Account.Status.BLOCK
@@ -128,8 +131,8 @@ def deactivate_account(request, account_id):
         account.reactivation_token = reactivation_token
         account.save()
 
-        subject = 'Reactivate Your Account'
-        message = f'Click the link to reactivate your account: http://localhost:8000/account/reactivate/{reactivation_token}'
+        subject = _('Reactiva tu cuenta')
+        message = _(f'Pulsa en el enlace para reactivar tu cuenta: http://localhost:8000/account/reactivate/{reactivation_token}')
         from_email = 'your_email@example.com'
         to_list = [request.user.email]
 
@@ -185,8 +188,8 @@ def add_credit_card(request):
     card_count = CreditCard.objects.filter(account__client=request.user.client).count()
     
     if card_count >= 4:
-        messages.error(request, 'Has alcanzado el límite máximo de tarjetas de crédito.')
-        return redirect('dashboard')
+        messages.error(request, _('Has alcanzado el límite máximo de tarjetas de crédito.'))
+        return redirect('clients:home')
 
     if request.method == 'POST':
         form = CreditCardForm(request.user.client, request.POST)
@@ -196,10 +199,11 @@ def add_credit_card(request):
             pin = credit_card.pin
             credit_card.pin = make_password(pin)
             credit_card.save()
+            codigo=credit_card.card_code
 
             send_mail(
-                f'Tu tarjeta {credit_card.card_code} ha sido creada con éxito',
-                f'Este es tu PIN: {pin}',
+                _(f'Tu tarjeta {codigo} ha sido creada con éxito'),
+                _(f'Este es tu PIN: {pin}'),
                 'your_email@example.com',
                 [request.user.email],
                 fail_silently=False,
@@ -216,7 +220,7 @@ def add_credit_card_without_account(request, account_id):
     card_count = CreditCard.objects.filter(account=account).count()
 
     if card_count >= 4:
-        messages.error(request, 'Has alcanzado el límite máximo de tarjetas de crédito.')
+        messages.error(request, _('Has alcanzado el límite máximo de tarjetas de crédito.'))
         return redirect('home')
 
     if request.method == 'POST':
@@ -227,15 +231,15 @@ def add_credit_card_without_account(request, account_id):
             pin = credit_card.pin
             credit_card.pin = make_password(pin)
             credit_card.save()
-
+            codigo =credit_card.card_code
             send_mail(
-                f'Tu tarjeta {credit_card.card_code} ha sido creada con éxito',
-                f'Este es tu PIN: {pin}',
+                _(f'Tu tarjeta {codigo} ha sido creada con éxito'),
+                _(f'Este es tu PIN: {pin}'),
                 'your_email@example.com',
                 [request.user.email],
                 fail_silently=True,
             )
-            messages.success(request, "Se ha creado la tarjeta con éxito")
+            messages.success(request, _("Se ha creado la tarjeta con éxito"))
             return redirect('clients:account_details', account_id=account.id)
     else:
         form = CreditCardFormWithoutAccount()
@@ -248,24 +252,24 @@ def block_credit_card(request, card_code):
     
     if card.account.client.user == request.user:
         if card.status == CreditCard.Status.BLOCK:
-            messages.error(request, 'Esta tarjeta ya está bloqueada.')
+            messages.error(request, _('Esta tarjeta ya está bloqueada.'))
             return redirect('home')
 
         card.status = CreditCard.Status.BLOCK
         card.save()
 
         send_mail(
-            'Your credit card has been blocked',
-            'Your credit card with code {} has been successfully blocked.'.format(card.card_code),
+            _('Tu tarjeta ha sido bloqueada'),
+            _('Su tarjeta de crédito con código {} ha sido bloqueada exitosamente.'.format(card.card_code)),
             'your_email@example.com',
             [card.account.client.user.email],
             fail_silently=True,
         )
         
-        messages.success(request, 'Credit card blocked successfully')
+        messages.success(request, _('Tarjeta de crédito bloqueada exitosamente'))
         return redirect('home')
     else:
-        messages.error(request, 'You are not authorized to block this credit card')
+        messages.error(request, _('No estás autorizado a bloquear esta tarjeta de crédito'))
         return redirect('home')
 @login_required
 def reactivate_credit_card(request, card_code):
@@ -273,24 +277,24 @@ def reactivate_credit_card(request, card_code):
 
     if card.account.client.user == request.user:
         if card.status == CreditCard.Status.ACTIVE:
-            messages.error(request, 'Esta tarjeta ya está activa.')
+            messages.error(request, _('Esta tarjeta ya está activa.'))
             return redirect('home')
 
         card.status = CreditCard.Status.ACTIVE
         card.save()
 
         send_mail(
-            'Your credit card has been reactivated',
-            'Your credit card with code {} has been successfully reactivated.'.format(card.card_code),
+            _('Su tarjeta de crédito ha sido reactivada',),
+            _('Su tarjeta de crédito con código {} ha sido reactivada exitosamente.'.format(card.card_code)),
             'your_email@example.com',
             [card.account.client.user.email],
             fail_silently=True,
         )
 
-        messages.success(request, 'Tarjeta reactivada correctamente')
+        messages.success(request, _('Tarjeta reactivada correctamente'))
         return redirect('home')
     else:
-        messages.error(request, 'No estás autorizado para reactivar esta tarjeta de crédito.')
+        messages.error(request, _('No estás autorizado para reactivar esta tarjeta de crédito.'))
         return redirect('home')
     
 @login_required
@@ -301,14 +305,14 @@ def delete_credit_card(request, card_code):
         card.delete()
 
         send_mail(
-            'Your credit card has been deleted',
-            'Your credit card with code {} has been successfully deleted.'.format(card.card_code),
+            _('Su tarjeta de crédito ha sido eliminada'),
+            _('Su tarjeta de crédito con código {} ha sido eliminada exitosamente.'.format(card.card_code)),
             'your_email@example.com',
             [card.account.client.user.email],
             fail_silently=True,
         )
 
-        messages.success(request, 'La tarjeta ha sido eliminada correctamente.')
+        messages.success(request, _('La tarjeta ha sido eliminada correctamente.'))
         return redirect('home')
     else:
         return render(request, 'cards/confirm_delete_card.html', {'card': card})
@@ -342,33 +346,41 @@ def client_register(request):
 
 def client_login(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST, request=request)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request, username=cd['username'], password=cd['password'])
-            if user is not None:
-                if user.client.status == 'AC':
-                    login(request, user)
-                    return redirect('home')
-                elif user.client.status == 'DO':
-                    messages.error(request, 'Your account is inactive, please check your email to reactivate it')
+        if request.user.is_authenticated and not request.user.is_superuser:
+            return redirect('home')
+        else:
+            print("entro")
+            form = LoginForm(request.POST, request=request)
+            if form.is_valid():
+                cd = form.cleaned_data
+                user = authenticate(request, username=cd['username'], password=cd['password'])
+                if user is not None and not user.is_superuser:
+                    if user.client.status == 'AC':
+                        login(request, user)
+                        return redirect('home')
+                    elif user.client.status == 'DO':
+                        messages.error(request, _('Tu cuenta está inactiva, por favor revisa tu correo electrónico para reactivarla'))
+                    else:
+                        messages.error(request, _('La cuenta está bloqueada'))
                 else:
-                    messages.error(request, 'Account is blocked')
-            else:
-                messages.error(request, 'Invalid login')
+                    messages.error(request, _('Inicio de sesión no válido o acceso denegado'))
     else:
+        if request.user.is_superuser:
+            logout(request)
         form = LoginForm(request=request)
-
+    
     return render(request, 'client/login.html', {'form': form})
 
 
+
 def dashboard(request):
-    if request.user.is_authenticated:
+    if request.user.is_superuser:
+        logout(request)
+        return render(request, 'extra/extras.html')
+    elif request.user.is_authenticated:
         accounts = Account.objects.filter(client=request.user.client)
         credit_cards = CreditCard.objects.filter(account__in=accounts)
         return render(request, 'client/dashboard.html', {'accounts': accounts, 'credit_cards': credit_cards})
-    elif hasattr(request, 'logout') and request.logout:
-        return render(request, 'extra/extras.html')
     else:
         return render(request, 'extra/extras.html')
 
@@ -386,10 +398,10 @@ def edit(request):
         if client_form.is_valid() and user_form.is_valid():
             client_form.save()
             user_form.save()
-            messages.success(request, 'Profile updated successfully')
+            messages.success(request, _('Perfil actualizado con éxito'))
             return render(request, 'client/profile.html', {'profile': profile})
         else:
-            messages.error(request, 'Error updating your profile')
+            messages.error(request, _('Error al actualizar tu perfil'))
     else:
         client_form = ClientEditForm(instance=request.user.client)
         user_form = UserEditForm(instance=request.user)
@@ -405,8 +417,8 @@ def deactivate_client(request, client_id):
     client.reactivation_token = reactivation_token
     client.save()
 
-    subject = 'Reactivate Your Account'
-    message = f'Click the link to reactivate your account: http://localhost:8000/client/reactivate/{reactivation_token}'
+    subject = _('Reactiva tu cuenta')
+    message = _(f'Haga clic en el enlace para reactivar su cuenta: http://localhost:8000/client/reactivate/{reactivation_token}')
     from_email = 'your_email@example.com'
     to_list = [client.user.email]
 

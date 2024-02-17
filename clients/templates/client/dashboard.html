@@ -14,7 +14,7 @@
       <summary>{% trans "Acciones del cliente" %}</summary>
       <a href="{% url 'clients:edit'%}">{% trans "Editar Perfil" %}</a>
       <a href="{% url "password_reset" %}">{% trans "Cambiar Contraseña" %}</a>
-      <a href="{% url 'clients:deactivate' account_id=request.user.client.id%}">{% trans "Desactivar Cuenta" %}</a>
+      <a href="{% url 'clients:deactivate_client' client_id=request.user.client.id%}">{% trans "Desactivar Cuenta" %}</a>
     </details>
     <details>
       <summary>{% trans "Acciones Cuentas" %}</summary>

@@ -3,7 +3,8 @@ import datetime
 from decimal import Decimal
 import json
 import django
-import requests  # Para realizar la solicitud POST a la otra entidad bancaria
+import requests
+from django.utils.translation import gettext as _
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
 from django.http import (
@@ -21,7 +22,6 @@ from .commisions import calcular_comision
 from .forms import PaymentForm, TransferForm
 from .models import Transaction
 from django.template.loader import render_to_string
-from django.template import Context
 from weasyprint import HTML
 
 
@@ -37,7 +37,7 @@ def payment(request):
             if form.is_valid():
                 data = form.cleaned_data
             else:
-                return HttpResponseForbidden(f"Invalid form data format")
+                return HttpResponseForbidden(_(f"Datos del formulario invalido"))
         business = data.get('business')
         ccc = data.get('ccc')  
         pin = data.get('pin')
@@ -47,11 +47,11 @@ def payment(request):
             credit_card = CreditCard.objects.get(card_code=ccc)
         except CreditCard.DoesNotExist:
             return HttpResponseForbidden(
-                f"Card '{ccc}' doesn't exist or doesn't match with any card"
+                _(f"La tarjeta '{ccc}' no existe o no coincide con ninguna tarjeta")
             )
 
         if not check_password(pin, credit_card.pin):
-            return HttpResponseForbidden('The PIN code does not match')
+            return HttpResponseForbidden(_('El código PIN no coincide'))
         try:
             # Realizar el pago y actualizar el balance de la tarjeta
             comision = calcular_comision("salida", float(amount))
@@ -71,17 +71,14 @@ def payment(request):
 
             return HttpResponse("Ok!")
         except django.db.utils.IntegrityError:
-            return HttpResponseNotFound("You don't have enought money for the payment")
+            return HttpResponseNotFound(_("No tienes suficiente dinero para el pago"))
     else:
         accounts = Account.objects.filter(client=request.user.client)
         return render(request, 'payments/payments_form.html', {'accounts': accounts})
 
 def generate_pdf(transaction):
-    # Renderizar el contenido del PDF con la información de la transacción
     context = {'transaction': transaction}
     html_content = render_to_string('pdf/justificante_template.html', context)
-
-    # Generar el PDF con WeasyPrint
     pdf_content = HTML(string=html_content).write_pdf()
 
     return pdf_content
@@ -97,7 +94,7 @@ def outcoming(request):
             if form.is_valid():
                 data = form.cleaned_data
             else:
-                return HttpResponseForbidden(f"Invalid form data format")
+                return HttpResponseForbidden(_(f"Formato de datos del formulario no válido"))
         sender = data.get('sender')
         cac = data.get('cac')
         concept = data.get('concept')
@@ -105,6 +102,7 @@ def outcoming(request):
         # print(data, sender, cac, concept)
         # Comprobar si la cuenta (cac) existe en la base de datos
         try:
+            print(cac)
             account = Account.objects.get(code=cac, status="AC")
         except Account.DoesNotExist:
             # Si la cuenta no existe en la base de datos, usar la cuenta actual del usuario
@@ -113,7 +111,7 @@ def outcoming(request):
         comision = calcular_comision("salida", float(amount))
         
         if account.balance < (amount + comision):
-            return HttpResponse("Not enough money for the transfer")
+            return HttpResponse(_("No hay suficiente dinero para realizar una transferencia"))
     
         url_banks = 'https://raw.githubusercontent.com/sdelquin/dsw/main/ut3/te1/notes/files/banks.json'
         response = requests.get(url_banks)
@@ -123,8 +121,8 @@ def outcoming(request):
                 url = bank.get("url")
         
         # Enviar la solicitud POST al banco 2 para registrar la transacción entrante
-        bank2_url = url + "/transfer/incoming/"
-        # bank2_url = "http://192.168.1.42:8000/transfer/incoming/"
+        # bank2_url = url + "/transfer/incoming/"
+        bank2_url = "http://192.168.1.42:8000/transfer/incoming/"
         payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}
         response = requests.post(bank2_url, json=payload)
         # print(bank2_url, payload)
@@ -146,7 +144,7 @@ def outcoming(request):
             return response
         else:
             print(response.status_code)
-            return HttpResponse({"Transaction to bank failed"})
+            return HttpResponse({_("La transacción al banco falló")})
     else:
         accounts = Account.objects.filter(client=request.user.client)
 
@@ -167,7 +165,7 @@ def incoming(request):
         try:
             account = Account.objects.get(code=cac, status="AC")
         except Account.DoesNotExist:
-            return HttpResponseForbidden(f"Account '{cac}' doesn't exist or is not active")
+            return HttpResponseForbidden(_(f"La cuenta '{cac}' no existe o no está activa"))
 
         # Realizar la transferencia y actualizar el balance de la cuenta
         comision = calcular_comision("entrada", Decimal(amount))
@@ -181,7 +179,7 @@ def incoming(request):
 
         return HttpResponse("Ok!", status=200)
     else:
-        return HttpResponseNotFound("Incoming transfer failed")
+        return HttpResponseNotFound(_("Error en la transferencia entrante"))
 
 @login_required
 def movements(request):
