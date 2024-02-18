@@ -27,17 +27,19 @@
           {% if card.status == 'AC' %}
           <a
             href="{% url 'clients:block_credit_card' card.card_code %}"
-            class="button"
+            class="btn btn-primary"
             >{% trans "Bloquear" %}</a
           >
           {% elif card.status == 'BL' %}
-          <a href="{% url 'clients:reactivate_credit_card' card.card_code %}"
+          <a
+            href="{% url 'clients:reactivate_credit_card' card.card_code %}"
+            class="btn btn-primary"
             >{% trans "Desbloquear" %}</a
           >
           {% endif %}
           <a
             href="{% url 'clients:delete_credit_card' card.card_code %}"
-            class="button"
+            class="btn btn-primary"
             >{%trans "Eliminar" %}</a
           >
         </div>

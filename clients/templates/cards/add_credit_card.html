@@ -9,7 +9,7 @@
     <h1>{% trans "Añadir tarjeta de crédito" %}</h1>
     {{ form|crispy }}
     {% csrf_token %}
-    <p><input class="addCardBtn" type="submit" value="{% trans "Añadir tarjeta de crédito" %}"></p>
+    <p><input class="btn btn-primary" type="submit" value="{% trans "Añadir tarjeta de crédito" %}"></p>
   </form>
 </div>
 {% endblock %}
