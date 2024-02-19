@@ -23,15 +23,15 @@
                         </div>
                         <div class="mb-4">
                             <label for="ccc" class="form-label">{% trans "Código de tarjeta de cliente (CCC):" %}</label>
-                            <input type="text" id="ccc" name="ccc" class="form-control">
+                            <input type="text" id="ccc" name="ccc" class="form-control" placeholder="{% trans 'Ingrese el código de la tarjeta' %}">
                         </div>
                         <div class="mb-4">
                             <label for="pin" class="form-label">PIN</label>
-                            <input type="password" id="pin" name="pin" class="form-control">
+                            <input type="password" id="pin" name="pin" class="form-control" placeholder="{% trans 'Ingrese el PIN de la tarjeta' %}">
                         </div>
                         <div class="mb-4">
                             <label for="amount" class="form-label">{% trans "Cantidad:" %}</label>
-                            <input type="decimal" step="0.01" id="amount" name="amount" class="form-control">
+                            <input type="decimal" step="0.01" id="amount" name="amount" class="form-control" placeholder="{% trans 'Ingrese la cantidad a transferir' %}">
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">{% trans "Pagar" %}</button>
