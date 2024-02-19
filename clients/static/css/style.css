@@ -32,6 +32,7 @@
   cursor: pointer;
   perspective: 1000px;
   margin: 10px;
+  background-color: #92c6ce;  
 }
 
 .cardBtn {
