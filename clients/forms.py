@@ -58,6 +58,12 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter first name' , 'required': 'required'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control' , 'placeholder': 'Enter last name' , 'required': 'required'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control' , 'placeholder': 'Enter email' , 'required': 'required'}),
+
+        }
 
     def clean_email(self):
         data = self.cleaned_data['email']

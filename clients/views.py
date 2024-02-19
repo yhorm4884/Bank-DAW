@@ -399,15 +399,17 @@ def edit(request):
             client_form.save()
             user_form.save()
             messages.success(request, _('Perfil actualizado con éxito'))
+            profile = request.user.client
             return render(request, 'client/profile.html', {'profile': profile})
         else:
             messages.error(request, _('Error al actualizar tu perfil'))
     else:
         client_form = ClientEditForm(instance=request.user.client)
         user_form = UserEditForm(instance=request.user)
-        photo = request.user.client.photo
+        # photo = request.user.client.photo
+        profile = request.user.client
 
-    return render(request, 'client/edit.html', {'client_form': client_form, 'user_form': user_form, 'photo': photo})
+    return render(request, 'client/edit.html', {'client_form': client_form, 'user_form': user_form, 'photo': profile.photo})
 
 @login_required
 def deactivate_client(request, client_id):

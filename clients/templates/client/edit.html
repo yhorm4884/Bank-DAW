@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container-profile">
     <div class="container-fluid edit-profile">
-        <h1 class="display-4">
+        <h1>
             <strong>
                 <b>{% trans "Edita tu cuenta" %}</b>
             </strong>
@@ -16,14 +16,19 @@
             </div>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="file" name="photo" accept="image/*" id="photo-input" style="display: none;">
-                <label for="photo-input">
-                    <img src="{% thumbnail photo.photo 180x180 %}" class="user-detail">
-                </label>
+                
+                    <input type="file" name="photo" accept="image/*" id="photo-input" style="display: none;">
+                    <label for="photo-input">
+                        <img src="{% thumbnail photo 180x180 %}" class="user-detail">
+                    </label>
+                
+                
                 <div class="col-md-3 info">
                     <strong><b>{{ user_form.as_p }}</strong></b>
                 </div>
-                <button class="btn btn-primary button" type="submit">{% trans "Guardar"%}</button>
+                <div class="col-md-3 info">
+                    <button class="btn btn-primary button" type="submit">{% trans "Guardar"%}</button>
+                </div>
             </form>
         </div>
     </div>

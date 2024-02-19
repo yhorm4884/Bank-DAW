@@ -10,10 +10,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body style="background-color: #92c6ce;">
+  
   <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" href="/es/">BankODPCS</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,8 +82,22 @@
         </li>
       </ul>
     </section>
-    <img src="../../../media/dibujo.svg" class="section-image" />
-    <section class="bottom">&copy; 2023 BANK ODPCS. Todos los derechos reservados.</section>
+    
+    <section>
+      <div class="row">
+        <div class="col">
+          <img class="image"src="../../../media/dibujo.svg" class="section-image" />
+
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col">
+            <section class="bottom">2023 BANK ODPCS. Todos los derechos reservados.</section>
+        </div>
+
+      </div>
+    </section>
+
     
   </footer>
 </body>
@@ -110,11 +125,9 @@
     width: 100%;
   }
   
-  .section-image{
-    position: absolute;
+  .image{
     width: 100px;
-    margin-left: 1860px;
-    margin-top: 40px;
+    margin-left: 50;
   }
   
   section.top ul {
@@ -152,7 +165,7 @@
     border-top: 2px solid rgb(255 255 255 / 10%);
     color: rgb(255 255 255 / 40%);
     font-size: 13px;
-    margin-top: 175px;
+    
   }
   
 </style>

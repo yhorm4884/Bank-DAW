@@ -11,7 +11,6 @@ urlpatterns = [
     path('accounts/', views.accounts, name='accounts'),
     path('account-details/<int:account_id>/', views.account_details, name='account-details'),
     path('add-money/<int:account_id>/', views.add_money, name='add-money'),
-    path('edit-alias/<int:account_id>/', views.edit_alias, name='edit-alias'),
     path('deactivate/<int:account_id>/', views.deactivate_account, name='deactivate'),
     path('reactivate/<str:token>/', views.reactivate_account, name='reactivate'),
     path('edit-alias/<int:account_id>/', views.edit_alias, name='edit-alias'),

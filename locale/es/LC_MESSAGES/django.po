@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 14:38+0000\n"
+"POT-Creation-Date: 2024-02-19 14:55+0000\n"
 "PO-Revision-Date: 2024-02-02 18:18+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgstr ""
 #: clients/templates/account/deactivate_account.html:4
 #: clients/templates/account/deactivate_account.html:11
 #: clients/templates/client/dashboard.html:45
-#: clients/templates/client/profile.html:32
+#: clients/templates/client/profile.html:52
 msgid "Desactivar cuenta"
 msgstr ""
 
@@ -237,6 +237,10 @@ msgstr ""
 msgid "Estas seguro de que quieres eliminar la tarjeta"
 msgstr ""
 
+#: clients/templates/cards/confirm_delete_card.html:8
+msgid "Si, estoy seguro"
+msgstr ""
+
 #: clients/templates/cards/confirm_delete_card.html:9
 msgid "Cancelar"
 msgstr ""
@@ -245,11 +249,11 @@ msgstr ""
 msgid "Bloquear"
 msgstr ""
 
-#: clients/templates/cards/credit_card_list.html:35
+#: clients/templates/cards/credit_card_list.html:37
 msgid "Desbloquear"
 msgstr ""
 
-#: clients/templates/cards/credit_card_list.html:41
+#: clients/templates/cards/credit_card_list.html:43
 msgid "Eliminar"
 msgstr ""
 
@@ -372,31 +376,31 @@ msgstr ""
 msgid "Perfil de cliente"
 msgstr ""
 
-#: clients/templates/client/profile.html:9
+#: clients/templates/client/profile.html:10
 msgid "Perfil de"
 msgstr ""
 
-#: clients/templates/client/profile.html:15
+#: clients/templates/client/profile.html:19
 msgid "Nombre de usuario:"
 msgstr ""
 
-#: clients/templates/client/profile.html:17
+#: clients/templates/client/profile.html:23
 msgid "Nombre:"
 msgstr ""
 
-#: clients/templates/client/profile.html:19
+#: clients/templates/client/profile.html:27
 msgid "Apellido:"
 msgstr ""
 
-#: clients/templates/client/profile.html:21
+#: clients/templates/client/profile.html:31
 msgid "Correo electrónico:"
 msgstr ""
 
-#: clients/templates/client/profile.html:25
+#: clients/templates/client/profile.html:38
 msgid "Editar perfil"
 msgstr ""
 
-#: clients/templates/client/profile.html:28
+#: clients/templates/client/profile.html:43
 msgid "Cambiar contraseña"
 msgstr ""
 
@@ -608,7 +612,7 @@ msgstr ""
 msgid "¡ Perfil actualizado correctamente !"
 msgstr ""
 
-#: clients/views.py:92 clients/views.py:409
+#: clients/views.py:92 clients/views.py:404
 msgid "Error al actualizar tu perfil"
 msgstr ""
 
@@ -620,7 +624,7 @@ msgstr ""
 msgid "La cuenta ya está desactivada."
 msgstr ""
 
-#: clients/views.py:134 clients/views.py:425
+#: clients/views.py:134 clients/views.py:420
 msgid "Reactiva tu cuenta"
 msgstr ""
 
@@ -701,25 +705,25 @@ msgstr ""
 msgid "La tarjeta ha sido eliminada correctamente."
 msgstr ""
 
-#: clients/views.py:367
+#: clients/views.py:362
 msgid ""
 "Tu cuenta está inactiva, por favor revisa tu correo electrónico para "
 "reactivarla"
 msgstr ""
 
-#: clients/views.py:369
+#: clients/views.py:364
 msgid "La cuenta está bloqueada"
 msgstr ""
 
-#: clients/views.py:371
+#: clients/views.py:366
 msgid "Inicio de sesión no válido o acceso denegado"
 msgstr ""
 
-#: clients/views.py:406
+#: clients/views.py:401
 msgid "Perfil actualizado con éxito"
 msgstr ""
 
-#: clients/views.py:426
+#: clients/views.py:421
 #, python-brace-format
 msgid ""
 "Haga clic en el enlace para reactivar su cuenta: http://localhost:8000/"

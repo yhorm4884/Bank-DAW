@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 14:38+0000\n"
-"PO-Revision-Date: 2024-02-17 14:08+0000\n"
+"POT-Creation-Date: 2024-02-19 14:55+0000\n"
+"PO-Revision-Date: 2024-02-19 15:00+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -106,7 +106,7 @@ msgstr "Edit alias"
 #: clients/templates/account/deactivate_account.html:4
 #: clients/templates/account/deactivate_account.html:11
 #: clients/templates/client/dashboard.html:45
-#: clients/templates/client/profile.html:32
+#: clients/templates/client/profile.html:52
 msgid "Desactivar cuenta"
 msgstr "Deactivate account"
 
@@ -248,6 +248,10 @@ msgstr "Add a credit card"
 msgid "Estas seguro de que quieres eliminar la tarjeta"
 msgstr "Are you sure you want to delete the card?"
 
+#: clients/templates/cards/confirm_delete_card.html:8
+msgid "Si, estoy seguro"
+msgstr "Yes, I'm sure"
+
 #: clients/templates/cards/confirm_delete_card.html:9
 msgid "Cancelar"
 msgstr "Cancel"
@@ -256,11 +260,11 @@ msgstr "Cancel"
 msgid "Bloquear"
 msgstr "Block"
 
-#: clients/templates/cards/credit_card_list.html:35
+#: clients/templates/cards/credit_card_list.html:37
 msgid "Desbloquear"
 msgstr "Unlock"
 
-#: clients/templates/cards/credit_card_list.html:41
+#: clients/templates/cards/credit_card_list.html:43
 msgid "Eliminar"
 msgstr "Eliminate"
 
@@ -369,8 +373,8 @@ msgstr "If not register here"
 
 #: clients/templates/client/login.html:34
 msgid ""
-"Por favor, utilice el siguiente formulario para iniciar sesión. Si no tienes "
-"una cuenta"
+"Por favor, utilice el siguiente formulario para iniciar sesión. Si no tienes"
+" una cuenta"
 msgstr "Please use the form below to log in. If you don't have an account"
 
 #: clients/templates/client/login.html:34
@@ -385,31 +389,31 @@ msgstr "Forgot your password?"
 msgid "Perfil de cliente"
 msgstr "Customer profile"
 
-#: clients/templates/client/profile.html:9
+#: clients/templates/client/profile.html:10
 msgid "Perfil de"
 msgstr "Profile of"
 
-#: clients/templates/client/profile.html:15
+#: clients/templates/client/profile.html:19
 msgid "Nombre de usuario:"
 msgstr "Username:"
 
-#: clients/templates/client/profile.html:17
+#: clients/templates/client/profile.html:23
 msgid "Nombre:"
 msgstr "Name:"
 
-#: clients/templates/client/profile.html:19
+#: clients/templates/client/profile.html:27
 msgid "Apellido:"
 msgstr "Last name:"
 
-#: clients/templates/client/profile.html:21
+#: clients/templates/client/profile.html:31
 msgid "Correo electrónico:"
 msgstr "Email:"
 
-#: clients/templates/client/profile.html:25
+#: clients/templates/client/profile.html:38
 msgid "Editar perfil"
 msgstr "Edit profile"
 
-#: clients/templates/client/profile.html:28
+#: clients/templates/client/profile.html:43
 msgid "Cambiar contraseña"
 msgstr "Change Password"
 
@@ -594,7 +598,8 @@ msgstr "Have you forgotten your password?"
 
 #: clients/templates/registration/password_reset_form.html:8
 msgid ""
-"Ingrese su dirección de correo electrónico para obtener una nueva contraseña."
+"Ingrese su dirección de correo electrónico para obtener una nueva "
+"contraseña."
 msgstr "Enter your email address to get a new password."
 
 #: clients/templates/registration/password_reset_form.html:11
@@ -618,11 +623,11 @@ msgstr ""
 #: clients/views.py:69
 #, python-brace-format
 msgid ""
-"Se han añadido {amount} euros a la cuenta {alias}. Balance actual: {balance} "
-"euros."
+"Se han añadido {amount} euros a la cuenta {alias}. Balance actual: {balance}"
+" euros."
 msgstr ""
-"{amount} Euros have been added to account {alias}. Actual balance: {balance} "
-"euros."
+"{amount} Euros have been added to account {alias}. Actual balance: {balance}"
+" euros."
 
 #: clients/views.py:72
 msgid "La cantidad no puede superar 1 millón de euros."
@@ -632,7 +637,7 @@ msgstr "The amount cannot exceed 1 million euros."
 msgid "¡ Perfil actualizado correctamente !"
 msgstr "Profile updated successfully!"
 
-#: clients/views.py:92 clients/views.py:409
+#: clients/views.py:92 clients/views.py:404
 msgid "Error al actualizar tu perfil"
 msgstr "Error updating your profile"
 
@@ -646,7 +651,7 @@ msgstr "The account alias has been successfully changed."
 msgid "La cuenta ya está desactivada."
 msgstr "Deactivated account"
 
-#: clients/views.py:134 clients/views.py:425
+#: clients/views.py:134 clients/views.py:420
 #, fuzzy
 #| msgid "Reactivar cuenta"
 msgid "Reactiva tu cuenta"
@@ -655,11 +660,11 @@ msgstr "Reactivate account"
 #: clients/views.py:135
 #, python-brace-format
 msgid ""
-"Pulsa en el enlace para reactivar tu cuenta: http://localhost:8000/account/"
-"reactivate/{reactivation_token}"
+"Pulsa en el enlace para reactivar tu cuenta: "
+"http://localhost:8000/account/reactivate/{reactivation_token}"
 msgstr ""
-"Click on the link to reactivate your account: http://localhost:8000/account/"
-"reactivate/{reactivation_token}"
+"Click on the link to reactivate your account: "
+"http://localhost:8000/account/reactivate/{reactivation_token}"
 
 #: clients/views.py:191 clients/views.py:223
 msgid "Has alcanzado el límite máximo de tarjetas de crédito."
@@ -748,11 +753,11 @@ msgstr "Your password has been changed successfully."
 msgid "La tarjeta ha sido eliminada correctamente."
 msgstr "Your password has been changed successfully."
 
-#: clients/views.py:367
+#: clients/views.py:362
 #, fuzzy
 #| msgid ""
-#| "Tu cuenta ha sido desactivada. Revisa el correo electrónico para obtener "
-#| "un enlace para reactivar su cuenta."
+#| "Tu cuenta ha sido desactivada. Revisa el correo electrónico para obtener un "
+#| "enlace para reactivar su cuenta."
 msgid ""
 "Tu cuenta está inactiva, por favor revisa tu correo electrónico para "
 "reactivarla"
@@ -760,26 +765,26 @@ msgstr ""
 "Your account has been deactivated. Check the email for a link to reactivate "
 "your account."
 
-#: clients/views.py:369
+#: clients/views.py:364
 msgid "La cuenta está bloqueada"
 msgstr "The account is locked"
 
-#: clients/views.py:371
+#: clients/views.py:366
 msgid "Inicio de sesión no válido o acceso denegado"
 msgstr "Invalid login or access denied"
 
-#: clients/views.py:406
+#: clients/views.py:401
 msgid "Perfil actualizado con éxito"
 msgstr "Profile updated successfully"
 
-#: clients/views.py:426
+#: clients/views.py:421
 #, python-brace-format
 msgid ""
-"Haga clic en el enlace para reactivar su cuenta: http://localhost:8000/"
-"client/reactivate/{reactivation_token}"
+"Haga clic en el enlace para reactivar su cuenta: "
+"http://localhost:8000/client/reactivate/{reactivation_token}"
 msgstr ""
-"Click the link to reactivate your account: http://localhost:8000/client/"
-"reactivate/{reactivation_token}"
+"Click the link to reactivate your account: "
+"http://localhost:8000/client/reactivate/{reactivation_token}"
 
 #: transactions/templates/payments/payments_form.html:10
 msgid "Detalle de pago"

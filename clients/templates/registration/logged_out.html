@@ -1,11 +1,51 @@
 {% extends "base.html" %}
 {% load i18n %}
+
 {% block title %}{% trans "Cerrada sesión" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Cerrada sesión" %}</h1>
-<p>
-{% trans "Ha sido desconectado exitosamente." %}
-{% trans "Usted puede" %} <a href="{% url "login" %}">{% trans "iniciar de nuevo" %}</a>.
-</p>
+<div class="goodbyeContainer">
+  <h1 class="goodbyeTitle">{% trans "Cerrada sesión" %}</h1>
+  <p class="goodbyeMessage">
+    {% trans "Has sido desconectado exitosamente." %}
+    {% trans "Puedes" %} <a class="loginLink" href="{% url 'login' %}">{% trans "iniciar sesión nuevamente" %}</a>.
+  </p>
+</div>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
+      }
+      
+      .goodbyeContainer {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .goodbyeTitle {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      
+      .goodbyeMessage {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      
+      .loginLink {
+        color: #007bff;
+        text-decoration: none;
+      }
+      
+      .loginLink:hover {
+        text-decoration: underline;
+      }
+</style>
 {% endblock %}
