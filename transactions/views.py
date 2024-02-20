@@ -125,12 +125,12 @@ def outcoming(request):
                 url = bank.get("url")
 
         # Enviar la solicitud POST al banco 2 para registrar la transacción entrante
-        # bank2_url = url + "/transfer/incoming/"
-        prueba_urllocal= "http://0.0.0.0:8000/transfer/incoming/"
+        bank2_url = url + "/transfer/incoming/"
+        # prueba_urllocal= "http://0.0.0.0:8000/transfer/incoming/"
         # bank2_url = "http://192.168.1.42:8000/transfer/incoming/"
         payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}
         print(payload)
-        response = requests.post(prueba_urllocal, json=payload)
+        response = requests.post(bank2_url, json=payload)
         # print(bank2_url, payload)
         # print(response.status_code)
         if response.status_code == 200:
@@ -156,7 +156,6 @@ def outcoming(request):
 
         return render(request, 'transfers/transference_form.html', {'accounts': accounts})
 
-@login_required
 @csrf_exempt
 def incoming(request):
     if request.method == 'POST':
