@@ -118,6 +118,9 @@ zip: clean
 # Launch project through Docker
 dockup:
     docker compose up
+# Launch project through Docker
+dockdown:
+    docker compose down
 
 # Install Python requirements
 pipi: check_venv
