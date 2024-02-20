@@ -1,3 +1,4 @@
+import json
 from django.utils.translation import gettext as _
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -132,7 +133,7 @@ def deactivate_account(request, account_id):
         account.save()
 
         subject = _('Reactiva tu cuenta')
-        message = _(f'Pulsa en el enlace para reactivar tu cuenta: http://localhost:8000/account/reactivate/{reactivation_token}')
+        message = _(f'Pulsa en el enlace para reactivar tu cuenta: http://localhost:8000/es/reactivate/{reactivation_token}')
         from_email = 'your_email@example.com'
         to_list = [request.user.email]
 
@@ -378,9 +379,32 @@ def dashboard(request):
         logout(request)
         return render(request, 'extra/extras.html')
     elif request.user.is_authenticated:
-        accounts = Account.objects.filter(client=request.user.client)
-        credit_cards = CreditCard.objects.filter(account__in=accounts)
-        return render(request, 'client/dashboard.html', {'accounts': accounts, 'credit_cards': credit_cards})
+       # Obtener el cliente actual
+        client = request.user.client
+
+        # Obtener cuentas asociadas al cliente
+        accounts = Account.objects.filter(client=client)
+        accounts_json = json.dumps([{'code': account.code, 'alias': account.alias} for account in accounts])
+        print("Cuentas del cliente:", accounts_json)
+
+        # Obtener tarjetas de crédito asociadas al cliente
+        credit_cards = CreditCard.objects.filter(account__client=client)
+        credit_cards_json = json.dumps([{'card_code': card.card_code, 'alias': card.alias} for card in credit_cards])
+        print("Tarjetas de crédito del cliente:", credit_cards_json)
+
+        # Obtener transacciones asociadas a las cuentas del cliente
+        transactions = Transaction.objects.filter(account__client=client)
+        transactions_json = json.dumps([{'id': transaction.id, 'agent': transaction.agent, 'amount': str(transaction.amount)} for transaction in transactions])
+        print("Transacciones del cliente:", transactions_json)
+
+        return render(request, 'client/dashboard.html', {
+            'accounts': accounts,
+            'accounts_json': accounts_json,
+            'credit_cards': credit_cards,
+            'credit_cards_json': credit_cards_json,
+            'transactions': transactions,
+            'transactions_json': transactions_json,
+        })
     else:
         return render(request, 'extra/extras.html')
 

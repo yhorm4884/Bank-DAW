@@ -2,10 +2,56 @@
 {% load i18n %}
 {% block title %}{% trans "Reactivar cuenta" %}{% endblock %}
 {% block content %}
-  {% if success %}
-    <h1>{% trans "Su cuenta ha sido reactivada exitosamente" %}</h1>
-  {% else %}
-    <h1>{% trans "No se pudo reactivar la cuenta" %}</h1>
-    <p>{% trans "Token no válido o caducado. Inténtalo de nuevo."%}</p>
-  {% endif %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .title {
+        font-size: 24px;
+        color: #007bff;
+        margin-bottom: 20px;
+    }
+
+    .message {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .link {
+        color: #007bff;
+        text-decoration: none; /* Removiendo el subrayado */
+        display: inline-block;
+        margin-top: 10px;
+        transition: color 0.3s ease; /* Transición suave para el color */
+    }
+
+    .link:hover {
+        color: #0056b3; /* Cambio de color al pasar el ratón */
+    }
+</style>
+
+<div class="container">
+    {% if success %}
+        <h1 class="title">{% trans "Su cuenta ha sido reactivada exitosamente" %}</h1>
+        <p class="message">{% trans "¡Tu cuenta ha sido reactivada correctamente! ¡Bienvenido de nuevo!" %}</p>
+    {% else %}
+        <h1 class="title">{% trans "No se pudo reactivar la cuenta" %}</h1>
+        <p class="message">{% trans "El token no es válido o ha caducado. Por favor, inténtalo de nuevo." %}</p>
+    {% endif %}
+    <a href="{% url 'home' %}" class="link">{% trans "Volver al inicio" %}</a>
+</div>
 {% endblock %}

@@ -2,14 +2,82 @@
 {% load i18n %}
 
 {% block title %}{% trans "Desactivar cuenta" %}{% endblock %}
-{% block content %}
-  <h1>{%trans "¿Estás seguro que quieres desactivar tu cuenta?" %}</h1>
-  <p>{% trans "Esta acción no se puede deshacer. Todos sus datos serán eliminados permanentemente." %}</p>
-  <form method="post">
-    {% csrf_token %}
-    <p>
-      <input type="submit" value={% trans "Desactivar cuenta" %}>
-    </p>
-  </form>
-{% endblock %}
 
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .title {
+        font-size: 24px;
+        color: #007bff;
+        margin-bottom: 20px;
+    }
+
+    .message {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .btn-container {
+        text-align: center;
+    }
+
+    .btn-deactivate {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        margin-right: 10px;
+    }
+
+    .btn-deactivate:hover {
+        background-color: #c82333;
+    }
+
+    .btn-cancel {
+        background-color: #6c757d; /* Color de fondo diferente */
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-cancel:hover {
+        background-color: #5a6268; /* Color de fondo diferente al hacer hover */
+    }
+</style>
+
+<div class="container">
+    <h1 class="title">{% trans "¿Estás seguro que quieres desactivar tu cuenta?" %}</h1>
+    <p class="message">{% trans "Esta acción no se puede deshacer. Todos sus datos serán eliminados permanentemente." %}</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="btn-container">
+            <input type="submit" class="btn-deactivate" value={% trans "Desactivar cuenta" %}>
+            <a href="{% url 'home' %}" class="btn-cancel">{% trans "Cancelar" %}</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

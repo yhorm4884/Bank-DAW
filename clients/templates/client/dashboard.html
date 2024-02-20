@@ -1,7 +1,55 @@
 {% extends "base.html" %}
 {% load i18n %}
+
 {% block title %}{% trans "Panel principal" %}{% endblock %}
+
 {% block content %}
+<style>
+  /* Estilos para la guía del usuario */
+  #userGuide {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 9999;
+  }
+
+  #userGuide h3 {
+    margin-top: 0;
+    font-size: 16px;
+    color: #333;
+  }
+
+  #userGuide ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #userGuide ul li {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+    position: relative;
+    padding-left: 20px;
+  }
+
+
+  /* Estilo para las acciones pendientes */
+  .action-pending::before {
+    content: "\2713"; /* Marca de verificación Unicode */
+    color: #28a745; /* Color verde */
+    position: absolute;
+    left: 0;  }
+
+
+
+  </style>
+
 <div class="dashboard-container">
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
@@ -28,6 +76,15 @@
   </div>
   
   <div class="container">
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="{% if message.tags %}alert alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
     <div class="row">
       {% for account in accounts %}
         {% if account.status == 'AC' %}
@@ -50,18 +107,73 @@
       {% endfor %}
     </div>
   </div>
-  
+
+  <!-- Guía del usuario -->
+  <div id="userGuide">
+    <h3>{% trans "Guía para el usuario" %}</h3>
+    <p>Para disfrutar de la experiencia completa, realiza todas estas acciones:</p>
+    <ul id="actionList">
+        <li class="action-pending">{% trans "Crea tu primera cuenta" %}</li>
+        <li class="action-pending">{% trans "Asocia una tarjeta de crédito a tu cuenta" %}</li>
+        <li class="action-pending">{% trans "Realiza tu primera transacción" %}</li>
+    </ul>
+    <div id="progressIndicator">
+        <p>Progreso: <span id="progressCount">0%</span></p>
+    </div>
+</div>
+
 </div>
 
 <script>
-  function openNav() {
+  document.addEventListener("DOMContentLoaded", function() {
+    var accountsExist = {{ accounts_json|safe }};
+    var creditCardsExist = {{ credit_cards_json|safe }};
+    var transactionsExist = {{ transactions_json|safe }};
+    var totalTasks = 3; // Total de tareas
+    var completedTasks = 0; // Inicialmente todas las tareas se consideran completadas
+
+    // Comprobamos si existen cuentas, tarjetas de crédito y transacciones
+    if (!accountsExist || accountsExist.length === 0) {
+        document.querySelectorAll('#actionList li')[0].classList.remove('action-pending');
+        completedTasks++; // Disminuir el contador de tareas completadas si existen cuentas
+    }
+    if (!creditCardsExist || creditCardsExist.length === 0) {
+        document.querySelectorAll('#actionList li')[1].classList.remove('action-pending');
+        completedTasks++; // Disminuir el contador de tareas completadas si existen tarjetas de crédito
+    }
+    if (!transactionsExist || transactionsExist.length === 0) {
+        document.querySelectorAll('#actionList li')[2].classList.remove('action-pending');
+        completedTasks++; // Disminuir el contador de tareas completadas si existen transacciones
+    }
+
+    // Calcular el progreso en función de las tareas completadas
+    var progress = ((totalTasks - completedTasks ) / totalTasks) * 100;
+    var roundedProgress = progress.toFixed(2); // Redondear el progreso a dos decimales
+
+    // Actualizar el contador de progreso y la barra de progreso
+    var progressCount = document.getElementById('progressCount');
+    progressCount.textContent = roundedProgress + '%';
+
+    var progressBar = document.getElementById('progressBar');
+    progressBar.style.width = roundedProgress + '%';
+});
+
+
+
+
+
+
+
+// Función para abrir el menú lateral
+function openNav() {
     document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
-  }
+}
 
-  function closeNav() {
+// Función para cerrar el menú lateral
+function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
-  }
+}
 </script>
 {% endblock %}
