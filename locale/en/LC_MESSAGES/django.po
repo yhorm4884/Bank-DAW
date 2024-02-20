@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-19 14:55+0000\n"
-"PO-Revision-Date: 2024-02-19 15:00+0000\n"
+"POT-Creation-Date: 2024-02-20 15:32+0000\n"
+"PO-Revision-Date: 2024-02-20 15:45+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -86,27 +86,27 @@ msgid "Mis cuentas"
 msgstr "My accounts"
 
 #: clients/templates/account/accounts.html:25
-#: clients/templates/client/dashboard.html:40
+#: clients/templates/client/dashboard.html:97
 msgid "Código:"
 msgstr "Code:"
 
 #: clients/templates/account/accounts.html:26
-#: clients/templates/client/dashboard.html:41
+#: clients/templates/client/dashboard.html:98
 msgid "Balance:"
 msgstr "Balance:"
 
 #: clients/templates/account/accounts.html:29
 #: clients/templates/account/edit_alias.html:3
-#: clients/templates/account/edit_alias.html:5
-#: clients/templates/client/dashboard.html:44
+#: clients/templates/account/edit_alias.html:8
+#: clients/templates/client/dashboard.html:101
 msgid "Editar alias"
 msgstr "Edit alias"
 
 #: clients/templates/account/accounts.html:30
 #: clients/templates/account/deactivate_account.html:4
-#: clients/templates/account/deactivate_account.html:11
-#: clients/templates/client/dashboard.html:45
-#: clients/templates/client/profile.html:52
+#: clients/templates/account/deactivate_account.html:78
+#: clients/templates/client/dashboard.html:102
+#: clients/templates/client/profile.html:57
 msgid "Desactivar cuenta"
 msgstr "Deactivate account"
 
@@ -127,22 +127,27 @@ msgstr "Add money to -->"
 msgid "Volver a los detalles de la cuenta"
 msgstr "Return to account details"
 
-#: clients/templates/account/deactivate_account.html:6
+#: clients/templates/account/deactivate_account.html:73
 msgid "¿Estás seguro que quieres desactivar tu cuenta?"
 msgstr "Are you sure you want to deactivate your account?"
 
-#: clients/templates/account/deactivate_account.html:7
+#: clients/templates/account/deactivate_account.html:74
 msgid ""
 "Esta acción no se puede deshacer. Todos sus datos serán eliminados "
 "permanentemente."
 msgstr ""
 "This action can not be undone. All your data will be permanently deleted."
 
-#: clients/templates/account/edit_alias.html:8
+#: clients/templates/account/deactivate_account.html:79
+#: clients/templates/cards/confirm_delete_card.html:9
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: clients/templates/account/edit_alias.html:11
 msgid "Nuevo alias:"
 msgstr "New alias:"
 
-#: clients/templates/account/edit_alias.html:9
+#: clients/templates/account/edit_alias.html:13
 msgid "Guardar cambios"
 msgstr "Save Changes"
 
@@ -150,17 +155,29 @@ msgstr "Save Changes"
 msgid "Reactivar cuenta"
 msgstr "Reactivate account"
 
-#: clients/templates/account/reactivate_account.html:6
+#: clients/templates/account/reactivate_account.html:49
 msgid "Su cuenta ha sido reactivada exitosamente"
 msgstr "Your account has been successfully reactivated"
 
-#: clients/templates/account/reactivate_account.html:8
+#: clients/templates/account/reactivate_account.html:50
+#, fuzzy
+#| msgid "Su cuenta ha sido reactivada exitosamente"
+msgid "¡Tu cuenta ha sido reactivada correctamente! ¡Bienvenido de nuevo!"
+msgstr "Your account has been successfully reactivated"
+
+#: clients/templates/account/reactivate_account.html:52
 msgid "No se pudo reactivar la cuenta"
 msgstr "Could not reactivate account"
 
-#: clients/templates/account/reactivate_account.html:9
-msgid "Token no válido o caducado. Inténtalo de nuevo."
+#: clients/templates/account/reactivate_account.html:53
+#, fuzzy
+#| msgid "Token no válido o caducado. Inténtalo de nuevo."
+msgid "El token no es válido o ha caducado. Por favor, inténtalo de nuevo."
 msgstr "Invalid or expired token. Try again."
+
+#: clients/templates/account/reactivate_account.html:55
+msgid "Volver al inicio"
+msgstr "Back to Home"
 
 #: clients/templates/account/register.html:4
 msgid "Registrar una Cuenta"
@@ -170,63 +187,63 @@ msgstr "Register an Account"
 msgid "Crear nueva cuenta."
 msgstr "Create new account."
 
-#: clients/templates/base.html:25
+#: clients/templates/base.html:26
 msgid "Inicio"
 msgstr "Home"
 
-#: clients/templates/base.html:25
+#: clients/templates/base.html:26
 msgid "Actual"
 msgstr "Current"
 
-#: clients/templates/base.html:28 clients/templates/base.html:74
+#: clients/templates/base.html:29 clients/templates/base.html:81
 msgid "Tarjetas"
 msgstr "Cards"
 
-#: clients/templates/base.html:31
+#: clients/templates/base.html:32
 #: transactions/templates/transfers/movements.html:36
 msgid "Pagos"
 msgstr "Payments"
 
-#: clients/templates/base.html:34
+#: clients/templates/base.html:35
 msgid "Transferencias"
 msgstr "Transfers"
 
-#: clients/templates/base.html:54
+#: clients/templates/base.html:55
 msgid "Hola"
 msgstr "Hello"
 
-#: clients/templates/base.html:57
+#: clients/templates/base.html:64
 msgid "Cerrar sesión"
 msgstr "Sign off"
 
-#: clients/templates/base.html:60 clients/templates/client/login.html:49
+#: clients/templates/base.html:67 clients/templates/client/login.html:49
 #: clients/templates/extra/extras.html:37
 msgid "Iniciar sesión"
 msgstr "Log in"
 
-#: clients/templates/base.html:72
+#: clients/templates/base.html:79
 msgid "Productos"
 msgstr "Products"
 
-#: clients/templates/base.html:73
+#: clients/templates/base.html:80
 #, fuzzy
 #| msgid "Cuenta:"
 msgid "Cuentas"
 msgstr "Account:"
 
-#: clients/templates/base.html:77
+#: clients/templates/base.html:84
 msgid "BankODPCS"
 msgstr "BankODPCS"
 
-#: clients/templates/base.html:78
+#: clients/templates/base.html:85
 msgid "Sobre nosotros"
 msgstr "About us"
 
-#: clients/templates/base.html:79
+#: clients/templates/base.html:86
 msgid "Bancos socios"
 msgstr "Partner Banks"
 
-#: clients/templates/base.html:80
+#: clients/templates/base.html:87
 msgid "Ayuda"
 msgstr "Help"
 
@@ -252,10 +269,6 @@ msgstr "Are you sure you want to delete the card?"
 msgid "Si, estoy seguro"
 msgstr "Yes, I'm sure"
 
-#: clients/templates/cards/confirm_delete_card.html:9
-msgid "Cancelar"
-msgstr "Cancel"
-
 #: clients/templates/cards/credit_card_list.html:31
 msgid "Bloquear"
 msgstr "Block"
@@ -269,7 +282,8 @@ msgid "Eliminar"
 msgstr "Eliminate"
 
 #: clients/templates/cards/credit_cards.html:9
-#: transactions/templates/transfers/transference_form.html:17
+#: transactions/templates/transfers/transference_form.html:15
+#: transactions/templates/transfers/transference_form.html:16
 msgid "Selecciona una cuenta"
 msgstr "Select an account"
 
@@ -291,53 +305,75 @@ msgid "Filtrar"
 msgstr "Filter"
 
 #: clients/templates/cards/credit_cards.html:22
-#: clients/templates/client/dashboard.html:10
+#: clients/templates/client/dashboard.html:58
 msgid "Añadir Tarjeta"
 msgstr "Add Card"
 
-#: clients/templates/client/dashboard.html:3
+#: clients/templates/client/dashboard.html:4
 msgid "Panel principal"
 msgstr "Main panel"
 
-#: clients/templates/client/dashboard.html:9
+#: clients/templates/client/dashboard.html:57
 msgid "Acciones de Tarjetas"
 msgstr "Card Actions"
 
-#: clients/templates/client/dashboard.html:11
+#: clients/templates/client/dashboard.html:59
 msgid "Ver Tarjetas"
 msgstr "See Cards"
 
-#: clients/templates/client/dashboard.html:14
+#: clients/templates/client/dashboard.html:62
 msgid "Acciones del cliente"
 msgstr "Client actions"
 
-#: clients/templates/client/dashboard.html:15
+#: clients/templates/client/dashboard.html:63
 msgid "Editar Perfil"
 msgstr "Edit profile"
 
-#: clients/templates/client/dashboard.html:16
+#: clients/templates/client/dashboard.html:64
 msgid "Cambiar Contraseña"
 msgstr "Change Password"
 
-#: clients/templates/client/dashboard.html:17
+#: clients/templates/client/dashboard.html:65
 msgid "Desactivar Cuenta"
 msgstr "Deactivate account"
 
-#: clients/templates/client/dashboard.html:20
+#: clients/templates/client/dashboard.html:68
 msgid "Acciones Cuentas"
 msgstr "Account Actions"
 
-#: clients/templates/client/dashboard.html:21
+#: clients/templates/client/dashboard.html:69
 msgid "Registrar Cuenta"
 msgstr "Register Account"
 
-#: clients/templates/client/dashboard.html:26
+#: clients/templates/client/dashboard.html:74
 msgid "Mostrar acciones"
 msgstr "Show actions"
 
-#: clients/templates/client/dashboard.html:27
+#: clients/templates/client/dashboard.html:75
 msgid "Bienvenido,"
 msgstr "Welcome,"
+
+#: clients/templates/client/dashboard.html:113
+msgid "Guía para el usuario"
+msgstr "User Guide"
+
+#: clients/templates/client/dashboard.html:116
+#, fuzzy
+#| msgid "Crear una cuenta"
+msgid "Crea tu primera cuenta"
+msgstr "Create an account"
+
+#: clients/templates/client/dashboard.html:117
+#, fuzzy
+#| msgid "Añadir una tarjeta de crédito"
+msgid "Asocia una tarjeta de crédito a tu cuenta"
+msgstr "Add a credit card"
+
+#: clients/templates/client/dashboard.html:118
+#, fuzzy
+#| msgid "Hacer transacción"
+msgid "Realiza tu primera transacción"
+msgstr "Make transaction"
 
 #: clients/templates/client/deactivate_account.html:2
 msgid "Cuenta desactivada"
@@ -351,11 +387,11 @@ msgstr ""
 "Your account has been deactivated. Check the email for a link to reactivate "
 "your account."
 
-#: clients/templates/client/edit.html:4 clients/templates/client/edit.html:10
+#: clients/templates/client/edit.html:5 clients/templates/client/edit.html:11
 msgid "Edita tu cuenta"
 msgstr "Edit your account"
 
-#: clients/templates/client/edit.html:26
+#: clients/templates/client/edit.html:45
 msgid "Guardar"
 msgstr "Save"
 
@@ -385,35 +421,35 @@ msgstr "Sign up here"
 msgid "¿Olvidaste la contraseña?"
 msgstr "Forgot your password?"
 
-#: clients/templates/client/profile.html:4
+#: clients/templates/client/profile.html:5
 msgid "Perfil de cliente"
 msgstr "Customer profile"
 
-#: clients/templates/client/profile.html:10
+#: clients/templates/client/profile.html:11
 msgid "Perfil de"
 msgstr "Profile of"
 
-#: clients/templates/client/profile.html:19
+#: clients/templates/client/profile.html:24
 msgid "Nombre de usuario:"
 msgstr "Username:"
 
-#: clients/templates/client/profile.html:23
+#: clients/templates/client/profile.html:28
 msgid "Nombre:"
 msgstr "Name:"
 
-#: clients/templates/client/profile.html:27
+#: clients/templates/client/profile.html:32
 msgid "Apellido:"
 msgstr "Last name:"
 
-#: clients/templates/client/profile.html:31
+#: clients/templates/client/profile.html:36
 msgid "Correo electrónico:"
 msgstr "Email:"
 
-#: clients/templates/client/profile.html:38
+#: clients/templates/client/profile.html:43
 msgid "Editar perfil"
 msgstr "Edit profile"
 
-#: clients/templates/client/profile.html:43
+#: clients/templates/client/profile.html:48
 msgid "Cambiar contraseña"
 msgstr "Change Password"
 
@@ -476,6 +512,51 @@ msgstr "log in"
 msgid "BANK ODPCS"
 msgstr "BANK ODPCS"
 
+#: clients/templates/extra/extras.html:47
+#| msgid "Bienvenido a la cuenta de: "
+msgid "Bienvenido a Bank ODPCS"
+msgstr "Welcome to Bank ODPCS"
+
+#: clients/templates/extra/extras.html:49
+msgid ""
+"¡Bienvenido a nuestra nueva aplicación web bancaria! Con nuestra aplicación,"
+" realizar transferencias y pagos, así como recibir fondos, nunca ha sido tan"
+" fácil y sencillo. Estamos encantados de ofrecerte una experiencia fluida y "
+"segura para gestionar tus finanzas de manera conveniente."
+msgstr ""
+"Welcome to our new banking web application! With our application, making "
+"transfers and payments, as well as receiving funds, has never been easier "
+"and simpler. We are delighted to offer you a seamless and secure experience "
+"to manage your finances conveniently."
+
+#: clients/templates/extra/extras.html:71
+msgid "Este número es indicativo del riesgo del producto, siendo 1 / 6 "
+msgstr "This number is indicative of the risk of the product, being 1/6"
+
+#: clients/templates/extra/extras.html:74
+msgid "indicativo de menor riesgo y 6 / 6 de mayor riesgo."
+msgstr "indicative of lower risk and 6/6 of higher risk."
+
+#: clients/templates/extra/extras.html:87
+msgid "Novedad para menores de edad"
+msgstr "New for minors"
+
+#: clients/templates/extra/extras.html:92
+msgid ""
+"Introducimos con entusiasmo nuestra innovadora cuenta para menores, diseñada"
+" específicamente "
+msgstr ""
+"We are excited to introduce our innovative child account, designed "
+"specifically"
+
+#: clients/templates/extra/extras.html:94
+msgid ""
+"para brindar a los más jóvenes una introducción segura y educativa al mundo "
+"de las finanzas"
+msgstr ""
+"to provide young people with a safe and educational introduction to the "
+"world of finance"
+
 #: clients/templates/payments/payment_form.html:11
 msgid "Detalles del pago"
 msgstr "Payment details"
@@ -488,42 +569,58 @@ msgstr "Business"
 msgid "Código de tarjeta de cliente (CCC):"
 msgstr "Customer Card Code (CCC):"
 
+#: clients/templates/payments/payment_form.html:27
+msgid "Ingrese el código de la tarjeta"
+msgstr "Enter the card code"
+
+#: clients/templates/payments/payment_form.html:31
+msgid "Ingrese el PIN de la tarjeta"
+msgstr "Enter the card PIN"
+
 #: clients/templates/payments/payment_form.html:34
 #: transactions/templates/pdf/justificante_template.html:83
 msgid "Cantidad:"
 msgstr "Amount:"
+
+#: clients/templates/payments/payment_form.html:35
+msgid "Ingrese la cantidad a transferir"
+msgstr "Enter the amount to transfer"
 
 #: clients/templates/payments/payment_form.html:38
 #: transactions/templates/payments/payments_form.html:37
 msgid "Pagar"
 msgstr "Pay"
 
-#: clients/templates/registration/logged_out.html:3
-#: clients/templates/registration/logged_out.html:6
+#: clients/templates/registration/logged_out.html:4
+#: clients/templates/registration/logged_out.html:8
 msgid "Cerrada sesión"
 msgstr "Logged out"
 
-#: clients/templates/registration/logged_out.html:8
-msgid "Ha sido desconectado exitosamente."
+#: clients/templates/registration/logged_out.html:10
+#, fuzzy
+#| msgid "Ha sido desconectado exitosamente."
+msgid "Has sido desconectado exitosamente."
 msgstr "It has been successfully disconnected."
 
-#: clients/templates/registration/logged_out.html:9
-msgid "Usted puede"
-msgstr "You can"
+#: clients/templates/registration/logged_out.html:11
+msgid "Puedes"
+msgstr "Can"
 
-#: clients/templates/registration/logged_out.html:9
-msgid "iniciar de nuevo"
-msgstr "log-in again"
+#: clients/templates/registration/logged_out.html:11
+#, fuzzy
+#| msgid "iniciar sesión"
+msgid "iniciar sesión nuevamente"
+msgstr "log in"
 
 #: clients/templates/registration/password_change_done.html:3
 msgid "Contraseña modificada"
 msgstr "Password changed"
 
-#: clients/templates/registration/password_change_done.html:5
+#: clients/templates/registration/password_change_done.html:32
 msgid "Contraseña modificada "
 msgstr "Password changed"
 
-#: clients/templates/registration/password_change_done.html:6
+#: clients/templates/registration/password_change_done.html:33
 msgid "Su contraseña ha sido cambiada exitosamente."
 msgstr "Your password has been changed successfully."
 
@@ -540,87 +637,124 @@ msgstr "Use the form below to change your password."
 msgid "Modificar"
 msgstr "Modify"
 
-#: clients/templates/registration/password_reset_complete.html:4
+#: clients/templates/registration/password_reset_complete.html:3
 msgid "Restablecimiento de contraseña"
 msgstr "Password reset"
 
-#: clients/templates/registration/password_reset_complete.html:6
+#: clients/templates/registration/password_reset_complete.html:44
 msgid "Establecer contraseña"
 msgstr "Set password"
 
-#: clients/templates/registration/password_reset_complete.html:7
+#: clients/templates/registration/password_reset_complete.html:45
 msgid "Su contraseña ha sido establecida. Puede"
 msgstr "Your password has been set. Can"
 
-#: clients/templates/registration/password_reset_complete.html:7
+#: clients/templates/registration/password_reset_complete.html:45
 #, fuzzy
 #| msgid "acceder ahora."
 msgid " acceder ahora."
 msgstr "access now."
 
-#: clients/templates/registration/password_reset_done.html:5
+#: clients/templates/registration/password_reset_confirm.html:4
+#: clients/templates/registration/password_reset_confirm.html:7
+#: clients/templates/registration/password_reset_done.html:3
+#: clients/templates/registration/password_reset_done.html:6
 msgid "Restablecer tu contraseña"
 msgstr "Reset your password"
 
-#: clients/templates/registration/password_reset_done.html:6
+#: clients/templates/registration/password_reset_confirm.html:9
+msgid "Por favor ingrese tu nueva contraseña dos veces:"
+msgstr "Please enter your new password twice:"
+
+#: clients/templates/registration/password_reset_confirm.html:16
 msgid ""
-"Le hemos enviado por correo electrónico instrucciones para configurar su "
+"El enlace para restablecer la contraseña no era válido, posiblemente porque "
+"ya se había utilizado. Solicite un nuevo restablecimiento de contraseña."
+msgstr ""
+"The password reset link was invalid, possibly because it had already been "
+"used. Request a new password reset."
+
+#: clients/templates/registration/password_reset_confirm.html:18
+msgid "Volver a inicio"
+msgstr "Go back to home"
+
+#: clients/templates/registration/password_reset_done.html:7
+#, fuzzy
+#| msgid ""
+#| "Le hemos enviado por correo electrónico instrucciones para configurar su "
+#| "contraseña."
+msgid ""
+"Te hemos enviado por correo electrónico instrucciones para configurar tu "
 "contraseña."
 msgstr "We have emailed you instructions for setting your password."
 
-#: clients/templates/registration/password_reset_done.html:7
+#: clients/templates/registration/password_reset_done.html:8
+#, fuzzy
+#| msgid ""
+#| "Si no recibe un correo electrónico, asegúrese de haber ingresado la "
+#| "dirección con la que se registró."
 msgid ""
-"Si no recibe un correo electrónico, asegúrese de haber ingresado la "
-"dirección con la que se registró."
+"Si no recibes un correo electrónico, asegúrate de haber ingresado la "
+"dirección con la que te registraste."
 msgstr "We have emailed you instructions for setting your password."
 
+#: clients/templates/registration/password_reset_done.html:9
+msgid "Volver al login"
+msgstr "Go back to login"
+
 #: clients/templates/registration/password_reset_email.html:2
-msgid "Alguien solicitó restablecer la contraseña del correo electrónico"
+#, fuzzy, python-format
+#| msgid ""
+#| "Alguien solicitó restablecer la contraseña del correo electrónico"
+msgid ""
+"\n"
+"Alguien solicitó restablecer la contraseña del correo electrónico %(email)s.\n"
+"Siga el siguiente enlace:\n"
 msgstr "Someone requested to reset email password"
 
-#: clients/templates/registration/password_reset_email.html:2
-msgid "Siga el siguiente enlace:"
-msgstr "Follow the following link:"
-
-#: clients/templates/registration/password_reset_email.html:4
-msgid "Tu nombre de usuario, en caso de que lo hayas olvidado:"
+#: clients/templates/registration/password_reset_email.html:7
+#, fuzzy, python-format
+#| msgid "Tu nombre de usuario, en caso de que lo hayas olvidado:"
+msgid ""
+"\n"
+"Tu nombre de usuario, en caso de que lo hayas olvidado: %(username)s\n"
 msgstr "Your username, in case you've forgotten it:"
 
 #: clients/templates/registration/password_reset_form.html:4
 msgid "Reinicia tu contraseña"
 msgstr "Reset your password"
 
-#: clients/templates/registration/password_reset_form.html:7
+#: clients/templates/registration/password_reset_form.html:46
 #, fuzzy
 #| msgid "¿Haz olvidado tu contraseña?"
 msgid "¿Has olvidado tu contraseña?"
 msgstr "Have you forgotten your password?"
 
-#: clients/templates/registration/password_reset_form.html:8
+#: clients/templates/registration/password_reset_form.html:47
 msgid ""
 "Ingrese su dirección de correo electrónico para obtener una nueva "
 "contraseña."
 msgstr "Enter your email address to get a new password."
 
-#: clients/templates/registration/password_reset_form.html:11
+#: clients/templates/registration/password_reset_form.html:50
 msgid "Enviar correo"
 msgstr "Send mail"
 
-#: clients/views.py:23
+#: clients/views.py:24
 msgid "Número máximo de cuentas excedido (máximo 3 cuentas)."
 msgstr "Maximum number of accounts exceeded (maximum 3 accounts)."
 
-#: clients/views.py:36
+#: clients/views.py:37
 msgid "La contraseña actual ingresada no es correcta."
 msgstr "The current password entered is not correct."
 
-#: clients/views.py:66
+#: clients/views.py:67
 msgid ""
 "La cantidad que ha puesto excede el límite que puede alvergar la cuenta."
 msgstr ""
 "The amount you have put in exceeds the limit that can hold the account."
 
-#: clients/views.py:69
+#: clients/views.py:70
 #, python-brace-format
 msgid ""
 "Se han añadido {amount} euros a la cuenta {alias}. Balance actual: {balance}"
@@ -629,131 +763,134 @@ msgstr ""
 "{amount} Euros have been added to account {alias}. Actual balance: {balance}"
 " euros."
 
-#: clients/views.py:72
+#: clients/views.py:73
 msgid "La cantidad no puede superar 1 millón de euros."
 msgstr "The amount cannot exceed 1 million euros."
 
-#: clients/views.py:89
+#: clients/views.py:90
 msgid "¡ Perfil actualizado correctamente !"
 msgstr "Profile updated successfully!"
 
-#: clients/views.py:92 clients/views.py:404
+#: clients/views.py:93 clients/views.py:429
 msgid "Error al actualizar tu perfil"
 msgstr "Error updating your profile"
 
-#: clients/views.py:113
+#: clients/views.py:114
 msgid "El alias de la cuenta se ha cambiado correctamente."
 msgstr "The account alias has been successfully changed."
 
-#: clients/views.py:124
+#: clients/views.py:125
 #, fuzzy
 #| msgid "Cuenta desactivada"
 msgid "La cuenta ya está desactivada."
 msgstr "Deactivated account"
 
-#: clients/views.py:134 clients/views.py:420
+#: clients/views.py:135 clients/views.py:446
 #, fuzzy
 #| msgid "Reactivar cuenta"
 msgid "Reactiva tu cuenta"
 msgstr "Reactivate account"
 
-#: clients/views.py:135
-#, python-brace-format
+#: clients/views.py:136
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "Pulsa en el enlace para reactivar tu cuenta: "
+#| "http://localhost:8000/account/reactivate/{reactivation_token}"
 msgid ""
 "Pulsa en el enlace para reactivar tu cuenta: "
-"http://localhost:8000/account/reactivate/{reactivation_token}"
+"http://localhost:8000/es/reactivate/{reactivation_token}"
 msgstr ""
 "Click on the link to reactivate your account: "
 "http://localhost:8000/account/reactivate/{reactivation_token}"
 
-#: clients/views.py:191 clients/views.py:223
+#: clients/views.py:192 clients/views.py:224
 msgid "Has alcanzado el límite máximo de tarjetas de crédito."
 msgstr "You have reached the maximum credit card limit."
 
-#: clients/views.py:205 clients/views.py:236
+#: clients/views.py:206 clients/views.py:237
 #, fuzzy, python-brace-format
 #| msgid "No hay tarjetas de crédito asociadas con esta cuenta."
 msgid "Tu tarjeta {codigo} ha sido creada con éxito"
 msgstr "There are no credit cards associated with this account."
 
-#: clients/views.py:206 clients/views.py:237
+#: clients/views.py:207 clients/views.py:238
 #, python-brace-format
 msgid "Este es tu PIN: {pin}"
 msgstr "This is your PIN: {pin}"
 
-#: clients/views.py:242
+#: clients/views.py:243
 msgid "Se ha creado la tarjeta con éxito"
 msgstr "The card has been created successfully"
 
-#: clients/views.py:255
+#: clients/views.py:256
 msgid "Esta tarjeta ya está bloqueada."
 msgstr "This card is already blocked."
 
-#: clients/views.py:262
+#: clients/views.py:263
 msgid "Tu tarjeta ha sido bloqueada"
 msgstr "Your card has been blocked"
 
-#: clients/views.py:263
+#: clients/views.py:264
 #, fuzzy
 #| msgid "Su contraseña ha sido cambiada exitosamente."
 msgid "Su tarjeta de crédito con código {} ha sido bloqueada exitosamente."
 msgstr "Your password has been changed successfully."
 
-#: clients/views.py:269
+#: clients/views.py:270
 #, fuzzy
 #| msgid "No hay tarjetas de crédito asociadas con esta cuenta."
 msgid "Tarjeta de crédito bloqueada exitosamente"
 msgstr "There are no credit cards associated with this account."
 
-#: clients/views.py:272
+#: clients/views.py:273
 msgid "No estás autorizado a bloquear esta tarjeta de crédito"
 msgstr "You are not authorized to block this credit card"
 
-#: clients/views.py:280
+#: clients/views.py:281
 msgid "Esta tarjeta ya está activa."
 msgstr "This card is now active."
 
-#: clients/views.py:287
+#: clients/views.py:288
 #, fuzzy
 #| msgid "No hay tarjetas de crédito asociadas con esta cuenta."
 msgid "Su tarjeta de crédito ha sido reactivada"
 msgstr "There are no credit cards associated with this account."
 
-#: clients/views.py:288
+#: clients/views.py:289
 #, fuzzy
 #| msgid "Su cuenta ha sido reactivada exitosamente"
 msgid "Su tarjeta de crédito con código {} ha sido reactivada exitosamente."
 msgstr "Your account has been successfully reactivated"
 
-#: clients/views.py:294
+#: clients/views.py:295
 #, fuzzy
 #| msgid "Su cuenta ha sido reactivada exitosamente"
 msgid "Tarjeta reactivada correctamente"
 msgstr "Your account has been successfully reactivated"
 
-#: clients/views.py:297
+#: clients/views.py:298
 msgid "No estás autorizado para reactivar esta tarjeta de crédito."
 msgstr "You are not authorized to activate this credit card."
 
-#: clients/views.py:308
+#: clients/views.py:309
 #, fuzzy
 #| msgid "No hay tarjetas de crédito asociadas con esta cuenta."
 msgid "Su tarjeta de crédito ha sido eliminada"
 msgstr "There are no credit cards associated with this account."
 
-#: clients/views.py:309
+#: clients/views.py:310
 #, fuzzy
 #| msgid "Su contraseña ha sido cambiada exitosamente."
 msgid "Su tarjeta de crédito con código {} ha sido eliminada exitosamente."
 msgstr "Your password has been changed successfully."
 
-#: clients/views.py:315
+#: clients/views.py:316
 #, fuzzy
 #| msgid "Su contraseña ha sido cambiada exitosamente."
 msgid "La tarjeta ha sido eliminada correctamente."
 msgstr "Your password has been changed successfully."
 
-#: clients/views.py:362
+#: clients/views.py:363
 #, fuzzy
 #| msgid ""
 #| "Tu cuenta ha sido desactivada. Revisa el correo electrónico para obtener un "
@@ -765,19 +902,19 @@ msgstr ""
 "Your account has been deactivated. Check the email for a link to reactivate "
 "your account."
 
-#: clients/views.py:364
+#: clients/views.py:365
 msgid "La cuenta está bloqueada"
 msgstr "The account is locked"
 
-#: clients/views.py:366
+#: clients/views.py:367
 msgid "Inicio de sesión no válido o acceso denegado"
 msgstr "Invalid login or access denied"
 
-#: clients/views.py:401
+#: clients/views.py:425
 msgid "Perfil actualizado con éxito"
 msgstr "Profile updated successfully"
 
-#: clients/views.py:421
+#: clients/views.py:447
 #, python-brace-format
 msgid ""
 "Haga clic en el enlace para reactivar su cuenta: "
@@ -800,7 +937,7 @@ msgstr "Customer card code (CCC)"
 
 #: transactions/templates/payments/payments_form.html:33
 #: transactions/templates/transfers/list.html:13
-#: transactions/templates/transfers/transference_form.html:32
+#: transactions/templates/transfers/transference_form.html:31
 msgid "Cantidad"
 msgstr "Amount"
 
@@ -836,7 +973,7 @@ msgstr "Agent"
 
 #: transactions/templates/transfers/list.html:11
 #: transactions/templates/transfers/movements.html:49
-#: transactions/templates/transfers/transference_form.html:28
+#: transactions/templates/transfers/transference_form.html:27
 msgid "Concepto"
 msgstr "Concept"
 
@@ -846,7 +983,7 @@ msgid "Fecha"
 msgstr "Date"
 
 #: transactions/templates/transfers/movements.html:14
-#: transactions/templates/transfers/transference_form.html:9
+#: transactions/templates/transfers/transference_form.html:8
 msgid "Transferencia"
 msgstr "Transfer"
 
@@ -911,11 +1048,23 @@ msgstr "Next"
 msgid "Última"
 msgstr "Last"
 
-#: transactions/templates/transfers/transference_form.html:24
+#: transactions/templates/transfers/transference_form.html:23
 msgid "Código de cuenta cliente (CCC)"
 msgstr "Customer account code (CCC)"
 
-#: transactions/templates/transfers/transference_form.html:35
+#: transactions/templates/transfers/transference_form.html:24
+msgid "Introduce el Código de la tarjeta CX-XXXX"
+msgstr "Enter the Card Code CX-XXXX"
+
+#: transactions/templates/transfers/transference_form.html:28
+msgid "Introduce el concepto"
+msgstr "Introduce the concept"
+
+#: transactions/templates/transfers/transference_form.html:32
+msgid "Introduce la cantidad"
+msgstr "Enter the quantity"
+
+#: transactions/templates/transfers/transference_form.html:34
 msgid "Hacer transacción"
 msgstr "Make transaction"
 
@@ -962,6 +1111,15 @@ msgstr "Account '{cac}' does not exist or is not active"
 #| msgid "Tipo de transferencia"
 msgid "Error en la transferencia entrante"
 msgstr "Transfer type"
+
+#~ msgid "Usted puede"
+#~ msgstr "You can"
+
+#~ msgid "iniciar de nuevo"
+#~ msgstr "log-in again"
+
+#~ msgid "Siga el siguiente enlace:"
+#~ msgstr "Follow the following link:"
 
 #~ msgid "Home"
 #~ msgstr "Inicio"
