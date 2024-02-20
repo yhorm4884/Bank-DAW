@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-20 15:32+0000\n"
-"PO-Revision-Date: 2024-02-20 15:45+0000\n"
+"POT-Creation-Date: 2024-02-20 18:06+0000\n"
+"PO-Revision-Date: 2024-02-20 18:07+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -357,6 +357,11 @@ msgstr "Welcome,"
 msgid "Guía para el usuario"
 msgstr "User Guide"
 
+#: clients/templates/client/dashboard.html:114
+msgid ""
+"Para disfrutar de la experiencia completa, realiza todas estas acciones:"
+msgstr ""
+
 #: clients/templates/client/dashboard.html:116
 #, fuzzy
 #| msgid "Crear una cuenta"
@@ -374,6 +379,10 @@ msgstr "Add a credit card"
 #| msgid "Hacer transacción"
 msgid "Realiza tu primera transacción"
 msgstr "Make transaction"
+
+#: clients/templates/client/dashboard.html:121
+msgid "Progreso:"
+msgstr ""
 
 #: clients/templates/client/deactivate_account.html:2
 msgid "Cuenta desactivada"
@@ -513,7 +522,6 @@ msgid "BANK ODPCS"
 msgstr "BANK ODPCS"
 
 #: clients/templates/extra/extras.html:47
-#| msgid "Bienvenido a la cuenta de: "
 msgid "Bienvenido a Bank ODPCS"
 msgstr "Welcome to Bank ODPCS"
 
@@ -937,6 +945,7 @@ msgstr "Customer card code (CCC)"
 
 #: transactions/templates/payments/payments_form.html:33
 #: transactions/templates/transfers/list.html:13
+#: transactions/templates/transfers/movements.html:51
 #: transactions/templates/transfers/transference_form.html:31
 msgid "Cantidad"
 msgstr "Amount"
@@ -1020,40 +1029,40 @@ msgstr "Outgoing"
 msgid "Tipo de transferencia:"
 msgstr "Transfer type:"
 
-#: transactions/templates/transfers/movements.html:51
-msgid "Cantidad "
-msgstr "Amount"
-
-#: transactions/templates/transfers/movements.html:72
+#: transactions/templates/transfers/movements.html:78
 msgid "Primera"
 msgstr "First"
 
-#: transactions/templates/transfers/movements.html:73
+#: transactions/templates/transfers/movements.html:79
 msgid "Anterior"
 msgstr "Previous"
 
-#: transactions/templates/transfers/movements.html:77
+#: transactions/templates/transfers/movements.html:83
 msgid "Página"
 msgstr "Page"
 
-#: transactions/templates/transfers/movements.html:77
+#: transactions/templates/transfers/movements.html:83
 msgid "de"
 msgstr "of"
 
-#: transactions/templates/transfers/movements.html:81
+#: transactions/templates/transfers/movements.html:87
 msgid "Siguente"
 msgstr "Next"
 
-#: transactions/templates/transfers/movements.html:82
+#: transactions/templates/transfers/movements.html:88
 msgid "Última"
 msgstr "Last"
 
 #: transactions/templates/transfers/transference_form.html:23
-msgid "Código de cuenta cliente (CCC)"
+#, fuzzy
+#| msgid "Código de cuenta cliente (CCC)"
+msgid "Código de cuenta cliente (CAC)"
 msgstr "Customer account code (CCC)"
 
 #: transactions/templates/transfers/transference_form.html:24
-msgid "Introduce el Código de la tarjeta CX-XXXX"
+#, fuzzy
+#| msgid "Introduce el Código de la tarjeta CX-XXXX"
+msgid "Introduce el Código de la cuenta AX-XXXX"
 msgstr "Enter the Card Code CX-XXXX"
 
 #: transactions/templates/transfers/transference_form.html:28
@@ -1091,26 +1100,29 @@ msgstr "You don't have enough money to pay"
 msgid "Formato de datos del formulario no válido"
 msgstr "Invalid form data format"
 
-#: transactions/views.py:114
+#: transactions/views.py:117
 #, fuzzy
 #| msgid "No tienes suficiente dinero para el pago"
 msgid "No hay suficiente dinero para realizar una transferencia"
 msgstr "You don't have enough money to pay"
 
-#: transactions/views.py:147
+#: transactions/views.py:153
 msgid "La transacción al banco falló"
 msgstr "The transaction to the bank failed"
 
-#: transactions/views.py:168
+#: transactions/views.py:173
 #, python-brace-format
 msgid "La cuenta '{cac}' no existe o no está activa"
 msgstr "Account '{cac}' does not exist or is not active"
 
-#: transactions/views.py:182
+#: transactions/views.py:187
 #, fuzzy
 #| msgid "Tipo de transferencia"
 msgid "Error en la transferencia entrante"
 msgstr "Transfer type"
+
+#~ msgid "Cantidad "
+#~ msgstr "Amount"
 
 #~ msgid "Usted puede"
 #~ msgstr "You can"

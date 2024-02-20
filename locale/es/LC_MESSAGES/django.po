@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-20 15:32+0000\n"
+"POT-Creation-Date: 2024-02-20 18:06+0000\n"
 "PO-Revision-Date: 2024-02-02 18:18+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -342,6 +342,11 @@ msgstr ""
 msgid "Guía para el usuario"
 msgstr ""
 
+#: clients/templates/client/dashboard.html:114
+msgid ""
+"Para disfrutar de la experiencia completa, realiza todas estas acciones:"
+msgstr ""
+
 #: clients/templates/client/dashboard.html:116
 msgid "Crea tu primera cuenta"
 msgstr ""
@@ -352,6 +357,10 @@ msgstr ""
 
 #: clients/templates/client/dashboard.html:118
 msgid "Realiza tu primera transacción"
+msgstr ""
+
+#: clients/templates/client/dashboard.html:121
+msgid "Progreso:"
 msgstr ""
 
 #: clients/templates/client/deactivate_account.html:2
@@ -843,6 +852,7 @@ msgstr ""
 
 #: transactions/templates/payments/payments_form.html:33
 #: transactions/templates/transfers/list.html:13
+#: transactions/templates/transfers/movements.html:51
 #: transactions/templates/transfers/transference_form.html:31
 msgid "Cantidad"
 msgstr ""
@@ -926,40 +936,36 @@ msgstr ""
 msgid "Tipo de transferencia:"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:51
-msgid "Cantidad "
-msgstr ""
-
-#: transactions/templates/transfers/movements.html:72
+#: transactions/templates/transfers/movements.html:78
 msgid "Primera"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:73
+#: transactions/templates/transfers/movements.html:79
 msgid "Anterior"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:77
+#: transactions/templates/transfers/movements.html:83
 msgid "Página"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:77
+#: transactions/templates/transfers/movements.html:83
 msgid "de"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:81
+#: transactions/templates/transfers/movements.html:87
 msgid "Siguente"
 msgstr ""
 
-#: transactions/templates/transfers/movements.html:82
+#: transactions/templates/transfers/movements.html:88
 msgid "Última"
 msgstr ""
 
 #: transactions/templates/transfers/transference_form.html:23
-msgid "Código de cuenta cliente (CCC)"
+msgid "Código de cuenta cliente (CAC)"
 msgstr ""
 
 #: transactions/templates/transfers/transference_form.html:24
-msgid "Introduce el Código de la tarjeta CX-XXXX"
+msgid "Introduce el Código de la cuenta AX-XXXX"
 msgstr ""
 
 #: transactions/templates/transfers/transference_form.html:28
@@ -995,20 +1001,20 @@ msgstr ""
 msgid "Formato de datos del formulario no válido"
 msgstr ""
 
-#: transactions/views.py:114
+#: transactions/views.py:117
 msgid "No hay suficiente dinero para realizar una transferencia"
 msgstr ""
 
-#: transactions/views.py:147
+#: transactions/views.py:153
 msgid "La transacción al banco falló"
 msgstr ""
 
-#: transactions/views.py:168
+#: transactions/views.py:173
 #, python-brace-format
 msgid "La cuenta '{cac}' no existe o no está activa"
 msgstr ""
 
-#: transactions/views.py:182
+#: transactions/views.py:187
 msgid "Error en la transferencia entrante"
 msgstr ""
 
