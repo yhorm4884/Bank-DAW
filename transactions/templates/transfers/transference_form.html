@@ -12,24 +12,24 @@
             <form method="post"  action="{% url 'transactions:outcoming' %}">
                 {% csrf_token %}
                 <div class="mb-4">
-                    <select name="sender" class="form-select" placeholder="{% trans "Selecciona una cuenta" %}">
+                    <select name="sender" class="form-select" placeholder="{% trans "Selecciona una cuenta" %}" required>
                         <option value="">{% trans "Selecciona una cuenta" %}</option>
                         {% for account in accounts %}
-                            <option value="{{ account.alias }}"> {{ account.alias }}</option>
+                            <option value="{{ account.code }}"> {{ account.alias }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="mb-4">
-                    <label for="cac" class="form-label">{% trans "Código de cuenta cliente (CCC)" %}</label>
-                    <input type="text" id="cac" name="cac" class="form-control" placeholder="{% trans "Introduce el Código de la tarjeta CX-XXXX" %}">
+                    <label for="cac" class="form-label">{% trans "Código de cuenta cliente (CAC)" %}</label>
+                    <input type="text" id="cac" name="cac" class="form-control" placeholder="{% trans "Introduce el Código de la cuenta AX-XXXX" %}" required>
                 </div>
                 <div class="mb-4">
                     <label for="concept" class="form-label">{% trans "Concepto" %}</label>
-                    <input type="text" id="concept" name="concept" class="form-control" placeholder="{% trans "Introduce el concepto" %}">
+                    <input type="text" id="concept" name="concept" class="form-control" placeholder="{% trans "Introduce el concepto" %}" required>
                 </div>
                 <div class="mb-4">
                     <label for="amount" class="form-label">{% trans "Cantidad" %}</label>
-                    <input type="number" min="0.01" step="0.01" id="amount" name="amount" class="form-control" placeholder="{% trans "Introduce la cantidad" %}">
+                    <input type="number" min="0.01" step="0.01" id="amount" name="amount" class="form-control" placeholder="{% trans "Introduce la cantidad" %}" required>
                 </div>
                 <button type="submit" class="transactButton">{% trans "Hacer transacción" %}</button>
             </form>

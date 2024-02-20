@@ -48,19 +48,25 @@
                     <th>{% trans "Agente" %}</th>
                     <th>{% trans "Concepto" %}</th>
                     <th>{% trans "Fecha" %}</th>
-                    <th>{% trans "Cantidad " %}</th>
+                    <th>{% trans "Cantidad" %}</th>
                 </tr> 
             </thead>
             <tbody>
-                {% for transaction in transactions %}
-                <tr>
-                    <td>{{ transaction.kind }}</td>
-                    <td>{{ transaction.agent }}</td>
-                    <td>{{ transaction.concept }}</td>
-                    <td>{{ transaction.timestamp }}</td>
-                    <td>{{ transaction.amount }}</td>
-                </tr>
-                {% endfor %}
+                {% if transactions %}
+                    {% for transaction in transactions %}
+                        <tr>
+                            <td>{{ transaction.kind }}</td>
+                            <td>{{ transaction.agent }}</td>
+                            <td>{{ transaction.concept }}</td>
+                            <td>{{ transaction.timestamp }}</td>
+                            <td>{{ transaction.amount }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5" style="text-align: center;"><strong>Todavia no hay transferencias</strong></td>
+                    </tr>
+                {% endif %}
             </tbody>
         </table>
 

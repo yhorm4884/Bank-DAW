@@ -39,7 +39,7 @@ def payment(request):
             else:
                 return HttpResponseForbidden(_(f"Datos del formulario invalido"))
         business = data.get('business')
-        ccc = data.get('ccc')  
+        ccc = data.get('ccc')
         pin = data.get('pin')
         amount = data.get('amount')
 
@@ -103,32 +103,38 @@ def outcoming(request):
         # Comprobar si la cuenta (cac) existe en la base de datos
         try:
             print(cac)
-            account = Account.objects.get(code=cac, status="AC")
+            account = Account.objects.get(code=sender, status="AC")
         except Account.DoesNotExist:
             # Si la cuenta no existe en la base de datos, usar la cuenta actual del usuario
+
             selected_account_alias = data.get('sender')
-            account = get_object_or_404(Account, alias=selected_account_alias, client=request.user.client)            
+
+            account = get_object_or_404(Account, alias=selected_account_alias, client=request.user.client)
+
         comision = calcular_comision("salida", float(amount))
-        
+        # print(account, account.balance)
         if account.balance < (amount + comision):
             return HttpResponse(_("No hay suficiente dinero para realizar una transferencia"))
-    
+
         url_banks = 'https://raw.githubusercontent.com/sdelquin/dsw/main/ut3/te1/notes/files/banks.json'
         response = requests.get(url_banks)
         banks = response.json()
+        # print(banks)
         for bank in banks:
             if bank.get("id") == int(cac[1]):
                 url = bank.get("url")
-        
+
         # Enviar la solicitud POST al banco 2 para registrar la transacción entrante
         # bank2_url = url + "/transfer/incoming/"
-        bank2_url = "http://192.168.1.42:8000/transfer/incoming/"
+        prueba_urllocal= "http://0.0.0.0:8000/transfer/incoming/"
+        # bank2_url = "http://192.168.1.42:8000/transfer/incoming/"
         payload = {"sender": sender, "cac": cac, "concept": concept, "amount": str(amount)}
-        response = requests.post(bank2_url, json=payload)
+        print(payload)
+        response = requests.post(prueba_urllocal, json=payload)
         # print(bank2_url, payload)
         # print(response.status_code)
         if response.status_code == 200:
-            
+
             account.balance -= amount + comision
             account.save()
             transaction = Transaction.objects.create(
@@ -161,7 +167,7 @@ def incoming(request):
         cac = data.get('cac')
         concept = data.get('concept')
         amount = data.get('amount')
-
+        print(sender,cac)
         try:
             account = Account.objects.get(code=cac, status="AC")
         except Account.DoesNotExist:

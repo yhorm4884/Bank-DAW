@@ -385,17 +385,17 @@ def dashboard(request):
         # Obtener cuentas asociadas al cliente
         accounts = Account.objects.filter(client=client)
         accounts_json = json.dumps([{'code': account.code, 'alias': account.alias} for account in accounts])
-        print("Cuentas del cliente:", accounts_json)
+        # print("Cuentas del cliente:", accounts_json)
 
         # Obtener tarjetas de crédito asociadas al cliente
         credit_cards = CreditCard.objects.filter(account__client=client)
         credit_cards_json = json.dumps([{'card_code': card.card_code, 'alias': card.alias} for card in credit_cards])
-        print("Tarjetas de crédito del cliente:", credit_cards_json)
+        # print("Tarjetas de crédito del cliente:", credit_cards_json)
 
         # Obtener transacciones asociadas a las cuentas del cliente
         transactions = Transaction.objects.filter(account__client=client)
         transactions_json = json.dumps([{'id': transaction.id, 'agent': transaction.agent, 'amount': str(transaction.amount)} for transaction in transactions])
-        print("Transacciones del cliente:", transactions_json)
+        # print("Transacciones del cliente:", transactions_json)
 
         return render(request, 'client/dashboard.html', {
             'accounts': accounts,
