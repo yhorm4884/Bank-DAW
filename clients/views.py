@@ -433,7 +433,7 @@ def edit(request):
         # photo = request.user.client.photo
         profile = request.user.client
 
-    return render(request, 'client/edit.html', {'client_form': client_form, 'user_form': user_form, 'photo': profile.photo})
+    return render(request, 'client/edit.html', {'client_form': client_form, 'user_form': user_form, 'photo': request.user.client.photo})
 
 @login_required
 def deactivate_client(request, client_id):
